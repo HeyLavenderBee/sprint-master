@@ -6,7 +6,11 @@ Nesta sprint, a equipe decidiu focar na prototipação do sistema, iniciando pel
 <br>
 
 ## 💻 Demonstração do Produto
-[vídeo aqui]
+> Clique na imagem abaixo para assistir ao vídeo referente a primeira sprint.
+
+[![Sprint 1 - Sprint Master](https://img.youtube.com/vi/piYhwFAskJ4/maxresdefault.jpg)](https://youtu.be/piYhwFAskJ4)
+
+<br>
 
 <br>
 
