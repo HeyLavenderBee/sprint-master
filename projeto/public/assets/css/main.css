@@ -1033,3 +1033,67 @@ header {
 }
 
 /*  ==== FIM DA ESTILIZAÇÃO DA HOME ==== */
+
+/*  ==== INICIO DA ESTILIZAÇÃO DA NOT FOUND ==== */
+
+.body-not-found {
+    display: flex;
+    flex-direction: column; /* Coloca um item embaixo do outro */
+    align-items: center;    /* Centraliza todos na horizontal */
+    margin: 0;
+    background-color: #FFF8EF; /* Cor de fundo do seu Figma */
+}
+
+.img-erro {
+    width: 500px;
+    display: flex;
+    flex-direction: column; /* Coloca um item embaixo do outro */
+    align-items: center;    /* Centraliza todos na horizontal */
+    margin: 0;  
+}
+
+div {
+    display: flex;
+    flex-direction: column; /* Coloca os textos e o botão um embaixo do outro */
+    align-items: center;    /* Centraliza tudo o que está dentro da div horizontalmente */
+    width: 100%;            /* Garante que a div use o espaço todo da tela */
+}
+
+.texto1 {
+    margin-top: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #09264A
+}
+
+.texto2 {
+    margin-top: 0;
+    padding-top: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: #09264A
+}
+
+.botao {
+    margin: 1%;
+    padding: 10px 40px; /* Aumenta a área interna */
+    font-size: 18px;    /* Aumenta a letra para acompanhar o botão */
+    border: none;
+    border-radius: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.1s ease;
+    background-color: #F9B420
+}
+
+.botao:active {
+  /* Diminui a sombra para parecer que encostou no fundo */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  
+  /* Empurra o botão 2px para baixo */
+  transform: translateY(1px);
+  
+  /* Escurece levemente o amarelo original */
+  background-color: #febd2f; 
+}
