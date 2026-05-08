@@ -1033,3 +1033,83 @@ header {
 }
 
 /*  ==== FIM DA ESTILIZAÇÃO DA HOME ==== */
+/*  === COMEÇO DA ESTILIZAÇÃO DO CERTIFICADO */
+
+    /*Fonte Crimson Text Static*/
+    @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+    /*Fonte Meie Script*/
+   @import url('https://fonts.googleapis.com/css2?family=Meie+Script&display=swap');
+
+#body-certificado{
+  width: 100%;
+}
+
+.div.certificado{
+    display:flex;
+    flex: 2;  
+}
+.texto-certificado{
+  font-family: "Crimson Text Static";
+  font-size: 1.3rem;
+  text-align: center;
+}
+.div-certificado h1{
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+.div-certificado h2{
+  font-size: 2.3rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.logo-scrum-master{
+  height: 5rem;
+  width: 5rem;
+  opacity: 60%;
+}
+.selo-scrum-master{
+  height: 10rem;
+  width: 10rem;
+}
+
+#assinatura-scrum-master{
+  font-family: "Meie Script", cursive; 
+  font-size: 10rem;
+}
+.parte-lateral-certificado{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-image: url(../img/engrenagens-fundo.png);
+  background-position: center/*right*/;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  === FIM DA ESTILIZAÇÃO DO CERTIFICADO */
+
