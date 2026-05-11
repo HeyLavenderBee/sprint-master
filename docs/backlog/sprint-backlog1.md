@@ -30,5 +30,5 @@
 ## 📋 Backlog de Gestão 
 | ID | Atividade | Prioridade | Pontuação | Disciplina | Autor |
 | :- | :-------- | :--------- | :-------- | :--------- | :---- |
-| ES-006 | **Product Owner:** Maximizar o valor do produto, representar os interesses do cliente, definir as prioridades do produto e acompanhar o ambiente de versionamento. | 10 | 13 | EWS | Júlia R. |
-| ES-007 | **Scrum Master:** Organizar e garantir a execução das cerimônias (Daily, Planning, Review e Retrospective), remover impedimentos, apoiar o Product Owner e acompanhar o ambiente de versionamento. | 10 | 13 | EWS | Beatriz |
+| ES-007 | **Product Owner:** Maximizar o valor do produto, representar os interesses do cliente, definir as prioridades do produto e acompanhar o ambiente de versionamento. | 10 | 13 | EWS | Júlia R. |
+| ES-008 | **Scrum Master:** Organizar e garantir a execução das cerimônias (Daily, Planning, Review e Retrospective), remover impedimentos, apoiar o Product Owner e acompanhar o ambiente de versionamento. | 10 | 13 | EWS | Beatriz |

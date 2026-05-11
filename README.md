@@ -100,8 +100,12 @@ O <b>Sprint Backlog</b> pode ser encontrado <a href="https://github.com/TechFell
 <br>
 
 ## 🎯 Sprint 02:
-
---
+<p style="text-align: justify;">
+Nesta sprint, a equipe decidiu focar no desenvolvimento backend do sistema, iniciando pela implementação do cadastro de usuários. A partir disso, foram desenvolvidas funcionalidades como autenticação de login e gerenciamento de progresso do usuário.
+Em paralelo, foi iniciado o desenvolvimento do front-end, juntamente com a definição do design das telas restantes, buscando padronização visual e melhor experiência do usuário.
+<br>
+O <b>Sprint Backlog</b> pode ser encontrado <a href="https://github.com/TechFellasAbp/sprint-master/blob/main/docs/backlog/sprint-backlog2.md">aqui</a>.
+</p>
 
 <br>
 
@@ -113,7 +117,7 @@ O <b>Sprint Backlog</b> pode ser encontrado <a href="https://github.com/TechFell
 
 ## 🛠️ Tecnologias
 
-[![My Skills](https://skillicons.dev/icons?i=html,css,js,nodejs,git,figma)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=js,nodejs,postgres,html,css,figma,git,github)](https://skillicons.dev)
 
 <br>
 
@@ -172,19 +176,33 @@ git clone https://github.com/TechFellasAbp/sprint-master.git
 
 ### 2. Configuração do projeto
 
-**1°** Instale as bibliotecas com o comando:
+**1°** Entre na pasta `projeto`:
+
+```bash
+cd projeto
+```
+
+> **Observação:** Você tem que estar na pasta do repositório. Caso você não esteja, de `cd sprint-master` no seu Git Bash.
+
+<br>
+
+**2°** Instale as bibliotecas com o comando:
 
 ```bash
 npm i
 ```
 
-**2°** Com o repositório em sua pasta raíz, inicialize o banco de dados:
+<br>
+
+**3°** Com o repositório em sua pasta raíz, inicialize o banco de dados:
 
 ```bash
 npm run db:init
 ```
 
-**3°** Por fim, execute o projeto:
+<br>
+
+**4°** Por fim, execute o projeto:
 
 ```bash
 npm run start
