@@ -1033,3 +1033,28 @@ header {
 }
 
 /*  ==== FIM DA ESTILIZAÇÃO DA HOME ==== */
+
+/* ==== COMEÇO DA ESTILIZAÇÃO DA TELA DO CERTIFICADO ==== */
+
+#margin-receive {
+  margin-left: 25px;
+}
+
+.div-escrita-certificado {
+  background-color: #663d00;
+  width: 50%;
+  height: 100%;
+  margin-top: 50px;
+}
+
+.div-escrita-certificado div{
+  display: flex;
+  flex-direction: row;
+  width: 20rem;
+}
+
+.badge-certificado {
+  width: 2rem;
+}
+
+/* ==== FIM DA ESTILIZAÇÃO DA TELA DO CERTIFICADO ==== */
