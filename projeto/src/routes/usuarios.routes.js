@@ -51,7 +51,7 @@ router.patch("/:idUsuario/cpf", async function(req,res){
 
     const {cpf} = req.body;
     if(!cpf){
-        return res.status(400).json({message: "CPF inválido"});
+        return res.status(400).json({message: "CPF inválido."});
     }
     try{
         const result = await updateUsuarioCpf(idUsuario, cpf);
@@ -83,7 +83,7 @@ router.patch("/:idUsuario/nome", async function(req,res){
 
     const { nome } = req.body;
     if(!nome){
-        return res.status(400).json({message: "nome obrigatório"});
+        return res.status(400).json({message: "Nome obrigatório."});
     }
     try{
         const result = await updateUsuarioNome(idUsuario, nome);
@@ -110,7 +110,7 @@ router.patch("/:idUsuario/email", async function(req,res){
 
     const { email } = req.body;
     if(!email){
-        return res.status(400).json({message: "email obrigatório"});
+        return res.status(400).json({message: "Email obrigatório."});
     }
     try{
         const result = await updateUsuarioEmail(idUsuario, email);
@@ -123,7 +123,7 @@ router.patch("/:idUsuario/email", async function(req,res){
     }catch(e){
         if(e && e.code == "23505"){
             return res.status(404).json({
-                message:"Já existe usuário com o nome informado"
+                message:"Já existe usuário com o email informado"
             });
         }
         return res.status(404).json({
@@ -142,13 +142,13 @@ router.patch("/:idUsuario/senha", async function(req,res){
 
     const { senha } = req.body;
     if(!senha){
-        return res.status(400).json({message: "senha obrigatório"});
+        return res.status(400).json({message: "Senha obrigatória."});
     }
 
     if (senha.trim().length < 6){
     return res
     .status(400)
-    .json({message: "A senha deve ter pelo menos 6 caracteres"})
+    .json({message: "A senha deve ter pelo menos 6 caracteres."})
   }
 
     try{
