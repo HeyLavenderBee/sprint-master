@@ -1057,11 +1057,6 @@ header {
   font-family: "Crimson Text Static";
 }
 
-.texto-certificado{
-  font-size: 1.3rem;
-  text-align: center;
-}
-
 #main-certificado h1{
   display: inline;
   font-size: 2.5rem;
@@ -1070,13 +1065,14 @@ header {
   position: relative;
 }
 
-/* #parte-topo-certificado{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin-top: 2.5rem;
-    
-} */
+.texto-certificado{
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.texto-certificado.h1{
+  letter-spacing: 3%;
+}
 
 .texto-certificado.h1::after{
   content: "";
@@ -1100,6 +1096,7 @@ header {
   position: relative;
   font-style: italic;
   text-align: center;
+  color: #09203E;
 }
 
 #nomePessoaCertificada.h2{
@@ -1126,9 +1123,10 @@ header {
   height: 13rem;
   width: 13rem;
   position: absolute;
-  left: -90%;
-  transform: translateX(90%);
-  top: 0;
+  left: 0;
+  transform: translateX(-50%);
+  top: 5%;
+  filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.3));
 }
 
 #assinatura-scrum-master{
@@ -1156,20 +1154,34 @@ header {
 .parte-lateral-menor-certificado{
   display: flex;
   position: relative;
-  flex: 1;
+  flex: 0.8;
   min-width: 0;
   width: 100%; 
-  /*flex-direction: column; Sem efeito*/
   height: 100%;
   background-image: url(../img/engrenagens-fundo.png);
-  background-size: auto;
-  background-repeat: repeat-x;
-  background-position: center/*right*/;
+  background-size: cover;
+  background-repeat: repeat-no-repeat;
+  background-position: center right;
   overflow: visible;
-  
 }
 
+.texto-inferior{
+  display: flex;
+  padding: 5px;
+  margin: 0;
+  justify-content: center;
+}
 
+#data-emissao-certificado::after,
+#assinatura-scrum-master::after{
+  content: "";
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  width: 150%;
+  padding: 0 10px;
+  background-color: black;
+}
 
 
 
