@@ -1059,7 +1059,7 @@ header {
 
 #main-certificado h1{
   display: inline;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 600;
   margin: 1rem 0;
   position: relative;
@@ -1160,16 +1160,20 @@ header {
   height: 100%;
   background-image: url(../img/engrenagens-fundo.png);
   background-size: cover;
-  background-repeat: repeat-no-repeat;
+  background-repeat: no-repeat;
   background-position: center right;
   overflow: visible;
 }
 
-.texto-inferior{
+
+
+#data-emissao-certificado,
+#assinatura-scrum-master{
+  position: relative;
   display: flex;
-  padding: 5px;
-  margin: 0;
   justify-content: center;
+  align-items: center;
+  padding: 5px;
 }
 
 #data-emissao-certificado::after,
@@ -1183,8 +1187,12 @@ header {
   background-color: black;
 }
 
-
-
+.texto-inferior{
+  display: flex;
+  padding: 5px;
+  margin: 0;
+  justify-content: center;
+}
 
 
 
