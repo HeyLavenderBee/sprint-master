@@ -1034,19 +1034,77 @@ header {
 
 /*  ==== FIM DA ESTILIZAÇÃO DA HOME ==== */
 
-  .banner-modulos {
-    background-color: #09264A;
-    color: #ffff;
-    padding: 20px;
-  }
+.body-modulos {
+  background-color: #FFF8EF;
+}
+
+.banner-modulos {
+    /* Substitua o background-color por este: */
+    background-image: linear-gradient(to right, #04152b, #09203e, #123669);
+    color: #ffffff;
+    padding: 0px;
+    padding-inline: 6%; /* Ajustado para dar o respiro lateral da imagem */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse; /* Mantém sua inversão */
+    gap: 20px;
+}
+
+ .mascote-scrum {
+    flex-shrink: 0; /* Impede que o flexbox diminua a imagem */
+    width: 210px;   /* Defina a largura fixa que você deseja para ele */
+    height: auto;
+}
+
+.texto-principal {
+    flex-grow: 1;      /* Faz o texto ocupar o espaço restante */
+    font-size: 2.8rem; /* Ajuste conforme necessário */
+    text-align: left;
+    min-width: 0;      /* Ajuda a evitar que o texto force a largura do container */
+}
+
+.texto-amarelo {
+  color: #F9B420;
+}
 
   .aviso {
-    background-color: #1fd307;
-    color: #ffff;
+    background-color: #143258;
+    color: #ffffff;
     width: 30rem;
+    max-width: 90%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    display: flex;
-    margin-top: 2%;
-    margin-left: 35%;
-  }
+    margin: 2% auto; /* O 'auto' centraliza horizontalmente em qualquer tela */
+    border-radius: 15px;
+    border: 1px solid black
+}
+
+.texto-aviso {
+  font-weight: 100;
+}
+
+.texto-aviso-negrito {
+  font-weight: 700;
+}
+
+.modulo1 {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  justify-content: center;
+  max-width: 85%;
+  margin: 20px auto;
+  border-radius: 15px;
+  margin-top: 2%;
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.2);
+}
+
+.img-modulo1{
+  flex-shrink: 0; /* Impede que o flexbox diminua a imagem */
+  width: 200px;   /* Defina a largura fixa que você deseja para ele */
+  height: auto;
+}
+
+  
