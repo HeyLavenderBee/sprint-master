@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const authMiddleware = require("../middlewares/auth.middleware");
 const { 
   createUsuario, 
   updateUsuarioCpf, 
@@ -42,8 +43,8 @@ router.post("/", async function (req, res) {
   }
 });
 
-router.patch("/:idUsuario/cpf", async function(req,res){
-    const idUsuario = getIdUsuario(req.params);
+router.patch("/cpf",authMiddleware, async function(req,res){
+    const idUsuario =  req.usuario.id_usuario;
 
     if(!idUsuario){
         return res.status(400).json({message: "id_usuario inválido"});
@@ -74,8 +75,8 @@ router.patch("/:idUsuario/cpf", async function(req,res){
 });
 
 // atualiza o espaco do nome
-router.patch("/:idUsuario/nome", async function(req,res){
-    const idUsuario = getIdUsuario(req.params);
+router.patch("/nome",authMiddleware, async function(req,res){
+    const idUsuario =  req.usuario.id_usuario;
 
     if(!idUsuario){
         return res.status(400).json({message: "id_usuario inválido"});
@@ -101,8 +102,8 @@ router.patch("/:idUsuario/nome", async function(req,res){
 });
 
 // atualiza o espaço do email
-router.patch("/:idUsuario/email", async function(req,res){
-    const idUsuario = getIdUsuario(req.params);
+router.patch("/email",authMiddleware, async function(req,res){
+    const idUsuario =  req.usuario.id_usuario;
 
     if(!idUsuario){
         return res.status(400).json({message: "id_usuario inválido"});
@@ -133,8 +134,8 @@ router.patch("/:idUsuario/email", async function(req,res){
 });
 
 // atualiza o espaço da senha
-router.patch("/:idUsuario/senha", async function(req,res){
-    const idUsuario = getIdUsuario(req.params);
+router.patch("/senha", authMiddleware, async function(req,res){
+    const idUsuario =  req.usuario.id_usuario;
 
     if(!idUsuario){
         return res.status(400).json({message: "id_usuario inválido"});
