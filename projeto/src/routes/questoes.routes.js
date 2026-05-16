@@ -4,15 +4,15 @@ const {
     findProximaQuestaoByUsuario,
     findQuestaoDoExameByUsuario,
     findRespostaByExameEQuestao,
-    inserirRespostaQuestao
+    inserirRespostaQuestao,
+    usuarioConcluiuModuloAtual,
+    findModuloAtualByUsuario,
+    findOutroGrupoAleatorio,
+    updateProximaTentativa,
 } = require("../repositories/questoes.repositories");
 
 const router = Router();
 
-/*
-curl -X GET http://localhost:3000/api/questoes/proxima-questao \
-  -H "Authorization: Bearer SEU_TOKEN"
-*/
 router.get("/proxima-questao", authMiddleware, async function (req, res) {
   try {
     const questao = await findProximaQuestaoByUsuario(req.usuario.id_usuario);
@@ -20,23 +20,17 @@ router.get("/proxima-questao", authMiddleware, async function (req, res) {
     if (!questao) {
       return res
         .status(404)
-        .json({ message: "nenhuma questão pendente encontrada" });
+        .json({ message: "Nenhuma questão pendente encontrada" });
     }
 
     return res.status(200).json(questao);
   } catch (e) {
     return res.status(500).json({
-      message: "erro interno do servidor",
+      message: "Erro interno do servidor",
     });
   }
 });
 
-/*
-curl -X POST http://localhost:3000/api/questoes/responder \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer SEU_TOKEN"
-  -d '{"id_exame":"11","id_questao":"21","resposta":"c"}'
-*/
 router.post("/responder", authMiddleware, async function (req, res) {
   try {
     console.log("body", req.body);
@@ -48,7 +42,7 @@ router.post("/responder", authMiddleware, async function (req, res) {
 
     if (!questao) {
       return res.status(404).json({
-        message: "questão não encontrada para este exame",
+        message: "Questão não encontrada para este exame",
       });
     }
 
@@ -59,7 +53,7 @@ router.post("/responder", authMiddleware, async function (req, res) {
 
     if (respostaExistente) {
       return res.status(409).json({
-        message: "questão já respondida",
+        message: "Questão já respondida",
       });
     }
 
@@ -70,10 +64,78 @@ router.post("/responder", authMiddleware, async function (req, res) {
     return res.status(201).json(respostaInserida);
   } catch (e) {
     return res.status(500).json({
-      message: "erro interno do servidor",
+      message: "Erro interno do servidor",
     });
   }
 });
 
+router.patch("/proxima-tentativa", authMiddleware, async function (req, res) {
+  try {
+    const concluido = await usuarioConcluiuModuloAtual(req.usuario.id_usuario);
+    if (!concluido) {
+      return res.status(409).json({
+        message: "Você ainda não concluiu todas as questões do módulo atual",
+      });
+    }
+
+    const modulo = await findModuloAtualByUsuario(req.usuario.id_usuario);
+    if (!modulo) {
+      return res.status(404).json({
+        message: "Módulo atual não encontrado",
+      });
+    }
+    if (modulo.tentativa >= 2) {
+      return res.status(409).json({
+        message: "Limite de 2 tentativas atingido",
+      });
+    }
+
+    const grupo = await findOutroGrupoAleatorio(
+      req.usuario.id_usuario,
+      modulo.id_modulo,
+    );
+    if (!grupo) {
+      return res.status(404).json({
+        message: "Nenhum grupo alternativo disponível para este módulo",
+      });
+    }
+
+    const exame = await updateProximaTentativa(
+      modulo.id_exame,
+      grupo,
+      modulo.tentativa + 1,
+    );
+    if (!exame) {
+      return res.status(404).json({
+        message: "Exame não encontrado para atualização",
+      });
+    }
+
+    return res.status(200).json(exame);
+  } catch (e) {
+    console.log(e.message)
+    return res.status(500).json({
+      message: "Erro interno do servidor",
+    });
+  }
+});
+
+
+/*
+---- Comandos CURL para questões ----
+
+Ver qual a questão atual/próxima do usuário:
+curl -X GET http://localhost:3000/api/questoes/proxima-questao \
+  -H "Authorization: Bearer SEU_TOKEN"
+
+Responder questão atual do usuário:
+curl -X POST http://localhost:3000/api/questoes/responder \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer SEU_TOKEN" \
+  -d '{"id_exame":"10","id_questao":"21","resposta":"c"}'
+
+Comando para ir para próxima tentativa:
+curl -X PATCH http://localhost:3000/api/questoes/proxima-tentativa -H "Authorization: Bearer SEU_TOKEN" 
+*/
 
 module.exports = router;

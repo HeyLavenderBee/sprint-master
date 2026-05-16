@@ -52,7 +52,7 @@ router.patch("/cpf",authMiddleware, async function(req,res){
 
     const {cpf} = req.body;
     if(!cpf){
-        return res.status(400).json({message: "CPF inválido."});
+        return res.status(400).json({message: "CPF inválido"});
     }
     try{
         const result = await updateUsuarioCpf(idUsuario, cpf);
@@ -69,7 +69,7 @@ router.patch("/cpf",authMiddleware, async function(req,res){
             });
         }
         return res.status(404).json({
-            message:"Erro interno do servidor."
+            message:"Erro interno do servidor"
         });
     }
 });
@@ -84,7 +84,7 @@ router.patch("/nome",authMiddleware, async function(req,res){
 
     const { nome } = req.body;
     if(!nome){
-        return res.status(400).json({message: "Nome obrigatório."});
+        return res.status(400).json({message: "Nome obrigatório"});
     }
     try{
         const result = await updateUsuarioNome(idUsuario, nome);
@@ -96,7 +96,7 @@ router.patch("/nome",authMiddleware, async function(req,res){
 
     }catch(e){
         return res.status(404).json({
-            message:"Erro interno do servidor."
+            message:"Erro interno do servidor"
         });
     }
 });
@@ -111,7 +111,7 @@ router.patch("/email",authMiddleware, async function(req,res){
 
     const { email } = req.body;
     if(!email){
-        return res.status(400).json({message: "Email obrigatório."});
+        return res.status(400).json({message: "Email obrigatório"});
     }
     try{
         const result = await updateUsuarioEmail(idUsuario, email);
@@ -128,7 +128,7 @@ router.patch("/email",authMiddleware, async function(req,res){
             });
         }
         return res.status(404).json({
-            message:"Erro interno do servidor."
+            message:"Erro interno do servidor"
         });
     }
 });
@@ -143,13 +143,13 @@ router.patch("/senha", authMiddleware, async function(req,res){
 
     const { senha } = req.body;
     if(!senha){
-        return res.status(400).json({message: "Senha obrigatória."});
+        return res.status(400).json({message: "Senha obrigatória"});
     }
 
     if (senha.trim().length < 6){
     return res
     .status(400)
-    .json({message: "A senha deve ter pelo menos 6 caracteres."})
+    .json({message: "A senha deve ter pelo menos 6 caracteres"})
   }
 
     try{
@@ -162,7 +162,7 @@ router.patch("/senha", authMiddleware, async function(req,res){
 
     }catch(e){
         return res.status(404).json({
-            message:"Erro interno do servidor."
+            message:"Erro interno do servidor"
         });
     }
 })
@@ -191,20 +191,24 @@ curl -X POST http://localhost:3000/api/usuarios \
 Atualizar CPF:
 curl -X PATCH http://localhost:3000/api/usuarios/4/cpf \
     -H "Content-Type: application/json" \
+    -H "Authorization: Bearer SEU_TOKEN" \
     -d '{"cpf": "11223344556"}'
 
 Atualizar nome:
 curl -X PATCH http://localhost:3000/api/usuarios/4/nome \
     -H "Content-Type: application/json" \
+    -H "Authorization: Bearer SEU_TOKEN" \
     -d '{"nome": "maria eduarda"}'
 
 Atualizar email:
 curl -X PATCH http://localhost:3000/api/usuarios/4/email \
     -H "Content-Type: application/json" \
+    -H "Authorization: Bearer SEU_TOKEN" \
     -d '{"email": "fernanda@gmail.com"}'
 
 Atualizar senha:
 curl -X PATCH http://localhost:3000/api/usuarios/4/senha \
     -H "Content-Type: application/json" \
+    -H "Authorization: Bearer SEU_TOKEN" \
     -d '{"senha": "teste1"}'
 */
