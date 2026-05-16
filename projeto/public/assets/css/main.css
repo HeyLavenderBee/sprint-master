@@ -1036,18 +1036,21 @@ header {
 
 /* ==== COMEÇO DA ESTILIZAÇÃO DA TELA DO CERTIFICADO ==== */
 
-#margin-receive {
-  margin-left: 3em;
+.certificate-page{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem;
 }
 
-.aligment-containers{
+.container-certified{
   display: flex;
-  width: 100%;
-  gap: 3rem;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
 }
 
 .div-escrita-certificado {
-  width: 60%;
+  width: 70%;
   height: 100%;
   margin-top: 50px;
   font-size: x-large;  
@@ -1095,27 +1098,24 @@ header {
   padding-left: 0.5rem;
 }
 
+.button-baixar {
+  display: flex;
+  padding-top: 5rem;
+}
+
+.container-blue{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding-top: 10rem;
+}
+
 .blue-container {
   background-color: #09264A;
   height: 22.5rem;
   width: 33.75rem;
   border-radius: 1em;
-  display: flex;
-  align-self: center;
-  float: right;
-}
-
-.button-aligment{
-  display: flex;
-  float: right;
-  gap: 10rem;
-  padding-right: 7rem;
-}
-
-.button-baixar {
-  display: flex;
-  padding-top: 5rem;
-  padding-left: 12rem;
 }
 
 .button-baixar-d {
@@ -1130,6 +1130,13 @@ header {
   font-family: inherit;
   font-weight: 700;
   box-shadow: 0px 4px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.button-aligment{
+  display: flex;
+  float: right;
+  gap: 7rem;
+  padding-top: 5rem;
 }
 
 .button-abrir-d {
@@ -1158,6 +1165,21 @@ background-color: #f9a629;
   font-family: inherit;
   font-weight: 700;
   box-shadow: 0px 4px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+@media (max-width: 768px){
+  .div-escrita-certificado{
+    font-size: larger;
+    width: 50%;
+  }
+  
+  .container-blue{
+    padding-top: 0;
+  }
+
+  .button-aligment{
+    padding-bottom: 3rem;
+  }
 }
 
 /* ==== FIM DA ESTILIZAÇÃO DA TELA DO CERTIFICADO ==== */
