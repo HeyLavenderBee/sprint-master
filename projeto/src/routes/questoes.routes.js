@@ -10,7 +10,9 @@ const {
     findOutroGrupoAleatorio,
     updateProximaTentativa,
     findProximoModuloByUsuario,
-    updateProximoModulo
+    updateProximoModulo,
+    findModulosRespondidosByUsuario
+
 } = require("../repositories/questoes.repositories");
 
 const router = Router();
@@ -195,6 +197,22 @@ router.patch("/proximo-modulo", authMiddleware, async function (req, res) {
   }
 });
 
+/*
+curl -X GET http://localhost:3000/api/questoes/modulos-respondidos \
+  -H "Authorization: Bearer SEU_TOKEN"
+ */
+
+router.get("/modulos-respondidos", authMiddleware, async function (req, res) {
+  try {
+    const modulos = await findModulosRespondidosByUsuario(req.usuario.id_usuario);
+
+    return res.status(200).json(modulos);
+  } catch (e) {
+    return res.status(500).json({
+      message: "erro interno do servidor",
+    });
+  }
+});
 
 
 module.exports = router;
