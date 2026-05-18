@@ -1034,41 +1034,43 @@ header {
 
 /*  ==== FIM DA ESTILIZAÇÃO DA HOME ==== */
 
+
+/* ==== ESTILIZAÇÃO DOS MÓDULOS ==== */
+
 .body-modulos {
   background-color: #FFF8EF;
 }
 
 .banner-modulos {
-    /* Substitua o background-color por este: */
     background-image: linear-gradient(to right, #04152b, #09203e, #123669);
     color: #ffffff;
     padding: 0px;
-    padding-inline: 6%; /* Ajustado para dar o respiro lateral da imagem */
+    padding-inline: 6%; 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-direction: row-reverse; /* Mantém sua inversão */
+    flex-direction: row-reverse; 
     gap: 20px;
 }
 
- .mascote-scrum {
-    flex-shrink: 0; /* Impede que o flexbox diminua a imagem */
-    width: 210px;   /* Defina a largura fixa que você deseja para ele */
+.mascote-scrum {
+    flex-shrink: 0; 
+    width: 210px;   
     height: auto;
 }
 
 .texto-principal {
-    flex-grow: 1;      /* Faz o texto ocupar o espaço restante */
-    font-size: 2.8rem; /* Ajuste conforme necessário */
+    flex-grow: 1;      
+    font-size: 2.8rem; 
     text-align: left;
-    min-width: 0;      /* Ajuda a evitar que o texto force a largura do container */
+    min-width: 0;      
 }
 
 .texto-amarelo {
   color: #F9B420;
 }
 
-  .aviso {
+.aviso {
     background-color: #143258;
     color: #ffffff;
     width: 30rem;
@@ -1076,9 +1078,9 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 2% auto; /* O 'auto' centraliza horizontalmente em qualquer tela */
+    margin: 2% auto; 
     border-radius: 15px;
-    border: 1px solid black
+    border: 1px solid black;
 }
 
 .texto-aviso {
@@ -1089,7 +1091,7 @@ header {
   font-weight: 700;
 }
 
-.modulos {
+.modulos, .modulo5 {
   box-sizing: border-box;
   display: flex;
   background-color: rgb(255, 255, 255);
@@ -1101,28 +1103,38 @@ header {
   margin-top: 2%;
   box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.2);
   margin-bottom: 50px;
+  overflow: visible;
+  position: relative;
 }
 
 .img-modulos{
-  background-color: #e6f0ff; /* O azul claro do fundo da imagem */
+    background-color: #e6f0ff; 
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 30px;
+    padding: 40px 100px;
     width: 250px; 
-    flex-shrink: 0; /* Impede que o flexbox diminua a imagem */
+    flex-shrink: 0; 
     height: auto;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
   }
 
-  .img {
-    flex-shrink: 0; /* Impede que o flexbox diminua a imagem */
-    width: 210px;   /* Defina a largura fixa que você deseja para ele */
+.img {
+    flex-shrink: 0; 
+    width: 210px;   
     height: auto;
-  }
+}
+
+.img2 {
+    flex-shrink: 0; 
+    width: 170px;   
+    height: auto;
+}
 
 .info-modulos {
     display: flex;
-    flex-direction: column; /* Empilha os itens verticalmente */
+    flex-direction: column; 
     padding: 20px;
     flex-grow: 1;
 }
@@ -1137,7 +1149,7 @@ header {
 
 .numero-modulos {
   font-size: 30px;
-  margin-right: 20px; /* Empurra o próximo texto para a direita */
+  margin-right: 20px; 
 }
 
 .texto-modulos {
@@ -1147,12 +1159,12 @@ header {
   font-size: 18px;
   margin-left: 15px;
   line-height: 1.6;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .posicao-btn-modulos {
-  align-self: flex-end;   /* Move apenas o botão para a direita */
-  margin-right: 50px; /* Isso "empurra" o botão da direita para a esquerda */
+  align-self: flex-end;   
+  margin-right: 50px; 
 }
 
 .btn-modulos {
@@ -1165,27 +1177,51 @@ header {
   font-size: 18px;
   color: #000000;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-    background-color: #F9B420; 
-    transition: background-color 0.2s ease;
-  }
+  background-color: #F9B420; 
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-  .btn-modulos:hover {
+.btn-modulos:hover {
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
-    transform: translateY(-1px); /* O botão sobe um pouquinho */
+    transform: translateY(-1px); 
 }
 
 .btn-modulos:active {
-    background-color: #fabc36; /* Um tom de dourado mais escuro para simular o clique */
-    transform: scale(0.994);    /* Efeito visual opcional: o botão "afunda" um pouquinho */
+    background-color: #fabc36; 
+    transform: scale(0.994);    
 }
 
 .item-direita {
-width: 50px;  /* Ajuste este valor para o tamanho desejado */
+  position: absolute;
+  width: 50px;          
+  height: auto;
+  right: -105px;         
+  bottom: -118px;        
+  pointer-events: none; 
+  z-index: 10;
 }
 
 .item-esquerda {
-width: 50px;  /* Ajuste este valor para o tamanho desejado */
+  position: absolute;
+  width: 50px;          
+  height: auto;
+  left: -105px;          
+  bottom: -118px;        
+  pointer-events: none; 
+  z-index: 10;
 }
 
+.item-mobile {
+  display: none;
+}
+
+.copyright {
+    display: flex;
+    margin: 1rem;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: #ADA498;
+    padding-bottom: 2rem;
+}
   
+/* ==== FIM DA ESTILIZAÇÃO DOS MÓDULOS ==== */
