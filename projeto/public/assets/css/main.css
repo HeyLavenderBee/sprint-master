@@ -1050,7 +1050,7 @@ header {
 }
 
 .div-escrita-certificado {
-  width: 70%;
+  width: 60%;
   height: 100%;
   margin-top: 50px;
   font-size: x-large;  
@@ -1072,13 +1072,18 @@ header {
   height: 4rem;
   width: 2px;
   background-color: #646464;
-  
+}
+
+.paragraph-text{
+  width: 80%;
 }
 
 .div-escrita-certificado h1 {
   color: #09203E;
   font-size: 4rem;
   text-shadow: 0px 4px 4px hsla(0, 0%, 0%, 0.2);
+  display: flex;
+  align-content: center;
 }
 
 .div-escrita-certificado h2 {
@@ -1167,19 +1172,61 @@ background-color: #f9a629;
   box-shadow: 0px 4px 4px hsla(0, 0%, 0%, 0.2);
 }
 
+.button-imprimir-d:hover, .button-abrir-d:hover{
+  background-color: #ee9817;
+}
+
+.button-baixar-d:hover{
+  background-color: #1c74e0;
+}
+
 @media (max-width: 768px){
   .div-escrita-certificado{
     font-size: larger;
-    width: 50%;
+    width: 100%;
+    padding: 20px;
+    margin-top: 25px;
   }
-  
+
   .container-blue{
     padding-top: 0;
   }
 
+  .blue-container{
+    height: 12.25rem;
+    width: 23.5rem;
+  }
+
   .button-aligment{
     padding-bottom: 3rem;
+    gap: 4rem;
   }
 }
+
+  .paragraph-text{
+  width: 100%;
+}
+
+  .button-abrir-d, .button-imprimir-d{
+    width: 9rem;
+    height: 2.5rem;
+  }
+
+  .button-baixar{
+    padding-top: 2rem;
+  }
+
+  .div-escrita-certificado h1{
+    text-align: center;
+    display: flex;
+    justify-self: center;
+    font-size: 2.5rem;
+  }
+
+  .bar-section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 
 /* ==== FIM DA ESTILIZAÇÃO DA TELA DO CERTIFICADO ==== */
