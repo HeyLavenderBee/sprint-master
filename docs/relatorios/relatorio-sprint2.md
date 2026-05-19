@@ -40,6 +40,18 @@ Em paralelo, foi iniciado o desenvolvimento do front-end, juntamente com a defin
 
 | ID | Atividade | Prioridade | Pontuação | Disciplina | Andamento | Autor |
 | :- | :-------- | :--------- | :-------- | :--------- | :-------- | :---- |
+| DD-006 | Design do certificado | 8 | DD | 2|
+| DD-007 | Criar o design da tela dashboard/usuário | 9 | DD | 2
+| DD-007.1 | Criar o design da tela dashboard/usuário mobile | 8 | DD | 2
+| DD-008 | Criar o design da tela de módulos | 8 |  DD |2
+| DD-008.1 | Criar o design da tela de módulos mobile | 8 | DD | 2 
+| DD-009 | Criar o design tela de certificado | 7 | DD | 2
+| DD-009.1 | Criar o design tela de certificado mobile | 7 |  DD |2
+| DD-010 | Criar o design página not-found | 7 |  DD |2 
+| DD-010.1 | Criar o design página not-found mobile | 6 |  DD |2
+| DD-011 | Criar o design da tela de resultado questionário | 7 | DD | 2 
+| DD-011.1 | Criar o design da tela de resultado questionário mobile| 6 |  DD |2
+
 | DD-08 | Criar o design da tela dashboard/usuário | 9| 5 | DD | Concluído | Guilherme |
 | DD-09 | Criar o design da tela dashboard/usuário mobile | 8 | 2 | DD | Concluído | Guilherme |
 | DD-10 | Criar o design da tela de módulos | 8 | 5 | DD | Concluído | Beatriz |
@@ -51,6 +63,7 @@ Em paralelo, foi iniciado o desenvolvimento do front-end, juntamente com a defin
 | DD-16 | Criar o design página not-found mobile | 6 | 1 | DD | Concluído | Fernanda |
 | DD-17 | Criar o design da tela de resultado questionário | 7 | 3 | DD | Concluído | Guilherme |
 | DD-18 | Criar o design da tela de resultado questionário mobile| 6 | 1 | DD | Concluído | Guilherme|
+
 | DW-07 | Desenvolver a tela de dashboard/usuário | 8 | 8 | DW | Concluído | Júlia S. |
 | DW-08 | Desenvolver a tela de dashboard/usuário para mobile | 7 | 3 | DW | Concluído | Júlia S. |
 | DW-009 | Verificação de campos de input no frontend (required + avisos) | 8 | 2 | DW | Não iniciado | Fernanda |
@@ -201,6 +214,17 @@ Nesta daily, foram definidas as atividades necessárias para otimizar o desenvol
 
 <p style="text-align=:justify;">
 Nesta daily, foi desenvolvida a funcionalidade de inserção de respostas e concluída a implementação das telas iniciadas no dia anterior
+</p>
+
+<br>
+
+### 18/05 - Daily Scrum
+
+---
+
+<p style="text-align=:justify;">
+Nesta daily, foi conversado as tarefas restantes para a finalização da segunda sprint. Entre elas: a responsividade das telas de módulo e cetificado, também validação de campos, progresso da barra do questionário, links que faltavam e algumas partes do backend, como inserção da consulta de progresso do usuario, o refatoramento das imagens das questões e por fim a parte responsavel por obter dos dados do certificado.
+Essas alterações representavam 10 story points no burn-down, sendo atribuidas a seus responsáveis para termin-las.
 </p>
 
 </details>
