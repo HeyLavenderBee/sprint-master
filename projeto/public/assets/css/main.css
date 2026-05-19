@@ -113,6 +113,7 @@ button a{
   flex-direction: column;
   flex: 1;
   min-height: 100%;
+  background-color: #FFF8EF;
   max-width: 50%;
   padding: 1rem;
   align-items: center;
@@ -492,9 +493,9 @@ button a{
   margin: 0;
   font: inherit;
   color: currentColor;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 100%;
+  min-width: 16px;
+  min-height: 16px;
+  border-radius: 50%;
 }
 
 .questionnaire-box input[type="radio"]:checked {
@@ -1034,6 +1035,255 @@ header {
 
 /*  ==== FIM DA ESTILIZAÇÃO DA HOME ==== */
 
+/*  ==== INICIO DA ESTILIZAÇÃO DA NOT FOUND ==== */
+
+.body-not-found {
+    display: flex;
+    flex-direction: column; /* Coloca um item embaixo do outro */
+    align-items: center;    /* Centraliza todos na horizontal */
+    justify-content: center;
+    margin: 0;
+    background-color: #FFF8EF; /* Cor de fundo do seu Figma */
+}
+
+.img-erro {
+    width: 500px;
+    display: flex;
+    flex-direction: column; /* Coloca um item embaixo do outro */
+    align-items: center;    /* Centraliza todos na horizontal */
+    margin: 0;  
+}
+
+.error-message {
+    display: flex;
+    flex-direction: column; /* Coloca os textos e o botão um embaixo do outro */
+    align-items: center;    /* Centraliza tudo o que está dentro da div horizontalmente */
+    width: 100%;            /* Garante que a div use o espaço todo da tela */
+}
+
+.text-1 {
+    margin-top: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #09264A
+}
+
+.text-2 {
+    margin-top: 0;
+    padding-top: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: #09264A
+}
+
+.button-not-found {
+    margin: 1%;
+    padding: 10px 40px; /* Aumenta a área interna */
+    font-size: 18px;    /* Aumenta a letra para acompanhar o botão */
+    border: none;
+    border-radius: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.1s ease;
+    background-color: #F9B420
+}
+
+.button-not-found:active {
+  /* Diminui a sombra para parecer que encostou no fundo */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  
+  /* Empurra o botão 2px para baixo */
+  transform: translateY(1px);
+  
+  /* Escurece levemente o amarelo original */
+  background-color: #febd2f; 
+}
+
+/*  ==== FIM DA ESTILIZAÇÃO DA NOT FOUND ==== */
+/*  === COMEÇO DA ESTILIZAÇÃO DO CERTIFICADO */
+
+    /*Fonte Crimson Text Static*/
+    @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+    /*Fonte Meie Script*/
+    @import url('https://fonts.googleapis.com/css2?family=Meie+Script&display=swap');  
+  
+#body-certificado{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+}
+
+#main-certificado{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center; 
+  font-family: "Crimson Text Static";
+}
+
+#main-certificado h1{
+  display: inline;
+  font-size: 2.8rem;
+  font-weight: 600;
+  margin: 1rem 0;
+  position: relative;
+}
+
+.texto-certificado{
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.texto-certificado.h1{
+  letter-spacing: 3%;
+}
+
+.texto-certificado.h1::after{
+  content: "";
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  width: 110%;
+  padding: 0 10px;
+  left: -25px;
+  background-color: black;
+}
+
+#main-certificado h2{
+  font-size: 2.3rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+#nomePessoaCertificada{
+  display: inline;
+  position: relative;
+  font-style: italic;
+  text-align: center;
+  color: #09203E;
+}
+
+#nomePessoaCertificada.h2{
+  font-size: 4rem;
+}
+
+#nomePessoaCertificada.h2::after{
+  content: "";
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  width: 110%;
+  padding: 0 10px;
+  left: -25px;
+  background-color: black;
+}
+
+.logo-scrum-master{
+  height: 5rem;
+  width: 5rem;
+  opacity: 60%;
+}
+.selo-scrum-master{
+  height: 13rem;
+  width: 13rem;
+  position: absolute;
+  left: 0;
+  transform: translateX(-50%);
+  top: 5%;
+  filter: drop-shadow(0px 5px 2px rgba(0, 0, 0, 0.3));
+}
+
+#assinatura-scrum-master{
+  font-family: "Meie Script";
+  font-size: 1.3rem;
+}
+
+#data-emissao-certificado{
+  font-size: 1.3rem;
+}
+.parte-inferior-certificado{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  
+}
+.parte-lateral-maior-certificado{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  flex: 2;
+}
+.parte-lateral-menor-certificado{
+  display: flex;
+  position: relative;
+  flex: 0.8;
+  min-width: 0;
+  width: 100%; 
+  height: 100%;
+  background-image: url(../img/engrenagens-fundo.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center right;
+  overflow: visible;
+}
+
+
+
+#data-emissao-certificado,
+#assinatura-scrum-master{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+#data-emissao-certificado::after,
+#assinatura-scrum-master::after{
+  content: "";
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  width: 150%;
+  padding: 0 10px;
+  background-color: black;
+}
+
+.texto-inferior{
+  display: flex;
+  padding: 5px;
+  margin: 0;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  === FIM DA ESTILIZAÇÃO DO CERTIFICADO */
+
+
 
 /* ==== INICIO ESTILIZAÇÂO DASHBOARD ==== */
 
@@ -1066,7 +1316,7 @@ header {
   box-sizing: border-box;
 }
 
-body {
+.dashboard {
   margin: 0;
   min-height: 100vh;
   font-family: var(--font);
@@ -1509,6 +1759,8 @@ body {
     margin-bottom: 20px;
   }
 }
+
+
 /*COMEÇO DA ESTILIZAÇÃO DA TELA RESULTADO QUESTIONÁRIO*/
 
 /* .main-quiz-result{
