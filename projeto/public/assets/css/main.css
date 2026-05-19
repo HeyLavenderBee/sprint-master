@@ -1225,3 +1225,124 @@ header {
 }
   
 /* ==== FIM DA ESTILIZAÇÃO DOS MÓDULOS ==== */
+
+/* ==== RESPONSIVO DA TELA DE MÓDULOS ==== */
+
+@media screen and (max-width: 768px) {
+  
+  .mascote-scrum {
+    display: none !important; 
+  }
+
+  .banner-modulos {
+    flex-direction: column; 
+    text-align: center;
+    padding-block: 30px; 
+    justify-content: center;
+  }
+
+  .texto-principal {
+    text-align: center;
+    font-size: 2rem; 
+  }
+
+  .aviso {
+    width: 85%;              
+    padding: 4px 10px;       
+    border-radius: 50px;     
+    margin-top: 35px;        
+    margin-bottom: 45px;     
+    border: 1.5px solid #000;
+  }
+
+  .modulos {
+    flex-direction: column; 
+    max-width: 80%;         
+    margin-bottom: 110px;    
+    text-align: center;
+    overflow: visible;      
+  }
+
+  .modulo5 {
+    flex-direction: column; 
+    max-width: 80%;         
+    margin-bottom: 45px;    
+    text-align: center;
+    overflow: visible; 
+  }
+
+  .img-modulos {
+    width: 100%;            
+    box-sizing: border-box;
+    padding: 30px;
+    border-bottom-left-radius: 0px; 
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+
+  .img {
+    width: 140px; 
+  }
+
+  .img2 {
+    width: 100px; 
+  }
+
+  .info-modulos {
+    padding: 25px 15px;
+    align-items: center; 
+  }
+
+  .titulo-modulos {
+    padding-left: 0;
+    font-size: 1.3rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 5px;
+  }
+
+  .numero-modulos {
+    margin-right: 0; 
+  }
+
+  .texto-modulos {
+    margin-left: 0;
+    padding-inline: 5%;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .posicao-btn-modulos {
+    align-self: center; 
+    margin-right: 0;    
+    width: 100%;
+    max-width: 150px;
+  }
+
+  .btn-modulos {
+    width: 90%;
+    padding: 10px 10px;
+    font-size: 16px;
+  }
+
+  /* TRILHAS NO MOBILE */
+  .item-direita, .item-esquerda {
+    display: none !important; 
+  }
+
+  .item-mobile {
+    display: block !important; 
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); 
+    bottom: -95px;               
+    width: 15px;                 
+    height: auto;
+    pointer-events: none;
+  }
+}
+
+/* === FIM RESPONSIVO DO QUESTIONÁRIO === */
