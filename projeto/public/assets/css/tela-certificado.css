@@ -1,0 +1,231 @@
+/* ==== COMEÇO DA ESTILIZAÇÃO DA TELA DO CERTIFICADO ==== */
+
+.certificate-page {
+  display: flex;
+  gap: 2rem;
+  padding: 50px;
+  position: relative;
+  align-items: center;
+  height: 100%;
+}
+
+.container-certified {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+}
+
+.div-escrita-certificado {
+  font-size: x-large;
+}
+
+.div-escrita-certificado p:nth-child(5) {
+  font-size: 1.25rem;
+}
+
+.bar-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.frase-certificado {
+  color: #646464;
+}
+
+.div-bar {
+  display: block;
+  height: 4rem;
+  width: 2px;
+  background-color: #646464;
+}
+
+.paragraph-text {
+  width: 100%;
+}
+
+.div-escrita-certificado h1 {
+  color: #09203E;
+  font-size: 3.5rem;
+  text-shadow: 0px 4px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.div-escrita-certificado h2 {
+  color: #09203E;
+  font-weight: 400;
+  margin: 15px 0;
+}
+
+.div-escrita-certificado div {
+  display: flex;
+  flex-direction: row;
+}
+
+.badge-certificado {
+  width: 3rem;
+  aspect-ratio: 1/1;
+  height: auto;
+  object-fit: contain;
+  display: flex;
+  align-self: center;
+  padding-left: 0.5rem;
+}
+
+.button-baixar {
+  margin-top: 2rem;
+  display: flex;
+}
+
+.container-blue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.blue-container {
+  background-color: #09264A;
+  height: 22.5rem;
+  width: 33.75rem;
+  border-radius: 1em;
+}
+
+.button-baixar-d {
+  background-color: #157eff;
+  border-radius: 2rem;
+  border: none;
+  width: 11rem;
+  height: 3rem;
+  color: #fff;
+  box-shadow: #000;
+  font-size: large;
+  font-family: inherit;
+  font-weight: 700;
+  box-shadow: 0px 4px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.button-aligment {
+  display: flex;
+  gap: 7rem;
+  padding-top: 5rem;
+}
+
+.button-abrir-d {
+  background-color: #f9a629;
+  border-radius: 2rem;
+  border: none;
+  width: 11rem;
+  height: 3rem;
+  color: #fff;
+  box-shadow: #000;
+  font-size: large;
+  font-family: inherit;
+  font-weight: 700;
+  box-shadow: 0px 4px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.button-imprimir-d {
+  background-color: #f9a629;
+  border-radius: 2rem;
+  border: none;
+  width: 11rem;
+  height: 3rem;
+  color: #fff;
+  box-shadow: #000;
+  font-size: large;
+  font-family: inherit;
+  font-weight: 700;
+  box-shadow: 0px 4px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.button-imprimir-d:hover,
+.button-abrir-d:hover {
+  background-color: #ee9817;
+}
+
+.button-baixar-d:hover {
+  background-color: #1c74e0;
+}
+
+.watermark {
+  color: #5a5a5a;
+  position: absolute;
+  bottom: 0;
+  right: 40px;
+}
+
+@media (max-width: 768px) {
+  .certificate-page {
+    height: 100%;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .div-escrita-certificado {
+    font-size: large;
+    width: 100%;
+    padding: 20px;
+    margin-top: 25px;
+  }
+
+  .blue-container {
+    height: 12.25rem;
+    width: 100%;
+  }
+
+  .button-aligment {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    gap: 4rem;
+  }
+
+  .button-baixar {
+    margin-top: 1rem;
+  }
+
+  .paragraph-text {
+    width: 100%;
+  }
+
+  .button-abrir-d,
+  .button-imprimir-d {
+    width: 9rem;
+    height: 2.5rem;
+  }
+
+  .div-escrita-certificado h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    width: 100%;
+  }
+
+  .bar-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .watermark {
+    width: 100%;
+    text-align: center;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .blue-container {
+    height: 10.25rem;
+    width: 100%;
+    max-width: 21.5rem;
+  }
+
+  .button-aligment {
+    padding-bottom: 10rem;
+    gap: 2rem;
+  }
+}
+
+/* ==== FIM DA ESTILIZAÇÃO DA TELA DO CERTIFICADO ==== */
