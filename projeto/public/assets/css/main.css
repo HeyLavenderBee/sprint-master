@@ -929,13 +929,15 @@ header {
 }
 
 .logo-scrum-guide img {
-  height: clamp(10rem, 20vw, 25rem);
+  margin-left: 2rem;
+  height: clamp(8rem, 20vw, 20rem);
 }
 
 .logo-scrum-guide p {
   font-family: Roboto;
+  margin-left: 2rem;
   font-weight: 900;
-  font-size: clamp(2.3rem, 4vw, 5rem);
+  font-size: clamp(2.3rem, 4vw, 3rem);
   color: rgb(21, 21, 76);
 }
 
@@ -950,8 +952,8 @@ header {
 
 .texto-e-button-bottom p {
   font-family: Roboto;
-  font-size: clamp(1.8rem, 3.2vw, 5rem);
-  font-weight: 900;
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  font-weight: 700;
   text-align: center;
   margin-bottom: 0;
   margin-top: 10rem;
