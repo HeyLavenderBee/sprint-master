@@ -1,0 +1,407 @@
+/* ==== ESTILIZAÇÃO DA TELA DE LOGIN/CADASTRO === */
+.login,
+.cadastro {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  height: auto;
+  align-items: stretch;
+}
+
+.banner-pai {
+  background-color: #09203E;
+  flex: 1;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: static;
+}
+
+.welcome-bannercd {
+  background-color: #09203E;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px 0 0 50px;
+  color: #fff;
+  animation: desliza 0.8s linear;
+  transition: all 1s;
+  z-index: 10;
+}
+
+.welcome-bannerlg {
+  background-color: #09203E;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 50px 50px 0;
+  color: #fff;
+  animation: volta 0.8s linear;
+  transition: all 1s;
+  z-index: 10;
+}
+
+.welcome-bannercd h1 {
+  font-size: 4rem;
+  text-align: center;
+  margin: 0;
+}
+
+.welcome-bannercd h4 {
+  font-weight: 400;
+  text-align: center;
+  font: inherit;
+}
+
+.welcome-bannerlg h1 {
+  font-size: 4rem;
+  text-align: center;
+  margin: 0;
+}
+
+.welcome-bannerlg h4 {
+  font-weight: 400;
+  text-align: center;
+  font: inherit;
+}
+
+.form-side {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100%;
+  background-color: #FFF8EF;
+  max-width: 50%;
+  padding: 1rem;
+  align-items: center;
+}
+
+.logo-space {
+  display: flex;
+  justify-content: flex-end;
+  justify-content: left;
+  width: 90%;
+}
+
+.logo-space-log {
+  display: flex;
+  justify-content: flex-end;
+  justify-content: right;
+  width: 75%;
+}
+
+.form-container {
+  margin-top: 1rem;
+  width: 75%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #fff;
+  border-radius: 40px;
+  padding: 30px;
+  box-shadow: inset 0 3px 3px rgba(0, 0, 0, 0.150);
+  align-items: center;
+}
+
+.form-container h1 {
+  margin: 0;
+  margin-top: 10px;
+  font-size: 2.5rem;
+  text-shadow: 0 3px 5px #b4b4b4;
+}
+
+.form-container h5 {
+  margin: 0;
+  margin-top: 15px;
+  margin-bottom: 2rem;
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+
+.button-link {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.form-input {
+  width: 100%;
+  height: 3rem;
+  border-radius: 25px;
+  padding: 1rem;
+  padding-left: 45px;
+  border: #cccccc solid 2px;
+}
+
+.icon-input {
+  width: 90%;
+  padding: 5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.fa-solid {
+  position: absolute;
+  display: flex;
+  padding: 10px;
+  min-width: 40px;
+  color: #919191;
+}
+
+.fa-regular {
+  position: absolute;
+  display: flex;
+  padding: 10px;
+  min-width: 40px;
+  color: #919191;
+}
+
+.button-next {
+  width: 90%;
+  background-color: #F9B420;
+  border-radius: 25px;
+  padding: 15px;
+  margin-top: 20px;
+  border: none;
+  box-shadow: 0 3px 8px #919191;
+  margin: 1.5rem;
+}
+
+
+.form-extras {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  font-size: 0.9rem;
+}
+
+.form-extras.bottom {
+  justify-content: center ;
+}
+
+.form-extras .form-extra-check {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.form-extras input {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.style-paragrafo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.style-paragrafo span{
+  width: auto;
+  text-align: initial;
+}
+
+.style-paragrafo .form-extra-link{
+  width: auto;
+}
+
+.form-extras a {
+  color: #F9B420;
+  display: flex;
+}
+
+.form-extras input {
+  display: flex;
+  justify-content: flex-start;
+
+}
+
+.form-extras div {
+  display: inline-flex;
+}
+
+.copy {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border: 0;
+  justify-content: left;
+  align-items: flex-end;
+  bottom: 0;
+  margin-top: 20px;
+  color: #746f6fb0
+}
+
+.copy-log {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border: 0;
+  justify-content: right;
+  align-items: flex-end;
+  bottom: 0;
+  margin-top: 20px;
+  color: #746f6fb0
+}
+
+@keyframes desliza {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  60% {
+    transform: translateX(0%);
+  }
+
+  80% {
+    border-radius: 25px 0 0 25px;
+    transform: translateX(-50px);
+  }
+
+  90% {
+    border-radius: 25px 0 0 25px;
+    transform: translateX(-25px);
+  }
+
+  100% {
+    border-radius: 0 0 0 0;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes volta {
+  0% {
+    transform: translateX(100%);
+  }
+
+  60% {
+    transform: translateX(0%);
+  }
+
+  80% {
+    border-radius: 25px 0 0 25px;
+    transform: translateX(50px);
+  }
+
+  90% {
+    border-radius: 25px 0 0 25px;
+    transform: translateX(25px);
+  }
+
+  100% {
+    border-radius: 0 0 0 0;
+    transform: translateX(0px);
+  }
+}
+
+
+@media (max-height:600px) {
+  .form-side {
+    padding: 0;
+  }
+
+  .form-container {
+    padding: 10px;
+    gap: 0.6rem;
+  }
+
+  .form-container h1 {
+    margin-top: 05px;
+    font-size: 2rem;
+  }
+
+  .form-container h5 {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    margin-top: 0;
+  }
+
+  .icon-input {
+    padding: 0;
+  }
+
+  .copy {
+    display: none;
+  }
+
+  .logo-space img {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media (max-width:768px) {
+  .cadastro {
+    height: 100%;
+    flex-wrap: wrap;
+  }
+
+  .form-side {
+    max-width: 100%;
+    padding: 30px;
+  }
+
+  .form-container {
+    background-color: transparent;
+    box-shadow: none;
+    height: 80%;
+    width: 100%;
+    padding: 15px;
+  }
+
+  .form-container h5 {
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 0;
+  }
+
+  .form-container h1 {
+    text-align: center;
+  }
+
+  .banner-pai {
+    display: none;
+  }
+
+  .logo-space,
+  .logo-space-log {
+    justify-content: center;
+  }
+
+  .logo-space img,
+  .logo-space-log img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .copy,
+  .copy-log {
+    justify-content: center;
+    font-size: 0.8rem;
+  }
+
+  .icon-input {
+    width: 100%;
+  }
+}
+
+/* ==== FIM ESTILIZAÇÃO DA TELA DE LOGIN/CADASTRO ==== */
