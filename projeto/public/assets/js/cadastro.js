@@ -15,6 +15,7 @@ async function cadastrarUsuario() {
   var email = document.getElementById("email").value.trim();
   var cpf = normalizarCPF(document.getElementById("cpf").value.trim());
   var senha = document.getElementById("password").value.trim();
+  console.log(cpf, "-",email)
 
   if (nome == "") {
     alert("O nome é obrigatório.");
@@ -52,12 +53,11 @@ async function cadastrarUsuario() {
 
     if (!response.ok) {
       const errorData = await response.json();
-      return console.log(
+      return alert(
         errorData.message ? errorData.message : "Ocorreu um erro",
       );
     }
 
-    localStorage.setItem("token", data.token);
     alert("Usuário cadastrado com sucesso!");
     window.location.href = "index.html";
   } catch (e) {

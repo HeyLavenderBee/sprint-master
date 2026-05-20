@@ -33,15 +33,15 @@ async function getQuestion() {
 
   const response = await fetch(endpoint, {
     method: "GET",
-    //headers: { Authorization: `Bearer ${token}` },
-    headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozMywiaWF0IjoxNzc5MjgyNDQyLCJleHAiOjE3NzkyODM2NDJ9.vDBCsIiqtZ3yzirQ3R4rhRO-DtkMZwGMzRsJEoeKa9M` },
+    headers: { Authorization: `Bearer ${token}` },
   });
 
   const data = await response.json();
 
-  if(data.numero == undefined){
-    window.location.href = "resultado-questionario.html";
+  if(!response.ok){
+    return alert("Token inválido ou expirado, faça login novamente.");
   }
+  
   setQuestionNumberIndicator(data.id_questao, data.numero);
   setQuestionHtml(data.enunciado, data.alternativa_a, data.alternativa_b, data.alternativa_c, data.alternativa_d, data.imagem);
 }
@@ -54,14 +54,13 @@ async function nextQuestion() {
     method: "GET",
     headers: {
       Authorization:
-        //`Bearer ${token}`,
-        `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozMywiaWF0IjoxNzc5MjgyNDQyLCJleHAiOjE3NzkyODM2NDJ9.vDBCsIiqtZ3yzirQ3R4rhRO-DtkMZwGMzRsJEoeKa9M`,
+        `Bearer ${token}`,
     },
   });
   const data = await response.json();
 
   //checa se o 'numero' é maior que 10, se sim, ir para tela de resultado questionário
-  if(data.numero == undefined){
+  if(data.message == "Questão não encontrada para este exame"){
     window.location.href = "resultado-questionario.html";
   }
 
@@ -75,8 +74,7 @@ async function nextQuestion() {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      //Authorization: `Bearer ${token}`,
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozMywiaWF0IjoxNzc5MjgyNDQyLCJleHAiOjE3NzkyODM2NDJ9.vDBCsIiqtZ3yzirQ3R4rhRO-DtkMZwGMzRsJEoeKa9M`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ id_exame, id_questao, resposta }),
   });
