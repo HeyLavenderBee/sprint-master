@@ -1,7 +1,9 @@
 const cpfInput = document.getElementById("log-cpf");
+const senhaInput = document.getElementById("log-password");
+const btnLogin = document.getElementById("btn-login");
 
 function normalizarCPF(cpf) {
-    const txtSemEspaco = cpf.replace(/\s/g, "");
+    const txtSemEspaco = cpf.replace(/\s/g, "").trim();
     const txtSemPontuacao = txtSemEspaco.replace(/[^0-9]/g, "");
     return txtSemPontuacao;
 }
@@ -14,19 +16,12 @@ async function loginUsuario() {
         alert("O CPF é obrigatório.");
         return;
     }
-
     if (cpf.length !== 11) {
         alert("CPF inválido. Informe os 11 dígitos.");
         return;
     }
-
-    if (!senha) {
+    if (senha == "") {
         alert("A senha é obrigatória.");
-        return;
-    }
-
-    if (senha.length < 6) {
-        alert("A senha deve ter pelo menos 6 caracteres.");
         return;
     }
 
@@ -43,10 +38,11 @@ async function loginUsuario() {
         const data = await response.json();
         token = data.token;
 
-        if (!response.ok) {
+        if(!response.ok) {
             return alert(data.message ? data.message : "Ocorreu um erro");
         }
 
+        localStorage.setItem("token", token);
         alert("Usuário logado com sucesso!");
         window.location.href = "home.html";
     } catch (e) {
@@ -54,8 +50,4 @@ async function loginUsuario() {
     }
 }
 
-cpfInput.addEventListener("keydown", function (event) {
-    if (event.key == "Enter") {
-        loginUsuario();
-    }
-});
+btnLogin.addEventListener("click", loginUsuario)
