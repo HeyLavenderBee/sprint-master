@@ -37,13 +37,22 @@
 ## 🧱 Estrutura do projeto
 
 ```
-├ docs/        # Documentação do projeto
+├ docs/        # Documentação do projeto (DoD, backlog, diagramas)
 ├ projeto/
-│ ├ public/    # Arquivos estáticos (site)
-│   ├ assets/  # CSS e JS
-│   └ pages/   # Páginas do site
-│ └ src/       # Código e organização interna
-└ README.md
+│ ├ public/    # Arquivos públicos da aplicação
+│ │ ├ assets/  # Recursos estáticos (CSS, JS, imagens)
+│ │ └ pages/   # Páginas visuais do site
+│ │
+│ └ src/       # Código-fonte principal da aplicação
+│   ├ database/      # Configuração e conexão com o banco de dados
+│   ├ infra/         # Configurações e infraestrutura do sistema
+│   ├ middleware/    # Interceptadores e validações das requisições
+│   ├ repositories/  # Camada de acesso e manipulação de dados
+│   ├ routes/        # Definição das rotas da aplicação
+│   ├ utils/         # Funções utilitárias
+│   └ server.js      # Inicialização e configuração do servidor
+│
+└ README.md          # Guia principal do projeto
 ```
 
 <br>
@@ -69,7 +78,7 @@ O <b>DoD</b> pode ser encontrado <a href="https://github.com/TechFellasAbp/sprin
 
 ## 📈 Cronograma de Evolução do projeto
 
-<img width="100%" alt="cronograma-evolucao-projeto" src="https://github.com/user-attachments/assets/bad84123-48e9-4255-a445-1abfd6930ecc" />
+<img  width="100%" alt="cronograma-evolucao-projeto" src="https://github.com/user-attachments/assets/0b5c5091-f0fc-4e3f-8a57-59be41cdfda4" />
 
 <br>
   
@@ -78,8 +87,8 @@ O <b>DoD</b> pode ser encontrado <a href="https://github.com/TechFellasAbp/sprin
 | Sprints | Data       | Stauts | Relatório                                                                                                      | Vídeo         |
 | ------- | ---------- | ------ | -------------------------------------------------------------------------------------------------------------- | ------------- |
 | 1       | 13/04/2026 | ✅     | [Ver relatório](https://github.com/TechFellasAbp/sprint-master/blob/main/docs/relatorios/relatorio-sprint1.md) | [Ver vídeo](https://youtu.be/piYhwFAskJ4) |
-| 2       | 04/05/2026 | ⬜     | Ver relatório                                                                                                  | Ver vídeo     |
-| 3       | 25/05/2026 | ⬜     | Ver relatório                                                                                                  | Ver vídeo     |
+| 2       | 04/05/2026 |   ✅   | [Ver relatório](https://github.com/TechFellasAbp/sprint-master/blob/main/docs/relatorios/relatorio-sprint2.md) | [Ver vídeo](https://youtu.be/C_JkQOm4SpY) |
+| 3       | 25/05/2026 | ⬜     | Ver relatório  | Ver vídeo     |
 
 ### Legenda:
 
@@ -100,8 +109,12 @@ O <b>Sprint Backlog</b> pode ser encontrado <a href="https://github.com/TechFell
 <br>
 
 ## 🎯 Sprint 02:
-
---
+<p style="text-align: justify;">
+Nesta sprint, a equipe decidiu focar no desenvolvimento backend do sistema, iniciando pela implementação do cadastro de usuários. A partir disso, foram desenvolvidas funcionalidades como autenticação de login e gerenciamento de progresso do usuário.
+Em paralelo, foi iniciado o desenvolvimento do front-end, juntamente com a definição do design das telas restantes, buscando padronização visual e melhor experiência do usuário.
+<br>
+O <b>Sprint Backlog</b> pode ser encontrado <a href="https://github.com/TechFellasAbp/sprint-master/blob/main/docs/backlog/sprint-backlog2.md">aqui</a>.
+</p>
 
 <br>
 
@@ -113,7 +126,7 @@ O <b>Sprint Backlog</b> pode ser encontrado <a href="https://github.com/TechFell
 
 ## 🛠️ Tecnologias
 
-[![My Skills](https://skillicons.dev/icons?i=html,css,js,nodejs,git,figma)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=js,nodejs,postgres,html,css,figma,git,github)](https://skillicons.dev)
 
 <br>
 
@@ -172,19 +185,33 @@ git clone https://github.com/TechFellasAbp/sprint-master.git
 
 ### 2. Configuração do projeto
 
-**1°** Instale as bibliotecas com o comando:
+**1°** Entre na pasta `projeto`:
+
+```bash
+cd projeto
+```
+
+> **Observação:** Você tem que estar na pasta do repositório. Caso você não esteja, de `cd sprint-master` no seu Git Bash.
+
+<br>
+
+**2°** Instale as bibliotecas com o comando:
 
 ```bash
 npm i
 ```
 
-**2°** Com o repositório em sua pasta raíz, inicialize o banco de dados:
+<br>
+
+**3°** Com o repositório em sua pasta raíz, inicialize o banco de dados:
 
 ```bash
 npm run db:init
 ```
 
-**3°** Por fim, execute o projeto:
+<br>
+
+**4°** Por fim, execute o projeto:
 
 ```bash
 npm run start

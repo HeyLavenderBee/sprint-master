@@ -1,0 +1,75 @@
+
+/*COMEÇO DA ESTILIZAÇÃO DA TELA RESULTADO QUESTIONÁRIO*/
+
+/* .main-quiz-result{
+  height: 80%;
+  width: 100%;
+} */
+
+.quiz-result-content {
+  background-color: #fff8ef;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  flex-wrap: nowrap;
+}
+
+.quiz-result-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem;
+  color: #000;
+  margin: 0;
+}
+
+.quiz-result-content img {
+  display: flex;
+  filter: center;
+  width: 15rem;
+  margin: 1.5rem;
+}
+
+.quiz-result-div-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.quiz-result-text.medium {
+  font-size: 1.3rem;
+}
+
+.quiz-result-text.super-small {
+  font-size: 0.8;
+  margin-bottom: 2rem;
+}
+
+.button-quiz-result {
+  background-color: #2081f9;
+  padding: 15px;
+  border: none;
+  border-radius: 30px;
+  margin: 0 0 2.5rem;
+  transition: all 0.3s ease;
+  color: #FFFF;
+  font-weight: bold;
+}
+
+.button-quiz-result:hover {
+  background-color: #2d7ddf;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.quiz-result-text.a {
+  color: #1461C2;
+}
+
+/*FIM DA ESTILIZAÇÃO DA TELA RESULTADO QUESTIONÁRIO*/
