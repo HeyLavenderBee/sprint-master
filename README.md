@@ -37,13 +37,22 @@
 ## 🧱 Estrutura do projeto
 
 ```
-├ docs/        # Documentação do projeto
+├ docs/        # Documentação do projeto (DoD, backlog, diagramas)
 ├ projeto/
-│ ├ public/    # Arquivos estáticos (site)
-│   ├ assets/  # CSS e JS
-│   └ pages/   # Páginas do site
-│ └ src/       # Código e organização interna
-└ README.md
+│ ├ public/    # Arquivos públicos da aplicação
+│ │ ├ assets/  # Recursos estáticos (CSS, JS, imagens)
+│ │ └ pages/   # Páginas visuais do site
+│ │
+│ └ src/       # Código-fonte principal da aplicação
+│   ├ database/      # Configuração e conexão com o banco de dados
+│   ├ infra/         # Configurações e infraestrutura do sistema
+│   ├ middleware/    # Interceptadores e validações das requisições
+│   ├ repositories/  # Camada de acesso e manipulação de dados
+│   ├ routes/        # Definição das rotas da aplicação
+│   ├ utils/         # Funções utilitárias
+│   └ server.js      # Inicialização e configuração do servidor
+│
+└ README.md          # Guia principal do projeto
 ```
 
 <br>
@@ -69,7 +78,7 @@ O <b>DoD</b> pode ser encontrado <a href="https://github.com/TechFellasAbp/sprin
 
 ## 📈 Cronograma de Evolução do projeto
 
-<img width="100%" alt="cronograma-evolucao-projeto" src="https://github.com/user-attachments/assets/bad84123-48e9-4255-a445-1abfd6930ecc" />
+<img  width="100%" alt="cronograma-evolucao-projeto" src="https://github.com/user-attachments/assets/0b5c5091-f0fc-4e3f-8a57-59be41cdfda4" />
 
 <br>
   
@@ -78,7 +87,7 @@ O <b>DoD</b> pode ser encontrado <a href="https://github.com/TechFellasAbp/sprin
 | Sprints | Data       | Stauts | Relatório                                                                                                      | Vídeo         |
 | ------- | ---------- | ------ | -------------------------------------------------------------------------------------------------------------- | ------------- |
 | 1       | 13/04/2026 | ✅     | [Ver relatório](https://github.com/TechFellasAbp/sprint-master/blob/main/docs/relatorios/relatorio-sprint1.md) | [Ver vídeo](https://youtu.be/piYhwFAskJ4) |
-| 2       | 04/05/2026 |   ⌛   | [Ver relatório](https://github.com/TechFellasAbp/sprint-master/blob/main/docs/relatorios/relatorio-sprint2.md) | Ver vídeo |
+| 2       | 04/05/2026 |   ✅   | [Ver relatório](https://github.com/TechFellasAbp/sprint-master/blob/main/docs/relatorios/relatorio-sprint2.md) | [Ver vídeo](https://youtu.be/C_JkQOm4SpY) |
 | 3       | 25/05/2026 | ⬜     | Ver relatório  | Ver vídeo     |
 
 ### Legenda:
