@@ -103,6 +103,21 @@
   margin-top: 4px;
 }
 
+.alt-button{
+  padding: 12px 14px;
+  font-family: var(--font);
+  font-size: 0.88rem;
+  color: var(--cream);
+  background: var(--alts-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 0 var(--radius-input) var(--radius-input) 0;
+  outline: none;
+}
+
+.alt-button:hover{
+  background: var(--blue-deep);
+}
+
 .field {
   display: flex;
   flex-direction: column;
@@ -125,8 +140,12 @@
   color: var(--muted-light);
   background: var(--input-bg);
   border: 1px solid var(--input-border);
-  border-radius: var(--radius-input);
+  border-radius: var(--radius-input) 0 0 var(--radius-input);
   outline: none;
+}
+
+.field-fuser{
+  display: inline-flex;
 }
 
 .field__input:focus {
@@ -164,6 +183,21 @@
   
 }
 
+.btn-edit {
+  padding: 13px 16px;
+  font-family: var(--font);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--blue-deep);
+  border: none;
+  border-radius: var(--radius-input);
+  cursor: pointer;
+  transition: background 0.15s ease;
+  width: 100%;
+  
+}
+
 .link-logout{
     margin-top: auto;
     text-decoration: none;
@@ -182,6 +216,13 @@
   background: var(--logout-hover);
 }  
   .btn-logout:active {
+  transform: scale(0.98);
+}  
+
+.btn-edit:hover {
+  background: var(--blue-accent);
+}  
+  .btn-edit:active {
   transform: scale(0.98);
 }  
 
