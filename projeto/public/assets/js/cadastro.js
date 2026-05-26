@@ -18,28 +18,22 @@ async function cadastrarUsuario() {
   console.log(cpf, "-",email)
 
   if (nome == "") {
-    alert("O nome é obrigatório.");
-    return;
+    return alert("O nome é obrigatório.");
   }
   if (email == "") {
-    alert("O e-mail é obrigatório.");
-    return;
+    return alert("O e-mail é obrigatório.");
   }
   if (cpf == "") {
-    alert("O CPF é obrigatório.");
-    return;
+    return alert("O CPF é obrigatório.");
   }
   if (cpf.length !== 11) {
-    alert("CPF inválido. Informe os 11 dígitos.");
-    return;
+    return alert("CPF inválido. Informe os 11 dígitos.");
   }
   if (senha == "") {
-    alert("A senha é obrigatória.");
-    return;
+    return alert("A senha é obrigatória.");
   }
   if (senha.length < 6) {
-    alert("A senha deve ter pelo menos 6 caracteres.");
-    return;
+    return alert("A senha deve ter pelo menos 6 caracteres.");
   }
 
   const endpoint = `api/usuarios`;

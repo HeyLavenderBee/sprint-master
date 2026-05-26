@@ -13,16 +13,13 @@ async function loginUsuario() {
     var senha = document.getElementById("log-password").value.trim();
 
     if (cpf == "") {
-        alert("O CPF é obrigatório.");
-        return;
+        return alert("O CPF é obrigatório.");
     }
     if (cpf.length !== 11) {
-        alert("CPF inválido. Informe os 11 dígitos.");
-        return;
+        return alert("CPF inválido. Informe os 11 dígitos.");
     }
     if (senha == "") {
-        alert("A senha é obrigatória.");
-        return;
+        return alert("A senha é obrigatória.");
     }
 
     const endpoint = `api/auth/login`;

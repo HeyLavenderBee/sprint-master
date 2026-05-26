@@ -1,4 +1,6 @@
-const questionNumberIndicator = document.getElementById("question-number-indicator",);
+const questionNumberIndicator = document.getElementById(
+  "question-number-indicator",
+);
 const progressIndicator = document.getElementById("progress-indicator");
 const nextButton = document.getElementById("next-button");
 const questionTextElement = document.getElementById("enunciado");
@@ -20,9 +22,9 @@ function setQuestionHtml(question, a, b, c, d, image) {
   alternativeB.textContent = b;
   alternativeC.textContent = c;
   alternativeD.textContent = d;
-  if(image != null){
+  if (image != null) {
     questionImage.src = `assets/img/questionario/${image}`;
-  } else{
+  } else {
     questionImage.src = "";
   }
 }
@@ -38,12 +40,19 @@ async function getQuestion() {
 
   const data = await response.json();
 
-  if(!response.ok){
+  if (!response.ok) {
     return alert("Token inválido ou expirado, faça login novamente.");
   }
-  
+
   setQuestionNumberIndicator(data.id_questao, data.numero);
-  setQuestionHtml(data.enunciado, data.alternativa_a, data.alternativa_b, data.alternativa_c, data.alternativa_d, data.imagem);
+  setQuestionHtml(
+    data.enunciado,
+    data.alternativa_a,
+    data.alternativa_b,
+    data.alternativa_c,
+    data.alternativa_d,
+    data.imagem,
+  );
 }
 
 async function nextQuestion() {
@@ -53,15 +62,17 @@ async function nextQuestion() {
   const response = await fetch(endpoint, {
     method: "GET",
     headers: {
-      Authorization:
-        `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
   const data = await response.json();
 
   //checa se o 'numero' é maior que 10, se sim, ir para tela de resultado questionário
-  if(data.message == "Questão não encontrada para este exame"){
+  if (!response.ok && data.message == "Nenhuma questão pendente encontrada") {
     window.location.href = "resultado-questionario.html";
+    return;
+  } else if (!response.ok) {
+    return alert(data.message);
   }
 
   let id_exame = 12; //TODO: achar uma forma de pegar o idexame automaticamente do banco de dados ou o backend
