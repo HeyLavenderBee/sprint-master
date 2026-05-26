@@ -44,7 +44,7 @@ async function getQuestion() {
     return alert("Token inválido ou expirado, faça login novamente.");
   }
 
-  setQuestionNumberIndicator(data.id_questao, data.numero);
+  setQuestionNumberIndicator(data.numero, data.numero);
   setQuestionHtml(
     data.enunciado,
     data.alternativa_a,
@@ -75,7 +75,7 @@ async function nextQuestion() {
     return alert(data.message);
   }
 
-  let id_exame = 6; //TODO: achar uma forma de pegar o idexame automaticamente do banco de dados ou o backend
+  let id_exame = 1; //TODO: achar uma forma de pegar o idexame automaticamente do banco de dados ou o backend
   let id_questao = data.id_questao;
   let resposta = "b";
 
