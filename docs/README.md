@@ -1,8 +1,8 @@
-# 📚 Documentação do Sprint Master
+## 📚 Documentação do projeto
 
-Bem-vindo à pasta de documentação do projeto **Sprint Master**.
+Bem-vindo a pasta de documentação da **Sprint Master**.
 
-Esta pasta centraliza toda a documentação técnica, funcional e arquitetura do sistema, facilitando a manutenção do projeto e evolução dos desenvolvedores.
+Este diretório reúne toda a documentação técnica, funcional e arquitetura do sistema, facilitando o desenvolvimento e manutenção do projeto para a equipe.
 
 ## 📌 Objetivo
 
@@ -14,26 +14,27 @@ A documentação aqui presente serve para:
 - Centralizar informações técnicas do projeto
 - Explicar a arquitetura do sistema
 - Descrever funcionalidades
-- Definir padrões de desenvolvimento
 - Registrar decisões técnicas
+- Registrar as funcionalidades
+- Documentar o acompanhamento do desenvolvimento
+- Registrar modelagem, backlog, diagramas, estruturas e identidade visual do projeto
 
----
 
-# 🧱 Estrutura da Documentação
+## 🧱 Estrutura da Documentação
 
 ```bash
 docs/
 │
-├── 📂 backlog
+├── backlog/ # Organização das tarefas e planejamento das sprints.
 │
-├── 📂 bd
+├── bd/ # Modelagem e documentação do banco de dados.
 │
-├── 📂 design
+├── design/ # protótipos e definições visuais do sistema.
 │
-├── 📂 diagramas
+├── diagramas/ # Diagramas de casos de uso, classes e componentes do projeto.
 │
-├── 📂 relatorios
+├── relatorios/ # Relatórios de cada sprint.
 │
-├── 📂 requisitos
+├── requisitos/ # Requisitos funcionais, não funcionais e restrições do projeto.
 │
-└── 🎯 dod.md
+└── dod.md/ # Definition of Done.
