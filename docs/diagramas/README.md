@@ -8,7 +8,10 @@ Esta pasta contém toda a documentação visual, arquitetural e de fluxo do proj
 
 * Diagramas UML
 * Estrutura da Pasta
+* Pasta de Casos de Uso (caso-uso)
+* Pasta de Classes (classes)
 * Engenharia de Software e Ferramentas
+  
 
 
 ## 📊  Diagramas UML
@@ -21,26 +24,45 @@ Os diagramas foram exportados no formato vetorial **SVG**, garantindo alta resol
 
 ## 📂 Estrutura de Pastas do Projeto
 
-Abaixo está representada a árvore de diretórios que organiza a documentação do sistema:
+Abaixo está representada a estrutura de diretórios que organiza a documentação do sistema:
 
 ```text
 diagramas/
 ├── caso-uso/
-│   └── caso-uso-sistema.svg
 ├── classes/
-│   ├── class-abrir-questionario.svg
-│   ├── class-cadastrar-usuario.svg
-│   ├── class-calcular-nota-final.svg
-│   ├── class-calcular-nota-nivel.svg
-│   ├── class-consultar-progresso.svg
-│   ├── class-criar-historico-tentativas-modul...
-│   ├── class-emitir-certificado.svg
-│   ├── class-emitir-certificado.svg.bak
-│   ├── class-finalizar-questionario.svg
-│   ├── class-responder-pergunta.svg
-│   └── class-selecionar-questoes.svg
+│
 └── README.md
 ```
+
+## 📂 Pasta de Casos de Uso (caso-uso)
+
+
+No contexto da engenharia de software e da modelagem de sistemas (como na UML), a pasta de casos de uso funciona como uma ferramenta essencial de organização e comunicação.
+
+A sua principal finalidade na interpretação de um projeto é estruturar a complexidade do sistema para facilitar a compreensão de stakeholders.
+
+Principais finalidades e benefícios de utilizar essa estrutura:
+
+1. Organização e Modularização do Escopo
+2. Facilitação da Comunicação com Stakeholders
+3. Definição de Limites do Sistema
+4. Gerenciamento e Atribuição de Trabalho aos desenvolvedores
+
+
+## 📂 Pasta de Classes (classes)
+
+Enquanto a pasta de casos de uso organiza o sistema sob a perspectiva das funcionalidades e regras de negócio, a pasta de classes tem como função organizar a arquitetura técnica e estrutural do código-fonte, agrupando os elementos que compõem a lógica interna e os dados do sistema.
+
+Abaixo estão as principais finalidades e benefícios de sua utilização na interpretação de um projeto:
+
+1. Agrupamento de componentes de alta coesão
+2. Separação de camadas na arquitetura do software
+3. Gerenciamento de Dependências e Acoplamento
+4. Controle de Visibilidade e Escopo (Namespaces)
+5. Facilitação da Reutilização de Código
+
+📌 Enquanto a pasta de casos de uso orienta a visão do cliente e do analista de negócios sobre o que o sistema faz, a pasta de classes orienta a visão do arquiteto e do desenvolvedor sobre como o sistema é construído internamente.
+
 
 ## 💻 Engenharia de Software e Ferramentas
 
