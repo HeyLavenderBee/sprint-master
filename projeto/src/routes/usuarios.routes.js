@@ -6,9 +6,11 @@ const {
   updateUsuarioNome, 
   updateUsuarioEmail, 
   findUsuarioById ,
-  updateUsuarioSenha
+  updateUsuarioSenha,
+  findIdExameByIdUsuario
 } = require("../repositories/usuarios.repositories");
 
+const {verifyToken} = require("../utils/jwt");
 const router = Router();
 
 // POST api/usuarios
@@ -167,6 +169,37 @@ router.patch("/senha", authMiddleware, async function(req,res){
     }
 })
 
+// POST api/id-exame
+router.post("/id-exame", async function (req, res) {
+  const { idUsuario } = req.body;
+
+  try{
+    const result = await findIdExameByIdUsuario(idUsuario);
+    res.send(result);
+  } catch(e){
+    console.log(e.message); //<- quando houver um erro interno, esse print ajuda a decifrar qual
+
+    return res.status(400).json({
+      message: "Erro interno no servidor"
+    });
+  }
+});
+
+// POST api/id-usuario
+router.post("/id-usuario", async function (req, res) {
+  const { token } = req.body;
+
+  try{
+    const result = await verifyToken(token);
+    res.send(result);
+  } catch(e){
+    console.log(e.message); //<- quando houver um erro interno, esse print ajuda a decifrar qual
+
+    return res.status(400).json({
+      message: "Erro interno no servidor"
+    });
+  }
+});
 
 function getIdUsuario(params){
     const idUsuario = Number(params.idUsuario);
@@ -176,7 +209,6 @@ function getIdUsuario(params){
     }
     return idUsuario;
 }
-
 
 module.exports = router;
 
@@ -211,4 +243,14 @@ curl -X PATCH http://localhost:3000/api/usuarios/4/senha \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer SEU_TOKEN" \
     -d '{"senha": "teste1"}'
+
+Pegar o idUsuario
+    curl -X POST http://localhost:3000/api/usuarios/id-exame \
+    -H "Content-Type: application/json" \
+    -d '{"idUsuario": "2"}'
+
+Pegar o idUsuario
+    curl -X POST http://localhost:3000/api/usuarios/id-usuario \
+    -H "Content-Type: application/json" \
+    -d '{"idUsuario": "2"}'
 */
