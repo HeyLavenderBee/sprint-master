@@ -1,0 +1,17 @@
+# User Stories 📋🧑‍💼
+
+As user stories são os desejos do cliente para cada requisito pedido. É a descrição da tarefa de acordo com ele.
+
+| ID | Descrição | User Story |
+| --- | -------- | ---------- |
+| RF01 | O sistema deve permitir o cadastro do usuário utilizando CPF (como identificador único), nome completo, e-mail e senha. | Como usuário, quero fazer cadastro com CPF, nome completo, e-mail e senha, para que eu tenha formas de entrar no sistema. |
+| RF02 | O login no sistema deve ser realizado exclusivamente por meio de CPF e senha. | Como usuário, quero entrar no sistema com CPF e senha, para que login seja seguro. |
+| RF03 | Para cada nível, o sistema deve selecionar aleatoriamente 10 questões a partir de um banco com 30 questões daquele nível, respeitando a classificação de dificuldade.| Como usuário, quero ter questões aleatórias a cada tentativa de questionário, para meus conhecimentos serem testados, e garantir que eu tenha conhecimento de diversos tópicos. |
+| RF04 | As questões de cada nível devem ser classificadas em três graus de dificuldade: fáceis, médias e difíceis. | Como usuário, quero que as questões sejam classificadas em diferentes dificuldades, para poder testar meus conhecimentos em diferentes níveis. |
+| RF05 | Cada avaliação de nível apresentada ao usuário deve ser composta obrigatoriamente por 3 questões fáceis, 4 questões médias e 3 questões difíceis, selecionadas de forma aleatória dentro de cada categoria. | Como usuário, quero quantidades específicas de dificuldades de questões por questionário, para garantir que em todo questionário tenha a quantidade certa de dificuldade e desafio. |
+| RF06 | O usuário deve poder realizar no máximo 2 tentativas por nível. | Como usuário, quero que tenha um limite de tentativas em cada nível, para não permitir que eu não decore as questões e refaça o teste sem realmente ter o conhecimento. | 
+| RF07 | Para cada nível, a nota final do usuário deve ser a maior nota obtida entre as tentativas realizadas. | Como usuário, quero que entre as duas tentativas, a maior seja a nota final do questionário, para garantir que a minha maior nota seja a válida. |
+| RF08 | O sistema deve calcular o resultado final do usuário como a média das notas finais obtidas em cada nível .| Como usuário, quero que a minha nota final seja calculada com base na média de todas as notas de cada nível, para que eu meu conhecimento seja corretamente avaliado por minha média. |
+| RF09 |  O sistema deve emitir um certificado final contendo, no mínimo: nome completo, CPF, email, data de emissão, e a média final. | Como usuário, quero que seja emitido um certificado final, contendo informações básicas da minha conta, data de emissão e média final, para que eu seja identificado corretamente e demonstrar a nota final que consegui atingir. |
+| RF10 | O sistema deve manter histórico das tentativas por nível (data/hora, pontuação, questões sorteadas) para auditoria e acompanhamento. | Como usuário, quero que meu histórico de tentativas por nível seja registrado, para eu poder acompanhar as datas de cada tentativa e quanto eu consegui atingir. |
+| RF11 | O sistema deve permitir a consulta do progresso do usuário (níveis concluídos, tentativas restantes, melhor nota por nível). | Como usuário, quero poder ver meu progresso, tentativas restantes, e melhor nota por nível, para ter noção de como estou progredindo nos questionários. |
