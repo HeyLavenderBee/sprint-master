@@ -26,6 +26,7 @@ function resetEverything(){
     btnAltemail.disabled = false;
     btnAltCpf.disabled = false;
     btnAltPassword.disabled = false;
+    btnOpenEdit.className = "btn-edit btn-open-edit-show";
     btnAltPfp.className = "btn-pfp-hide";
     confHolder.className = "field-hide" ;
     inputsHolder.className = "alts-holder-hide" ;
@@ -52,6 +53,7 @@ btnAltPassword.addEventListener("click",function(){
 btnOpenEdit.addEventListener("click",function(){
     btnAltPfp.className = "btn-pfp"
     inputsHolder.className = "sidebar alts-holder-show";
+    btnOpenEdit.className = "btn-open-edit-hide";
 })
 btnEdit.addEventListener("click", function(){ //substuir pela funcao de atualizar os dados de vdd
     resetEverything();// colocar isso no final da função pls
