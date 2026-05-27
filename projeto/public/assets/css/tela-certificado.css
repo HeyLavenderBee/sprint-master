@@ -1,11 +1,14 @@
 /* ==== COMEÇO DA ESTILIZAÇÃO DA TELA DO CERTIFICADO ==== */
 
+body {
+    overflow-y: hidden;
+} 
+
 .certificate-page {
   display: flex;
   gap: 2rem;
-  padding: 50px;
   position: relative;
-  align-items: center;
+  margin-top: 5rem;
   height: 100%;
 }
 
@@ -33,6 +36,7 @@
 
 .frase-certificado {
   color: #646464;
+  width: 90%;
 }
 
 .div-bar {
@@ -48,7 +52,7 @@
 
 .div-escrita-certificado h1 {
   color: #09203E;
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   text-shadow: 0px 4px 4px hsla(0, 0%, 0%, 0.2);
 }
 
@@ -152,8 +156,8 @@
 .watermark {
   color: #5a5a5a;
   position: absolute;
-  bottom: 0;
   right: 40px;
+  bottom: 150px;
 }
 
 @media (max-width: 768px) {
@@ -161,18 +165,18 @@
     height: 100%;
     flex-direction: column;
     padding: 10px;
+    margin-top: 0px;
   }
 
   .div-escrita-certificado {
     font-size: large;
     width: 100%;
     padding: 20px;
-    margin-top: 25px;
   }
 
   .blue-container {
     height: 12.25rem;
-    width: 100%;
+    width: 24rem;
   }
 
   .button-aligment {
@@ -211,7 +215,7 @@
     width: 100%;
     text-align: center;
     right: 0;
-    bottom: 0;
+    bottom: -205px;
   }
 }
 
@@ -219,12 +223,19 @@
   .blue-container {
     height: 10.25rem;
     width: 100%;
-    max-width: 21.5rem;
+    max-width: 19.5rem;
   }
 
   .button-aligment {
     padding-bottom: 10rem;
     gap: 2rem;
+  }
+
+  .watermark {
+    width: 100%;
+    text-align: center;
+    right: 0;
+    bottom: -300px;
   }
 }
 
