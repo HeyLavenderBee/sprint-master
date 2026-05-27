@@ -31,10 +31,9 @@ A sua principal finalidade na interpretação de um projeto é estruturar a comp
 
 Principais finalidades e benefícios de utilizar essa estrutura:
 
-1. Organização e Modularização do Escopo
-2. Facilitação da Comunicação com Stakeholders
-3. Definição de Limites do Sistema
-4. Gerenciamento e Atribuição de Trabalho aos desenvolvedores
+1. Organização e limitação do escopo
+2. Facilitação da comunicação com stakeholders
+3. Gerenciamento e atribuição de trabalho aos desenvolvedores
 
 
 ## 📂 Diretório de Classes (classes)
