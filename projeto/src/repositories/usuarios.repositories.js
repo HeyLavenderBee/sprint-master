@@ -131,6 +131,16 @@ async function findUsuarioById(idUsuario){
     return result.rows[0] || null;
 }
 
+ async function findIdExameByIdUsuario(idUsuario){
+     const result = await pool.query(`
+            SELECT id_exame
+            FROM exames
+            WHERE id_usuario = $1`,
+         [idUsuario]
+     );
+     return result.rows[0] || null;
+ }
+
 async function findUsuarioByCpfAndSenha(cpf, senha){
     const result = await pool.query(`
         SELECT id_usuario, nome, email, cpf, senha
@@ -165,5 +175,6 @@ module.exports = {
     updateUsuarioEmail,
     updateUsuarioSenha,
     findUsuarioByCpfAndSenha,
-    findUsuarioById
+    findUsuarioById,
+    findIdExameByIdUsuario
 };

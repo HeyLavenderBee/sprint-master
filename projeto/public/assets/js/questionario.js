@@ -75,7 +75,27 @@ async function nextQuestion() {
     return alert(data.message);
   }
 
-  let id_exame = 1; //TODO: achar uma forma de pegar o idexame automaticamente do banco de dados ou o backend
+ endpoint = `api/usuarios/id-usuario`;
+  const responseUsuario = await fetch(endpoint, {
+     method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token }),
+  });
+  const dataUsuarios = await responseUsuario.json();
+  let idUsuario = dataUsuarios.id_usuario;
+  console.log(idUsuario)
+
+   endpoint = `api/usuarios/id-exame`;
+  const responseExame = await fetch(endpoint, {
+     method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ idUsuario }),
+  });
+  const dataExame = await responseExame.json();
+
+  console.log(dataExame.id_exame);
+
+  let id_exame = dataExame.id_exame; //TODO: achar uma forma de pegar o idexame automaticamente do banco de dados ou o backend
   let id_questao = data.id_questao;
   let resposta = "b";
 
