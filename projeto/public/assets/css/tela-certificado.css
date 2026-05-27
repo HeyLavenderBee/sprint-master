@@ -2,7 +2,7 @@
 
 body {
     overflow-y: hidden;
-} 
+}
 
 .certificate-page {
   display: flex;
@@ -93,7 +93,13 @@ body {
   background-color: #09264A;
   height: 22.5rem;
   width: 33.75rem;
-  border-radius: 1em;
+  border-radius: 1rem;
+}
+
+.blue-container img {
+  width: 33.75rem;
+  border: 5px solid #bdbdbd;
+  border-radius: 10px;
 }
 
 .button-baixar-d {
@@ -176,12 +182,16 @@ body {
 
   .blue-container {
     height: 12.25rem;
-    width: 24rem;
+    width: 22rem;
+  }
+
+  .blue-container img {
+    width: 22rem;
   }
 
   .button-aligment {
     padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-bottom: 1rem;
     gap: 4rem;
   }
 
@@ -223,6 +233,10 @@ body {
   .blue-container {
     height: 10.25rem;
     width: 100%;
+    max-width: 19.5rem;
+  }
+
+  .blue-container img {
     max-width: 19.5rem;
   }
 
