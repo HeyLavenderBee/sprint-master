@@ -344,7 +344,7 @@
 }
 
 .card__subtitle {
-  margin: 0 0 16px;
+  margin: 0 ;
   font-size: 0.92rem;
   font-weight: 500;
   color: var(--navy-text);
@@ -471,7 +471,7 @@
 .diploma-art {
   display: flex;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .diploma {
