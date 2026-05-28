@@ -8,7 +8,7 @@ const {
   findUsuarioById ,
   updateUsuarioSenha,
   findIdExameByIdUsuario
-} = require("../repositories/usuarios.repositories");
+} = require("../repositories/usuarios.repository");
 
 const {verifyToken} = require("../utils/jwt");
 const router = Router();

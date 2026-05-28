@@ -12,7 +12,7 @@ const {
     findProximoModuloByUsuario,
     updateProximoModulo,
     findModulosRespondidosByUsuario
-} = require("../repositories/questoes.repositories");
+} = require("../repositories/questoes.repository");
 
 const router = Router();
 
