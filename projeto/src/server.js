@@ -1,17 +1,14 @@
 const express = require("express");
-const dotenv = require("dotenv");
 const path = require("path");
 const router = require("./routes");
 
-dotenv.config({
-    quiet: true,
-    path: path.resolve(__dirname, "..", ".env")
-});
+const env = require("./config/env");
+
+const PORT = env.ports;
 
 const app = express();
 app.use(express.json());
 
-const PORT = process.env.PORT;
 const publicPath = path.join(__dirname, "..", "public");
 const pagesPath = path.join(publicPath, "pages");
 const assetsPath = path.join(publicPath, "assets");
