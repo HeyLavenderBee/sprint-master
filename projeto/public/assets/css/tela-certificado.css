@@ -2,17 +2,18 @@
 
 body {
     overflow-y: hidden;
-}
-
-.certificate-page {
-  display: flex;
-  gap: 2rem;
-  position: relative;
+  }
+  
+  .certificate-page {
+    display: flex;
+    gap: 2rem;
+    position: relative;
+    margin-top: 5rem;
+    height: 100%;
+  }
+  
+  .container-certified {
   margin-top: 5rem;
-  height: 100%;
-}
-
-.container-certified {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -83,6 +84,7 @@ body {
 }
 
 .container-blue {
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
