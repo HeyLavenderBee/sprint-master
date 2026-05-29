@@ -41,7 +41,7 @@
 | ID     | Atividade                                                                                    | Prioridade | Pontuação | Disciplina | Andamento    | Autor                                                                  |
 | :----- | :------------------------------------------------------------------------------------------- | :--------- | :-------- | :--------- | :----------- | :--------------------------------------------------------------------- |
 | ES-005 | Desenvolver User Story                                                                       | 10         | 2         | EWS        | Concluído     | Júlia R.                                                               |
-| ES-006 | Criar diagramas de sequência                                                                 | 9          | 5         | EWS        | Não iniciado | Júlia R.                                                               |
+| ES-006 | Criar diagramas de sequência                                                                 | 9          | 5         | EWS        | Em andamento | Júlia R.                                                               |
 | ES-007 | Adicionar README para pasta de diagramas                                                     | 4          | 2         | EWS        | Concluído     | Fernanda                                                               |
 | ES-008 | Adicionar README para pasta de designs                                                       | 3          | 2         | EWS        | Concluído     | Mariana                                                                |
 | ES-009 | Adicionar README para pasta de documentos                                                    | 4          | 2         | EWS        | Concluído     | Júlia S.                                                               |
@@ -61,18 +61,18 @@
 | DW-25  | Bloquear módulos que não estão disponíveis para o usuário                                    | 8          | 3         | DW         | Não iniciado | Guilherme                                                              |
 | DW-26  | Adicionar mensagem de parabéns ao final da conclusão de todos os módulos.                    | 4          | 1         | DW         | Não iniciado | Kauã                                                                   |
 | DW-27  | Alterar tela de dashboard para permitir edição de todas as informações do usuário            | 6          | 5         | DW         | Concluído | Darcy                                                                  |
-| DW-28  | Adicionar confetti quando terminar questionário em 100% ou terminar todos os módulos         | 1          | 2         | DW         | Não iniciado | Beatriz                                                                |
-| DW-29  | Adicionar mensagens personalizadas em cada resultado do questionário                         | 3          | 2         | DW         | Não iniciado | Mariana                                                                |
+| DW-28  | Adicionar confetti quando terminar questionário em 100% ou terminar todos os módulos         | 1          | 2         | DW         | Em andamento | Beatriz                                                                |
+| DW-29  | Adicionar mensagens personalizadas em cada resultado do questionário                         | 3          | 2         | DW         | Em andamento | Mariana                                                                |
 | DW-30  | Adicionar forma de escolher imagem para usuário (e alterar no banco de dados)                | 5          | 1         | DW         | Não iniciado | Beatriz, Darcy, Fernanda, Guilherme, Júlia R. , Júlia S. , Kauã, Mariana |
-| DW-31  | Alterar o header para ficar fixo                                                             | 3          | 1         | DW         | Não iniciado | Mariana                                                                |
+| DW-31  | Alterar o header para ficar fixo                                                             | 3          | 1         | DW         | Concluído | Mariana                                                                |
 | DW-32  | Adicionar transition na barra de progresso do questionário                                   | 2          | 1         | DW         | Concluído     | Beatriz                                                                |
 | DW-33  | Ajustar dashboard para o terceiro componente levar para página de módulos                    | 6          | 1         | DW         | Concluído     | Kauã                                                                   |
 | DW-34  | Diminuir o margin-top da tela de certificado                                                 | 3          | 1         | DW         | Concluído     | Guilherme                                                              |
 | DW-35  | Criar aviso para mostrar tentativas restantes por módulo                                     | 9          | 3         | DW         | Não iniciado | Júlia S.                                                               |
-| LP-017 | Centralizar a leitura e validação das variáveis de ambiente                                  | 10         | 5       | LPA        | Não iniciado | Fernanda                                                               |
+| LP-017 | Centralizar a leitura e validação das variáveis de ambiente                                  | 10         | 5       | LPA        | Concluída | Fernanda                                                               |
 | LP-018 | Separar as responsabilidades ao criar a aplicação Express e iniciar o servidor               | 9          | 2         | LPA        | Não iniciado | Darcy                                                                  |
 | LP-019 | Dividir responsabilidades do login                                                           | 9          | 5        | LPA        | Concluído | Beatriz                                                                |
-| LP-020 | Dividir responsabilidades do usuário                                                         | 8          | 8         | LPA        | Em andamento | Júlia S.                                                               |
+| LP-020 | Dividir responsabilidades do usuário                                                         | 8          | 8         | LPA        | Concluído | Júlia S.                                                               |
 | LP-021 | Dividir responsabilidades da questão                                                         | 7          | 8         | LPA        | Não iniciado | Kauã                                                                   |
 | LP-022 | Dividir responsabilidades do certificado                                                     | 7          | 3         | LPA        | Não iniciado | Júlia S.                                                               |
 | LP-023 | Criar API RESTful                                                                            | 6          | 3         | LPA        | Não iniciado | Júlia S.                                                               |
@@ -151,13 +151,33 @@ Outras tasks foram iniciadas, como o desenvolvimento da aparição de confettis 
 ---
 
 <p style="text-align:justify;">
-Nesta daily, separamos pequenas tasks para serem feitas no dia, já que as quaartas-feiras não são direcionadas a ABP, apenas foram atribuídas a quem já havia terminado as atividades referentes a matéria.
+Nesta daily, separamos pequenas tasks para serem feitas no dia, já que as quartas-feiras não são direcionadas a ABP, apenas foram atribuídas a quem já havia terminado as atividades referentes a matéria.
 
 - Dividir a responsabilidade do login
 
 - Adicionar botão para tela certificado no dashboard e deixar bloqueado antes de terminar tudo
 
 A divisão de responsabiliade do usuário e as bases de testes foram iniciadas.
+</p>
+
+<br>
+
+### 28/05 - Daily Scrum
+
+---
+
+<p style="text-align:justify;">
+Nesta daily de quinta-feira, avançamos em diversos pontos de infraestrutura e arquitetura do projeto. Foi desenvolvida a implementação do menu fixo para melhorar a usabilidade, além de centralizar a leitura e validação das variáveis de ambiente. Também separamos as responsabilidades ao criar a aplicação Express e iniciar o servidor, e iniciamos a divisão das responsabilidades do usuário. Por fim, avançamos cerca de 50% na tarefa de adicionar mensagens personalizadas em cada resultado do questionário.
+</p>
+
+<br>
+
+
+### 29/05 - Daily Scrum
+
+---
+
+<p style="text-align:justify;">
 </p>
 
 <br>
