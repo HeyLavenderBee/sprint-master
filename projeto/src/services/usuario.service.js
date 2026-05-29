@@ -5,7 +5,7 @@
   updateUsuarioEmail, 
   findUsuarioById ,
   updateUsuarioSenha,
-} = require("../repositories/usuarios.repositories");
+} = require("../repositories/usuarios.repository");
 
 async function cadastrarUsuario(nome, email, cpf, senha) {
     return createUsuario(nome, email, cpf, senha);

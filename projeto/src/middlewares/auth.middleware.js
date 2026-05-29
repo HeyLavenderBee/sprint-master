@@ -1,5 +1,5 @@
 const { verifyToken} = require("../utils/jwt");
-const {findUsuarioById} = require("../repositories/usuarios.repositories")
+const {findUsuarioById} = require("../repositories/usuarios.repository")
 /*
 curl -X PATCH http://localhost:3000/api/usuarios/nome \
   -H "Content-Type: application/json" \

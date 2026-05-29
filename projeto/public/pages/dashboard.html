@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/dashboard.css">
     <link rel="icon" href="/assets/img/scrum-master-logo-circle.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body class="dashboard">
     <div class="app">
@@ -29,34 +32,83 @@
                 src="/assets/img/user-icon.png"
                 alt="Foto do usuário"
               />
+              <button class="btn-pfp-hide" id="btn-pfp"><i class="fa-solid fa-dice"></i></button>
             </div>
               <h1 class="profile__name">Nome Usuário</h1>
               <p class="profile__email">usuario@exemplo.com</p>
-          </div>
-
-          <label class="field">
-            <span class="field__label">Nome Completo</span>
-            <input
-              class="field__input"
-              type="text"
-              name="nome"
-              readonly
-              value=""
-            />
-          </label>
-          <label class="field">
-            <span class="field__label">CPF</span>
-            <input
-              class="field__input"
-              type="text"
-              name="cpf"
-              readonly
-              value="***.***.***-**"
-              data-desktop-value="***.***.***-**"
-              data-mobile-value="***.***.***-**"
-            />
-          </label>
-        <a href="./index.html" class="link-logout"><button type="button" class="btn-logout">Sair da conta</button></a>
+              <button type="button" class="btn-edit btn-open-edit-show" id="btn-open-edit">Editar perfil</button>
+        </div>
+        
+        <div class="sidebar alts-holder-hide" id="alts-holder">
+            <label class="field">
+              <span class="field__label">Nome Completo</span>
+              <div class="field-fuser">
+                <input
+                  class="field__input"
+                  type="text"
+                  name="nome"
+                  value=""
+                  id="name-input"
+                />
+                <button type="button" class="alt-button" id="alt-name"><i class="fa-solid fa-pen"></i></button>
+              </div>
+            </label>
+            <label class="field">
+              <span class="field__label">CPF</span>
+              <div class="field-fuser">
+                <input
+                  class="field__input"
+                  type="text"
+                  name="cpf"
+                  value="***.***.***-**"
+                  data-desktop-value="***.***.***-**"
+                  data-mobile-value="***.***.***-**"
+                  id="cpf-input"
+                />
+                <button type="button" class="alt-button" id="alt-cpf"><i class="fa-solid fa-pen"></i></button>
+              </div>
+            </label>
+            <label class="field">
+              <span class="field__label">Email</span>
+              <div class="field-fuser">
+                <input
+                  class="field__input"
+                  type="text"
+                  name="email"
+                  value=""
+                  id="email-input"
+                />
+                <button type="button" class="alt-button" id="alt-email"><i class="fa-solid fa-pen"></i></button>
+              </div>
+            </label>
+            <label class="field">
+              <span class="field__label">Senha</span>
+              <div class="field-fuser">
+                <input
+                  class="field__input"
+                  type="password"
+                  name="nome"
+                  value=""
+                  id="password-input"
+                />
+                <button type="button" class="alt-button" id="alt-password"><i class="fa-solid fa-pen"></i></button>
+              </div>
+            </label>
+            <label class="field-hide" id="conf-password">
+              <span class="field__label">Confirmar senha</span>
+              <div class="field-fuser">
+                <input
+                  class="field__input"
+                  type="password"
+                  name="nome"
+                  value=""
+                  id="conf-password-input"
+                />
+              </div>
+            </label>
+          <button type="button" class="btn-edit" id="btn-save-edit">Salvar alteraçôes</button>
+        </div>
+        <a href="./index.html" class="link-logout"><button type="button" class="btn-logout" >Sair da conta</button></a>
       </aside>
 
       <main class="main" id="conteudo-principal">
@@ -153,6 +205,7 @@
           <div class="diploma-art" aria-hidden="true">
             <img class="diploma" src="/assets/img/diploma-dashboard.png" />
           </div>
+          <a href="tela-certificado.html"><button type="button" class="btn-primary">Ver certificado</button></a>
         </section>
       </main>
     </div>
@@ -170,5 +223,6 @@
         mql.addEventListener("change", syncCpf);
       })();
     </script>
+    <script src="assets/js/dashboard.js"></script>
   </body>
 </html>
