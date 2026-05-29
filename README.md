@@ -88,7 +88,7 @@ O <b>DoD</b> pode ser encontrado <a href="https://github.com/TechFellasAbp/sprin
 | ------- | ---------- | ------ | -------------------------------------------------------------------------------------------------------------- | ------------- |
 | 1       | 13/04/2026 | ✅     | [Ver relatório](https://github.com/TechFellasAbp/sprint-master/blob/main/docs/relatorios/relatorio-sprint1.md) | [Ver vídeo](https://youtu.be/piYhwFAskJ4) |
 | 2       | 04/05/2026 |   ✅   | [Ver relatório](https://github.com/TechFellasAbp/sprint-master/blob/main/docs/relatorios/relatorio-sprint2.md) | [Ver vídeo](https://youtu.be/C_JkQOm4SpY) |
-| 3       | 25/05/2026 | ⬜     | Ver relatório  | Ver vídeo     |
+| 3       | 25/05/2026 | ⌛     | Ver relatório  | Ver vídeo     |
 
 ### Legenda:
 
