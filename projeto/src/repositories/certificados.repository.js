@@ -1,11 +1,13 @@
 const pool = require("../database/db");
 
+// Na função findUsuarioByCertificadoHash, adicionei o campo 'email' que antes não tinha.
 async function findUsuarioByCertificadoHash(certificadoHash) {
   const result = await pool.query(
     ` 
     SELECT 
     id_usuario, 
     nome, 
+    email, 
     cpf, 
     certificado_hash 
     FROM usuarios 

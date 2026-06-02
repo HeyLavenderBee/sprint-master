@@ -20,7 +20,7 @@ async function getUsuario() {
 
   userName.innerText = data.nome;
 
-  buttonLink.setAttribute("href", `certificado.html?=${data.certificado_hash}`)
+  buttonLink.setAttribute("href", `certificado.html?certificado=${data.certificado_hash}`)
 }
 
 getUsuario();

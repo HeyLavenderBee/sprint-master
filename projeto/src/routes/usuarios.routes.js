@@ -9,7 +9,7 @@ updateEmailController,
 updateSenhaController, 
 getUsuarioController,
 } = require("../controllers/usuario.controller");
-const { findUsuarioById } = require("../repositories/usuarios.repository");
+const { findUsuarioById, findIdExameByIdUsuario } = require("../repositories/usuarios.repository");
 const router = Router();
 
 // POST api/usuarios
