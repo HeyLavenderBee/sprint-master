@@ -17,10 +17,10 @@ async function buscarProximaQuestao(idUsuario){
     if (!questao) {
         return null;
     }
-     return res.status(200).json({
+     return {
     ...questao,
     imagem: questao.imagem ? `/imagens/questoes/${questao.imagem}` : null,
-  });
+  };
 };
 
 async function responderQuestao(idUsuario, idExame, idQuestao, resposta){
@@ -110,8 +110,50 @@ async function iniciarProximaTentativa(idUsuario){
     }
 };
 
+async function iniciarProximoModulo(idUsuario){
+    const concluido = await usuarioConcluiuModuloAtual(idUsuario);
+    if (!concluido) {
+      return {
+        status: "modulo-nao-concluido",
+      };
+    }
+
+    const moduloAtual = await findModuloAtualByUsuario(idUsuario);
+    if (!moduloAtual) {
+      return {
+        status: "modulo-atual-nao-encontrado",
+      };
+    }
+
+        const modulo = await findProximoModuloByUsuario(idUsuario);
+    if (!modulo) {
+      return {
+        status: "todos-modulos-concluidos",
+      };
+    }
+
+    const grupo = await findOutroGrupoAleatorio(idUsuario, modulo);
+    if( !grupo ){
+      return {
+        status: "grupo-proximo-modulo-nao-encontrado",
+      };
+    }
+
+    const exame = await updateProximoModulo(moduloAtual.id_exame, modulo, grupo, 1);
+    if (!exame) {
+      return {
+        status: "exame-nao-encontrado",
+      };
+    }
+}
+
+async function listarModulosRespondidos(idUsuario){
+  return findModulosRespondidosByUsuario(idUsuario);
+}
 module.exports = {
     buscarProximaQuestao,
     responderQuestao,
-    iniciarProximaTentativa
+    iniciarProximaTentativa,
+    iniciarProximoModulo,
+    listarModulosRespondidos
 }

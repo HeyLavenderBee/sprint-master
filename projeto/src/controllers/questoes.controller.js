@@ -1,7 +1,9 @@
 const {
     buscarProximaQuestao,
     responderQuestao,
-    iniciarProximaTentativa
+    iniciarProximaTentativa,
+    iniciarProximoModulo,
+    listarModulosRespondidos
 } = require("../services/questoes.service");
 
 async function getProximaQuestaoController(req, res) {
@@ -99,45 +101,40 @@ async function proximaTentativaController(req, res) {
 
 async function proximoModuloController(req, res) {
   try {
-    const concluido = await usuarioConcluiuModuloAtual(req.usuario.id_usuario);
-    if (!concluido) {
+    if (result.status === "modulo-nao-concluido") {
       return res.status(409).json({
         message: "Você ainda não concluiu todas as questões do módulo atual",
       });
     }
 
-    const moduloAtual = await findModuloAtualByUsuario(req.usuario.id_usuario);
-    if (!moduloAtual) {
+    if (result.status === "modulo-atual-nao-encontrado") {
       return res.status(404).json({
         message: "Módulo atual não encontrado",
       });
     }
 
 
-    const modulo = await findProximoModuloByUsuario(req.usuario.id_usuario);
-    if (!modulo) {
+    if (result.status === "todos-modulos-concluidos") {
       return res.status(404).json({
         message: "Você concluiu todos os módulos",
       });
     }
 
 
-    const grupo = await findOutroGrupoAleatorio(req.usuario.id_usuario, modulo);
-    if( !grupo ){
+    if(result.status === "grupo-proximo-modulo-nao-encontrado"){
       return res.status(404).json({
         message: "Nenhum grupo disponível para o próximo módulo",
       });
     }
     console.log("Grupo",grupo);
 
-    const exame = await updateProximoModulo(moduloAtual.id_exame, modulo, grupo, 1);
-    if (!exame) {
+    if (result.status === "exame-nao-encontrado") {
       return res.status(404).json({
         message: "Exame não encontrado para atualização",
       });
     }
 
-    return res.status(200).json(exame);
+    return res.status(200).json(result.exame);
   } catch (e) {
     return res.status(500).json({
       message: "Erro interno do servidor",
@@ -147,7 +144,7 @@ async function proximoModuloController(req, res) {
 
 async function getModulosRespondidosController(req, res) {
   try {
-    const modulos = await findModulosRespondidosByUsuario(req.usuario.id_usuario);
+    const modulos = await listarModulosRespondidos(req.usuario.id_usuario);
 
     return res.status(200).json(modulos);
   } catch (e) {

@@ -34,7 +34,8 @@ curl -X POST http://localhost:3000/api/questoes/responder \
   -d '{"id_exame":"10","id_questao":"21","resposta":"c"}'
 
 Comando para ir para próxima tentativa:
-curl -X PATCH http://localhost:3000/api/questoes/proxima-tentativa -H "Authorization: Bearer SEU_TOKEN"
+curl -X PATCH http://localhost:3000/api/questoes/proxima-tentativa \
+-H "Authorization: Bearer SEU_TOKEN"
 
 Comando para ir para próximo módulo:
 curl -X PATCH http://localhost:3000/api/questoes/proximo-modulo \
