@@ -12,6 +12,13 @@ function formatDate(dateString) {
   return date.toLocaleDateString("pt-BR");
 }
 
+// Função para formatar o CPF do usuário
+function formatCpf(cpfString) {
+  if (!cpfString) return "";
+  const cpfUser = cpfString;
+  return cpfUser.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+}
+
 // Função para calcular a média das notas de todos os módulos
 function calculateAverageGrade(modulosConcluidos) {
   // Caso retorne vazio
@@ -57,7 +64,7 @@ async function getCertificado() {
     return;
   }
 
-  userCPF.innerText = data.aluno?.cpf || "";
+  userCPF.innerText = formatCpf(data.aluno?.cpf) || "";
   userEmail.innerText = data.aluno?.email || "";
   userName.innerText = data.aluno?.nome || "";
   userGrade.innerText =

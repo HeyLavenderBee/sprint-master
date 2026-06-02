@@ -172,3 +172,9 @@
 }
 
 /*  === FIM DA ESTILIZAÇÃO DO CERTIFICADO */
+@media (orientation: portrait) {
+    #body-certificado{
+      width: 1123px;
+      height: 100vh;
+    }
+}
