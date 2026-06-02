@@ -8,6 +8,7 @@ updateNomeController,
 updateEmailController,
 updateSenhaController, 
 } = require("../controllers/usuario.controller");
+const { findIdExameByIdUsuario } = require("../repositories/usuarios.repository");
 const router = Router();
 
 // POST api/usuarios

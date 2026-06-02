@@ -1,4 +1,4 @@
-const { findUsuarioById } = require("../repositories/usuarios.repositories");
+const { findUsuarioById } = require("../repositories/usuarios.repository");
 const {
   cadastrarUsuario,
   alterarCpf,
@@ -26,7 +26,7 @@ async function createUsuarioController(req, res) {
 
   try {
     const result = await cadastrarUsuario(nome, email, cpf, senha);
-    res.send(result);
+    res.status(201).json(result);
   } catch (e) {
     console.log(e.message); //<- quando houver um erro interno, esse print ajuda a decifrar qual
     if (e && e.code == "23505") {
