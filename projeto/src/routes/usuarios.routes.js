@@ -7,7 +7,9 @@ updateCpfController,
 updateNomeController, 
 updateEmailController,
 updateSenhaController, 
+getUsuarioController,
 } = require("../controllers/usuario.controller");
+const { findUsuarioById } = require("../repositories/usuarios.repository");
 const router = Router();
 
 // POST api/usuarios
@@ -56,6 +58,9 @@ router.post("/id-usuario", async function (req, res) {
   }
 });
 
+// GET api/usuario (protegido) - retorna usuário a partir do token no header
+router.get("/usuario", authMiddleware, getUsuarioController);
+
 function getIdUsuario(params){
     const idUsuario = Number(params.idUsuario);
 
@@ -64,6 +69,7 @@ function getIdUsuario(params){
     }
     return idUsuario;
 }
+
 
 module.exports = router;
 
