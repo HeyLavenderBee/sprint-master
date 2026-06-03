@@ -1,10 +1,7 @@
 const { findUsuarioById } = require("../repositories/usuarios.repositories");
 const {
   cadastrarUsuario,
-  alterarCpf,
-  alterarNome,
-  alterarEmail,
-  alterarSenha
+  alterarUsuario,
 } = require("../services/usuario.service");
 
 async function createUsuarioController(req, res) {
@@ -40,124 +37,51 @@ async function createUsuarioController(req, res) {
   }
 }
 
-async function updateCpfController(req, res) {
+async function updateMeController(req, res) {
   const idUsuario = req.usuario.id_usuario;
+  const { nome, email, cpf, senha } = req.body;
 
-  if (!idUsuario) {
-    return res.status(400).json({ message: "id_usuario inválido" });
+  if (!nome && !email && !cpf && !senha) {
+    return res.status(400).json({
+      message: "informe ao menos um campo para atualizar",
+    });
   }
 
-  const { cpf } = req.body;
-  if (!cpf) {
-    return res.status(400).json({ message: "CPF inválido" });
+  if (senha && senha.trim().length < 6) {
+    return res.status(400).json({
+      message: "A senha deve ter pelo menos 6 caracteres",
+    });
   }
+
   try {
-    const usuario = await alterarCpf(idUsuario, cpf);
+    const usuario = await alterarUsuario(idUsuario, {
+      nome,
+      email,
+      cpf,
+      senha,
+    });
+
     if (!usuario) {
-      return res.status(404).json({ message: "Usuário não encontrado" });
+      return res.status(404).json({
+        message: "usuário não encontrado",
+      });
     }
 
     return res.status(200).json(usuario);
   } catch (e) {
     if (e && e.code == "23505") {
-      return res.status(404).json({
-        message: "Já existe usuário com o CPF informado",
+      return res.status(409).json({
+        message: "já existe usuário com os dados informados",
       });
     }
-    return res.status(404).json({
-      message: "Erro interno do servidor",
-    });
-  }
-}
 
-async function updateNomeController(req, res) {
-  const idUsuario = req.usuario.id_usuario;
-
-  if (!idUsuario) {
-    return res.status(400).json({ message: "id_usuario inválido" });
-  }
-
-  const { nome } = req.body;
-  if (!nome) {
-    return res.status(400).json({ message: "Nome obrigatório" });
-  }
-  try {
-    const usuario = await updateUsuarioNome(idUsuario, nome);
-    if (!usuario) {
-      return res.status(404).json({ message: "Usuário não encontrado" });
-    }
-    return res.status(200).json(usuario);
-  } catch (e) {
-    return res.status(404).json({
-      message: "Erro interno do servidor",
-    });
-  }
-}
-
-async function updateEmailController(req, res) {
-  const idUsuario = req.usuario.id_usuario;
-
-  if (!idUsuario) {
-    return res.status(400).json({ message: "id_usuario inválido" });
-  }
-
-  const { email } = req.body;
-  if (!email) {
-    return res.status(400).json({ message: "Email obrigatório" });
-  }
-  try {
-    const usuario = await alterarEmail(idUsuario, email);
-    if (!usuario) {
-      return res.status(404).json({ message: "Usuário não encontrado" });
-    }
-    return res.status(200).json(usuario);
-  } catch (e) {
-    if (e && e.code == "23505") {
-      return res.status(404).json({
-        message: "Já existe usuário com o email informado",
-      });
-    }
-    return res.status(404).json({
-      message: "Erro interno do servidor",
-    });
-  }
-}
-
-async function updateSenhaController(req, res) {
-  const idUsuario = req.usuario.id_usuario;
-
-  if (!idUsuario) {
-    return res.status(400).json({ message: "id_usuario inválido" });
-  }
-
-  const { senha } = req.body;
-  if (!senha) {
-    return res.status(400).json({ message: "Senha obrigatória" });
-  }
-
-  if (senha.trim().length < 6) {
-    return res
-      .status(400)
-      .json({ message: "A senha deve ter pelo menos 6 caracteres" });
-  }
-
-  try {
-    const usuario = await alterarSenha(idUsuario, senha);
-    if (!usuario) {
-      return res.status(404).json({ message: "Usuário não encontrado" });
-    }
-    return res.status(200).json(usuario);
-  } catch (e) {
-    return res.status(404).json({
-      message: "Erro interno do servidor",
+    return res.status(409).json({
+      message: "erro interno do servidor",
     });
   }
 }
 
 module.exports = {
   createUsuarioController,
-  updateCpfController,
-  updateNomeController,
-  updateEmailController,
-  updateSenhaController,
+  updateMeController,
 };
