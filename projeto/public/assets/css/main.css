@@ -24,8 +24,9 @@ ESTILIZAÇÃO GLOBAL DO PROJETO
   --input-border: #1a3a5c;
   --ring-track: #d8d2c6;
   --ring-muted: #9a9a95;
-  --logout-bg: #8b1e2d;
+  --logout-bg: #c9172e;
   --logout-hover: #a02838;
+  --alts-bg:#3e82e7;
   --radius-card: 28px;
   --radius-input: 14px;
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.12);
@@ -64,12 +65,15 @@ header {
 }
 
 .menu {
+  position: fixed;
+  z-index: 999;
+  height: 5.5rem;
+  top: 0;
   display: flex;
   flex-wrap: wrap;
   flex: 2;
   justify-content: space-between;
   background-color: #113b70;
-  height: 4.75rem;
   width: 100%;
   margin: 0;
   padding: 10px 10px 10px 10px;

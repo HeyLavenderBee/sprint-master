@@ -1,172 +1,60 @@
 const { Router } = require("express");
 const authMiddleware = require("../middlewares/auth.middleware");
+const {verifyToken} = require("../utils/jwt");
 const { 
-  createUsuario, 
-  updateUsuarioCpf, 
-  updateUsuarioNome, 
-  updateUsuarioEmail, 
-  findUsuarioById ,
-  updateUsuarioSenha
-} = require("../repositories/usuarios.repositories");
-
+createUsuarioController, 
+updateCpfController, 
+updateNomeController, 
+updateEmailController,
+updateSenhaController, 
+} = require("../controllers/usuario.controller");
 const router = Router();
 
 // POST api/usuarios
-router.post("/", async function (req, res) {
-  const { nome, email, cpf, senha } = req.body;
+router.post("/", createUsuarioController);
 
-  //caso não seja enviado um desses campos, mostra uma mensagem com status de erro
-  //isso evita que o backend receba mensagens erradas
-  if (!cpf || !nome || !senha) {
-    return res
-      .status(400)
-      .json({ message: "Nome, e-mail e senha são obrigatórios" });
-  }
+router.patch("/cpf",authMiddleware, updateCpfController);
 
-  if (senha.trim().length < 6){
-    return res.status(400).json({message: "A senha deve ter pelo menos 6 caracteres"})
-  }
+// atualiza o espaco do nome
+router.patch("/nome",authMiddleware, updateNomeController);
+
+// atualiza o espaço do email
+router.patch("/email",authMiddleware, updateEmailController);
+
+// atualiza o espaço da senha
+router.patch("/senha", authMiddleware, updateSenhaController);
+
+// POST api/id-exame
+router.post("/id-exame", async function (req, res) {
+  const { idUsuario } = req.body;
 
   try{
-    const result = await createUsuario(nome, email, cpf, senha);
+    const result = await findIdExameByIdUsuario(idUsuario);
     res.send(result);
   } catch(e){
     console.log(e.message); //<- quando houver um erro interno, esse print ajuda a decifrar qual
-    if(e && e.code == "23505"){
-      return res.status(409).json({
-        message: "Já existe usuário com os dados informados"
-      });
-    }
+
     return res.status(400).json({
       message: "Erro interno no servidor"
     });
   }
 });
 
-router.patch("/cpf",authMiddleware, async function(req,res){
-    const idUsuario =  req.usuario.id_usuario;
+// POST api/id-usuario
+router.post("/id-usuario", async function (req, res) {
+  const { token } = req.body;
 
-    if(!idUsuario){
-        return res.status(400).json({message: "id_usuario inválido"});
-    }
+  try{
+    const result = await verifyToken(token);
+    res.send(result);
+  } catch(e){
+    console.log(e.message); //<- quando houver um erro interno, esse print ajuda a decifrar qual
 
-    const {cpf} = req.body;
-    if(!cpf){
-        return res.status(400).json({message: "CPF inválido"});
-    }
-    try{
-        const result = await updateUsuarioCpf(idUsuario, cpf);
-        if(!result){
-            return res.status(404).json({message: "Usuário não encontrado"});
-        }
-        const usuario = await findUsuarioById(result.id_usuario);
-        return res.status(200).json(usuario)
-
-    }catch(e){
-        if(e && e.code == "23505"){
-            return res.status(404).json({
-                message:"Já existe usuário com o CPF informado"
-            });
-        }
-        return res.status(404).json({
-            message:"Erro interno do servidor"
-        });
-    }
-});
-
-// atualiza o espaco do nome
-router.patch("/nome",authMiddleware, async function(req,res){
-    const idUsuario =  req.usuario.id_usuario;
-
-    if(!idUsuario){
-        return res.status(400).json({message: "id_usuario inválido"});
-    }
-
-    const { nome } = req.body;
-    if(!nome){
-        return res.status(400).json({message: "Nome obrigatório"});
-    }
-    try{
-        const result = await updateUsuarioNome(idUsuario, nome);
-        if(!result){
-            return res.status(404).json({message: "Usuário não encontrado"});
-        }
-        const usuario = await findUsuarioById(result.id_usuario);
-        return res.status(200).json(usuario)
-
-    }catch(e){
-        return res.status(404).json({
-            message:"Erro interno do servidor"
-        });
-    }
-});
-
-// atualiza o espaço do email
-router.patch("/email",authMiddleware, async function(req,res){
-    const idUsuario =  req.usuario.id_usuario;
-
-    if(!idUsuario){
-        return res.status(400).json({message: "id_usuario inválido"});
-    }
-
-    const { email } = req.body;
-    if(!email){
-        return res.status(400).json({message: "Email obrigatório"});
-    }
-    try{
-        const result = await updateUsuarioEmail(idUsuario, email);
-        if(!result){
-            return res.status(404).json({message: "Usuário não encontrado"});
-        }
-        const usuario = await findUsuarioById(result.id_usuario);
-        return res.status(200).json(usuario)
-
-    }catch(e){
-        if(e && e.code == "23505"){
-            return res.status(404).json({
-                message:"Já existe usuário com o email informado"
-            });
-        }
-        return res.status(404).json({
-            message:"Erro interno do servidor"
-        });
-    }
-});
-
-// atualiza o espaço da senha
-router.patch("/senha", authMiddleware, async function(req,res){
-    const idUsuario =  req.usuario.id_usuario;
-
-    if(!idUsuario){
-        return res.status(400).json({message: "id_usuario inválido"});
-    }
-
-    const { senha } = req.body;
-    if(!senha){
-        return res.status(400).json({message: "Senha obrigatória"});
-    }
-
-    if (senha.trim().length < 6){
-    return res
-    .status(400)
-    .json({message: "A senha deve ter pelo menos 6 caracteres"})
+    return res.status(400).json({
+      message: "Erro interno no servidor"
+    });
   }
-
-    try{
-        const result = await updateUsuarioSenha(idUsuario, senha);
-        if(!result){
-            return res.status(404).json({message: "Usuário não encontrado"});
-        }
-        const usuario = await findUsuarioById(result.id_usuario);
-        return res.status(200).json(usuario)
-
-    }catch(e){
-        return res.status(404).json({
-            message:"Erro interno do servidor"
-        });
-    }
-})
-
+});
 
 function getIdUsuario(params){
     const idUsuario = Number(params.idUsuario);
@@ -176,7 +64,6 @@ function getIdUsuario(params){
     }
     return idUsuario;
 }
-
 
 module.exports = router;
 
@@ -211,4 +98,14 @@ curl -X PATCH http://localhost:3000/api/usuarios/4/senha \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer SEU_TOKEN" \
     -d '{"senha": "teste1"}'
+
+Pegar o idUsuario
+    curl -X POST http://localhost:3000/api/usuarios/id-exame \
+    -H "Content-Type: application/json" \
+    -d '{"idUsuario": "2"}'
+
+Pegar o idUsuario
+    curl -X POST http://localhost:3000/api/usuarios/id-usuario \
+    -H "Content-Type: application/json" \
+    -d '{"idUsuario": "2"}'
 */

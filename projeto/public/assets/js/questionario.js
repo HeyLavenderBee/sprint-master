@@ -1,5 +1,5 @@
 const questionNumberIndicator = document.getElementById(
-  "question-number-indicator",
+  "question-number-indicator"
 );
 const progressIndicator = document.getElementById("progress-indicator");
 const nextButton = document.getElementById("next-button");
@@ -22,8 +22,10 @@ function setQuestionHtml(question, a, b, c, d, image) {
   alternativeB.textContent = b;
   alternativeC.textContent = c;
   alternativeD.textContent = d;
+  let imagePath = image;
   if (image != null) {
-    questionImage.src = `assets/img/questionario/${image}`;
+    imagePath = image.replace("/imagens/questoes/", "");
+    questionImage.src = `assets/img/questionario/${imagePath}`;
   } else {
     questionImage.src = "";
   }
@@ -44,14 +46,14 @@ async function getQuestion() {
     return alert("Token inválido ou expirado, faça login novamente.");
   }
 
-  setQuestionNumberIndicator(data.id_questao, data.numero);
+  setQuestionNumberIndicator(data.numero, data.numero);
   setQuestionHtml(
     data.enunciado,
     data.alternativa_a,
     data.alternativa_b,
     data.alternativa_c,
     data.alternativa_d,
-    data.imagem,
+    data.imagem
   );
 }
 
@@ -75,7 +77,27 @@ async function nextQuestion() {
     return alert(data.message);
   }
 
-  let id_exame = 6; //TODO: achar uma forma de pegar o idexame automaticamente do banco de dados ou o backend
+  endpoint = `api/usuarios/id-usuario`;
+  const responseUsuario = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ token }),
+  });
+  const dataUsuarios = await responseUsuario.json();
+  let idUsuario = dataUsuarios.id_usuario;
+  console.log(idUsuario);
+
+  endpoint = `api/usuarios/id-exame`;
+  const responseExame = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ idUsuario }),
+  });
+  const dataExame = await responseExame.json();
+
+  console.log(dataExame.id_exame);
+
+  let id_exame = dataExame.id_exame; //TODO: achar uma forma de pegar o idexame automaticamente do banco de dados ou o backend
   let id_questao = data.id_questao;
   let resposta = "b";
 
@@ -91,6 +113,10 @@ async function nextQuestion() {
   });
 
   getQuestion();
+
+  document.querySelectorAll('input[type="radio"]').forEach((input) => {
+    input.checked = false;
+  });
 }
 
 getQuestion();
