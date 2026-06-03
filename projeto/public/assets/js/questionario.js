@@ -43,7 +43,7 @@ async function getQuestion() {
   const data = await response.json();
 
   if (!response.ok) {
-    return alert("Token inválido ou expirado, faça login novamente.");
+    return Alerts.set("Token inválido ou expirado, faça login novamente.");
   }
 
   setQuestionNumberIndicator(data.numero, data.numero);
@@ -74,7 +74,7 @@ async function nextQuestion() {
     window.location.href = "resultado-questionario.html";
     return;
   } else if (!response.ok) {
-    return alert(data.message);
+    return Alerts.set(data.message);
   }
 
   endpoint = `api/usuarios/id-usuario`;
