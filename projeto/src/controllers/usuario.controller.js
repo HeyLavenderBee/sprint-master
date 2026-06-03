@@ -9,10 +9,10 @@ async function createUsuarioController(req, res) {
 
   //caso não seja enviado um desses campos, mostra uma mensagem com status de erro
   //isso evita que o backend receba mensagens erradas
-  if (!cpf || !nome || !senha) {
+  if (!cpf || !nome || !senha || !email ) {
     return res
       .status(400)
-      .json({ message: "Nome, e-mail e senha são obrigatórios" });
+      .json({ message: "Nome, CPF, e-mail e senha são obrigatórios" });
   }
 
   if (senha.trim().length < 6) {
@@ -31,7 +31,7 @@ async function createUsuarioController(req, res) {
         message: "Já existe usuário com os dados informados",
       });
     }
-    return res.status(400).json({
+    return res.status(500).json({
       message: "Erro interno no servidor",
     });
   }
@@ -43,7 +43,7 @@ async function updateMeController(req, res) {
 
   if (!nome && !email && !cpf && !senha) {
     return res.status(400).json({
-      message: "informe ao menos um campo para atualizar",
+      message: "Informe ao menos um campo para atualizar",
     });
   }
 
@@ -63,7 +63,7 @@ async function updateMeController(req, res) {
 
     if (!usuario) {
       return res.status(404).json({
-        message: "usuário não encontrado",
+        message: "Usuário não encontrado",
       });
     }
 
@@ -71,12 +71,12 @@ async function updateMeController(req, res) {
   } catch (e) {
     if (e && e.code == "23505") {
       return res.status(409).json({
-        message: "já existe usuário com os dados informados",
+        message: "Já existe usuário com os dados informados",
       });
     }
 
-    return res.status(409).json({
-      message: "erro interno do servidor",
+    return res.status(500).json({
+      message: "Erro interno do servidor",
     });
   }
 }

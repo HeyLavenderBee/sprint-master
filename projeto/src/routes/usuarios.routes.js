@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const authMiddleware = require("../middlewares/auth.middleware");
 const {verifyToken} = require("../utils/jwt");
+const { findIdExameByIdUsuario } = require("../repositories/usuarios.repository")
 const { 
 createUsuarioController, 
 updateMeController, 
@@ -11,18 +12,40 @@ const router = Router();
 // POST api/usuarios
 router.post("/", createUsuarioController);
 
+// PATCH api/usuarios/me
 router.patch("/me", authMiddleware, updateMeController);
 
-/*curl -X PATCH http://localhost:3000/api/usuarios/me \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer SEU_TOKEN" \
-  -d '{
-    "nome": "Pedro Paulo",
-    "email": "pedro.paulo@teste.com",
-    "cpf": "11122233345",
-    "senha": "123456"
-  }'
-*/
+// POST api/id-exame
+router.post("/id-exame", async function (req, res) {
+  const { idUsuario } = req.body;
+
+  try{
+    const result = await findIdExameByIdUsuario(idUsuario);
+    res.send(result);
+  } catch(e){
+    console.log(e.message); //<- quando houver um erro interno, esse print ajuda a decifrar qual
+
+    return res.status(500).json({
+      message: "Erro interno no servidor"
+    });
+  }
+});
+
+// POST api/id-usuario
+router.post("/id-usuario", async function (req, res) {
+  const { token } = req.body;
+
+  try{
+    const result = await verifyToken(token);
+    res.send(result);
+  } catch(e){
+    console.log(e.message); //<- quando houver um erro interno, esse print ajuda a decifrar qual
+
+    return res.status(500).json({
+      message: "Erro interno no servidor"
+    });
+  }
+});
 
 module.exports = router;
 
@@ -34,14 +57,26 @@ curl -X POST http://localhost:3000/api/usuarios \
     -H "Content-Type: application/json" \
     -d '{"nome": "Ana", "email": "ana19@email.com", "cpf": "12345678919", "senha": "123456", "grupo": 1}'
 
+Atualizar dados do usuario:    
+    /*curl -X PATCH http://localhost:3000/api/usuarios/me \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer SEU_TOKEN" \
+  -d '{
+    "nome": "Pedro Paulo",
+    "email": "pedro.paulo@teste.com",
+    "cpf": "11122233345",
+    "senha": "123456"
+  }'
 
-Pegar o idUsuario
+Pegar o idUsuario:
     curl -X POST http://localhost:3000/api/usuarios/id-exame \
     -H "Content-Type: application/json" \
     -d '{"idUsuario": "2"}'
 
-Pegar o idUsuario
+Pegar o idUsuario:
     curl -X POST http://localhost:3000/api/usuarios/id-usuario \
     -H "Content-Type: application/json" \
     -d '{"idUsuario": "2"}'
+
 */
+
