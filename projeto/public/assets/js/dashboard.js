@@ -19,7 +19,105 @@ const confHolder = document.getElementById("conf-password");
 const imagens = ["null.png", "image1.png", "image2.png", "image3.png"];
 const nameDisplay = document.getElementById("name-display");
 const emailDisplay = document.getElementById("email-display");
+const progressImg = document.getElementById("progress-img");
+const checklist = document.getElementById("checklist");
 
+
+async function graphMaker(data){
+    const progress = (data.length - 1)*20;
+    if(data.length < 5){
+        console.log(progress)
+        progressImg.src = `/assets/img/dashboard/progresso-${progress}-dashboard.png`;
+    }
+    else{
+        if(data[4].nota > 6){
+            progressImg.src = `/assets/img/dashboard/progresso-100-dashboard.png`;
+        }else{
+            progressImg.src = `/assets/img/dashboard/progresso-${progress}-dashboard.png`;
+        }
+    }
+}
+
+async function checklistMaker(data){
+    const progress = data.length;
+    var list = ""
+    if(progress < 5){
+        for (let i = 0; i < 5; i++){
+            if(i+1 < progress){
+                list += `<li class="levels__item">
+                    <span class="levels__name">Nível ${i+1}</span>
+                    <span class="levels__icon" aria-hidden="true">
+                        <img src="/assets/img/feito-dashboard.png" width="18" height="18" />
+                    </span>
+                    <span class="levels__status">Disponível</span>
+                </li>`;
+            }
+            if(i+1 == progress){
+                list += `<li class="levels__item">
+                    <span class="levels__name">Nível ${i+1}</span>
+                    <span class="levels__icon" aria-hidden="true">
+                        <img src="/assets/img/play-dashboard.png" width="18" height="18" />
+                    </span>
+                    <span class="levels__status">Disponível</span>
+                </li>`;
+            }
+            if(i+1 > progress){
+                list += `<li class="levels__item">
+                    <span class="levels__name">Nível ${i+1}</span>
+                    <span class="levels__icon" aria-hidden="true">
+                        <img src="/assets/img/cadeado-sm.png" width="18" height="18" />
+                    </span>
+                    <span class="levels__status">Disponível</span>
+                </li>`;
+            }
+        }
+    }
+    else{
+        if(data[4].nota > 6){
+            for (let i = 0; i < 5; i++){
+                list += `<li class="levels__item">
+                        <span class="levels__name">Nível ${i+1}</span>
+                        <span class="levels__icon" aria-hidden="true">
+                            <img src="/assets/img/feito-dashboard.png" width="18" height="18" />
+                        </span>
+                        <span class="levels__status">Disponível</span>
+                    </li>`;
+            }
+        }else{
+            for (let i = 0; i < 5; i++){
+                if(i+1 < progress){
+                    list += `<li class="levels__item">
+                        <span class="levels__name">Nível ${i+1}</span>
+                        <span class="levels__icon" aria-hidden="true">
+                            <img src="/assets/img/feito-dashboard.png" width="18" height="18" />
+                        </span>
+                        <span class="levels__status">Disponível</span>
+                    </li>`;
+                }
+                if(i+1 == progress){
+                    list += `<li class="levels__item">
+                        <span class="levels__name">Nível ${i+1}</span>
+                        <span class="levels__icon" aria-hidden="true">
+                            <img src="/assets/img/play-dashboard.png" width="18" height="18" />
+                        </span>
+                        <span class="levels__status">Disponível</span>
+                    </li>`;
+                }
+                if(i+1 > progress){
+                    list += `<li class="levels__item">
+                        <span class="levels__name">Nível ${i+1}</span>
+                        <span class="levels__icon" aria-hidden="true">
+                            <img src="/assets/img/cadeado-sm.png" width="18" height="18" />
+                        </span>
+                        <span class="levels__status">Disponível</span>
+                    </li>`;
+                }
+            }
+            
+        }
+    }
+    checklist.innerHTML = list;
+}
 
 async function getUserProgress(){
     const token = localStorage.getItem("token");
@@ -36,6 +134,9 @@ async function getUserProgress(){
         if (!response.ok) {
             return alert(data.message ? data.message : "Ocorreu um erro");
         }
+        console.log(data)
+        graphMaker(data);
+        checklistMaker(data)
         
     }catch (e) {
         alert("Erro interno do servidor");
@@ -106,7 +207,7 @@ async function updateUserData() {
             return alert("Campo nome está vazio.");
         }
         try{
-            const endpoint = `/api/usuarios/nome`;
+            const endpoint = `/api/usuarios/me`;
             const response = await fetch(endpoint, {
                 method: "PATCH",
                 headers: { 
@@ -130,7 +231,7 @@ async function updateUserData() {
             return alert("Campo email está vazio.");
         }
         try{
-            const endpoint = `/api/usuarios/email`;
+            const endpoint = `/api/usuarios/me`;
             const response = await fetch(endpoint, {
                 method: "PATCH",
                 headers: { 
@@ -157,7 +258,7 @@ async function updateUserData() {
             return alert("CPF inválido. Informe os 11 dígitos.");
         }
         try{
-            const endpoint = `/api/usuarios/cpf`;
+            const endpoint = `/api/usuarios/me`;
             const response = await fetch(endpoint, {
                 method: "PATCH",
                 headers: { 
@@ -188,7 +289,7 @@ async function updateUserData() {
             return alert("Senhas diferentes.");
         }
         try{
-            const endpoint = `/api/usuarios/senha`;
+            const endpoint = `/api/usuarios/me`;
             const response = await fetch(endpoint, {
                 method: "PATCH",
                 headers: { 
@@ -258,3 +359,4 @@ btnEdit.addEventListener("click", function () {
 
 resetEverything();
 getDisplayData();
+getUserProgress();

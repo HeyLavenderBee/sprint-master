@@ -25,7 +25,7 @@ router.get("/modulos-respondidos", authMiddleware, getModulosRespondidosControll
 
 Ver qual a questão atual/próxima do usuário:
 curl -X GET http://localhost:3000/api/questoes/proxima-questao \
-  -H "Authorization: Bearer SEU_TOKEN"
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozNCwiaWF0IjoxNzgwNTI3MTI1LCJleHAiOjE3ODA1MzMxMjV9.jCjRMvvmNBRaGQm1OwdvAUKMGf8JRMkXOAcH3LtRrZY"
 
 Responder questão atual do usuário:
 curl -X POST http://localhost:3000/api/questoes/responder \
@@ -38,8 +38,7 @@ curl -X PATCH http://localhost:3000/api/questoes/proxima-tentativa \
 -H "Authorization: Bearer SEU_TOKEN"
 
 Comando para ir para próximo módulo:
-curl -X PATCH http://localhost:3000/api/questoes/proximo-modulo \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozMywiaWF0IjoxNzc5MjQxNzQ5LCJleHAiOjE3NzkyNDIzNDl9.GyG8Iqtd7vfke-2jzQGffCv5iDv44MxlDHE86h2dh2c"
+curl -X PATCH http://localhost:3000/api/questoes/proximo-modulo -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozNCwiaWF0IjoxNzgwNTI3MTI1LCJleHAiOjE3ODA1MzMxMjV9.jCjRMvvmNBRaGQm1OwdvAUKMGf8JRMkXOAcH3LtRrZY"
 
 Comando para ver módulos respondidos:
 curl -X GET http://localhost:3000/api/questoes/modulos-respondidos \

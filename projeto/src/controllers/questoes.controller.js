@@ -100,7 +100,9 @@ async function proximaTentativaController(req, res) {
 };
 
 async function proximoModuloController(req, res) {
+  const result = await iniciarProximoModulo(req.usuario.id_usuario);
   try {
+    console.log(result.status)
     if (result.status === "modulo-nao-concluido") {
       return res.status(409).json({
         message: "Você ainda não concluiu todas as questões do módulo atual",
@@ -113,20 +115,17 @@ async function proximoModuloController(req, res) {
       });
     }
 
-
     if (result.status === "todos-modulos-concluidos") {
       return res.status(404).json({
         message: "Você concluiu todos os módulos",
       });
     }
 
-
     if(result.status === "grupo-proximo-modulo-nao-encontrado"){
       return res.status(404).json({
         message: "Nenhum grupo disponível para o próximo módulo",
       });
     }
-    console.log("Grupo",grupo);
 
     if (result.status === "exame-nao-encontrado") {
       return res.status(404).json({
@@ -136,6 +135,7 @@ async function proximoModuloController(req, res) {
 
     return res.status(200).json(result.exame);
   } catch (e) {
+    console.log(e.message);
     return res.status(500).json({
       message: "Erro interno do servidor",
     });
