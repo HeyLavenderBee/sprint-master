@@ -1,4 +1,6 @@
-const { findUsuarioById } = require("../repositories/usuarios.repositories");
+const { findUsuarioById,
+  updateUsuarioNome
+ } = require("../repositories/usuarios.repository");
 const {
   cadastrarUsuario,
   alterarCpf,
@@ -88,6 +90,7 @@ async function updateNomeController(req, res) {
     }
     return res.status(200).json(usuario);
   } catch (e) {
+    console.log(e.message)
     return res.status(404).json({
       message: "Erro interno do servidor",
     });
@@ -154,10 +157,21 @@ async function updateSenhaController(req, res) {
   }
 }
 
+async function getUsuarioController(req, res) {
+  try {
+    const usuario = req.usuario;
+    return res.status(200).json(usuario);
+  } catch (e) {
+    console.log(e.message);
+    return res.status(400).json({ message: "Erro interno no servidor" });
+  }
+}
+
 module.exports = {
   createUsuarioController,
   updateCpfController,
   updateNomeController,
   updateEmailController,
   updateSenhaController,
+  getUsuarioController
 };

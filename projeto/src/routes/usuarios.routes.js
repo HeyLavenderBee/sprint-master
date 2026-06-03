@@ -8,6 +8,8 @@ updateNomeController,
 updateEmailController,
 updateSenhaController, 
 } = require("../controllers/usuario.controller");
+const {findIdExameByIdUsuario} = require("../repositories/usuarios.repository");
+const {getUsuarioController} = require("../controllers/usuario.controller")
 const router = Router();
 
 // POST api/usuarios
@@ -55,6 +57,8 @@ router.post("/id-usuario", async function (req, res) {
     });
   }
 });
+
+router.get("/usuario", authMiddleware, getUsuarioController);
 
 function getIdUsuario(params){
     const idUsuario = Number(params.idUsuario);
