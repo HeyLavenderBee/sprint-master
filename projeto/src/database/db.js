@@ -1,19 +1,13 @@
-const dotenv = require("dotenv");
-const path = require("path");
-
-dotenv.config({
-    quiet: true,
-    path: path.resolve(__dirname, "..","..", ".env"),
-});
+const env = require("../config/env");
 
 const { Pool } = require("pg");
-
+console.log("database", env.database)
 const config = {
-  host: process.env.POSTGRES_HOST,
-  user: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-  database: process.env.POSTGRES_DB,
-  port: process.env.POSTGRES_PORT,
+  host: env.database.host,
+  user: env.database.user,
+  password: env.database.password,
+  database: env.database.database,
+  port: env.database.port,
 };
 
 const pool = new Pool(config);
