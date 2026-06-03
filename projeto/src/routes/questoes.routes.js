@@ -5,6 +5,7 @@ const {
     findQuestaoDoExameByUsuario,
     findRespostaByExameEQuestao,
     inserirRespostaQuestao,
+    sumNotasPorExame,
     usuarioConcluiuModuloAtual,
     findModuloAtualByUsuario,
     findOutroGrupoAleatorio,
@@ -166,6 +167,26 @@ router.patch("/proximo-modulo", authMiddleware, async function (req, res) {
     }
 
     return res.status(200).json(exame);
+  } catch (e) {
+    return res.status(500).json({
+      message: "Erro interno do servidor",
+    });
+  }
+});
+
+router.get("/nota-total", authMiddleware, async function (req, res) {
+  try {
+    const moduloAtual = await findModuloAtualByUsuario(req.usuario.id_usuario);
+
+    if (!moduloAtual) {
+      return res.status(404).json({
+        message: "Exame atual não encontrado",
+      });
+    }
+
+    const notaTotal = await sumNotasPorExame(moduloAtual.id_exame);
+
+    return res.status(200).json({ notaTotal });
   } catch (e) {
     return res.status(500).json({
       message: "Erro interno do servidor",

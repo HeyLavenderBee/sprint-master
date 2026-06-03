@@ -95,6 +95,19 @@ async function inserirRespostaQuestao (id_exame, id_questao, resposta, nota) {
   return result.rows[0];
 }
 
+async function sumNotasPorExame(idExame) {
+  const result = await pool.query(
+    `
+    SELECT COALESCE(SUM(nota), 0)::INTEGER AS nota_total
+    FROM respostas
+    WHERE id_exame = $1
+    `,
+    [idExame],
+  );
+
+  return result.rows[0]?.nota_total || 0;
+}
+
 async function usuarioConcluiuModuloAtual(idUsuario) {
   const result = await pool.query(`
     WITH exame_atual AS ( 
@@ -294,6 +307,7 @@ module.exports = {
     findQuestaoDoExameByUsuario,
     findRespostaByExameEQuestao,
     inserirRespostaQuestao,
+    sumNotasPorExame,
     usuarioConcluiuModuloAtual,
     findModuloAtualByUsuario,
     findOutroGrupoAleatorio,
