@@ -18,22 +18,22 @@ async function cadastrarUsuario() {
   console.log(cpf, "-",email)
 
   if (nome == "") {
-    return alert("O nome é obrigatório.");
+    return Alerts.set("O nome é obrigatório.");
   }
   if (email == "") {
-    return alert("O e-mail é obrigatório.");
+    return Alerts.set("O e-mail é obrigatório.");
   }
   if (cpf == "") {
-    return alert("O CPF é obrigatório.");
+    return Alerts.set("O CPF é obrigatório.");
   }
   if (cpf.length !== 11) {
-    return alert("CPF inválido. Informe os 11 dígitos.");
+    return Alerts.set("CPF inválido. Informe os 11 dígitos.");
   }
   if (senha == "") {
-    return alert("A senha é obrigatória.");
+    return Alerts.set("A senha é obrigatória.");
   }
   if (senha.length < 6) {
-    return alert("A senha deve ter pelo menos 6 caracteres.");
+    return Alerts.set("A senha deve ter pelo menos 6 caracteres.");
   }
 
   const endpoint = `api/usuarios`;
@@ -47,16 +47,16 @@ async function cadastrarUsuario() {
 
     if (!response.ok) {
       const errorData = await response.json();
-      return alert(
+      return Alerts.set(
         errorData.message ? errorData.message : "Ocorreu um erro",
       );
     }
 
-    alert("Usuário cadastrado com sucesso!");
+    Alerts.set("Usuário cadastrado com sucesso!");
     window.location.href = "index.html";
   } catch (e) {
     //qualquer erro de conexão a internet ou coisas que não foi o erro do usuário
-    alert(e.message ? e.message : "Ocorreu um erro interno.");
+    Alerts.set(e.message ? e.message : "Ocorreu um erro interno.");
   }
 }
 

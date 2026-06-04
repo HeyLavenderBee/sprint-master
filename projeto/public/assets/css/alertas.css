@@ -9,10 +9,6 @@
     width: 100%;  
 }
 
-.fill {
-    flex: 1; 
-}
-
 .align-end {
     align-items: flex-end !important;
 }
@@ -22,7 +18,14 @@
 }
 
 .text {
-    font-size: 1.07rem;
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+}
+
+.icon-alert {
+    display: inline-flex;
+    width: 70px;
+    margin-bottom: 15px;
 }
 
 .btn-ok {
@@ -67,5 +70,5 @@
     min-height: 200px;
     border-radius: 12px;
     background-color: #fff;
-    padding: 24px 12px;
+    padding: 12px 12px;
 }

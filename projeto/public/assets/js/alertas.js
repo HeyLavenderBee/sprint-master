@@ -3,7 +3,10 @@ class Alerts {
         return `
            <div id="alerts" class="box">
               <div class="window box">
-                   <div class="w-100 box fill">
+                   <div class="w-100 box">
+                       <div class="w-100 box">  
+                           <img src="/assets/img/alerta.png" alt="Alerta" class="icon-alert">
+                       </div>
                        <span class="text">${message}</span>
                    </div>
                     
