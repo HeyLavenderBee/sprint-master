@@ -1,9 +1,9 @@
 /* ==== COMEÇO DA ESTILIZAÇÃO DA TELA DO CERTIFICADO ==== */
 
-body {
+/* body {
     overflow-y: hidden;
   }
-  
+   */
   .certificate-page {
     display: flex;
     gap: 2rem;

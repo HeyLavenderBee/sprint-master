@@ -42,8 +42,11 @@ async function getQuestion() {
 
   const data = await response.json();
 
-  if (!response.ok) {
-    return alert("Token inválido ou expirado, faça login novamente.");
+  if (!response.ok && data.message == "Nenhuma questão pendente encontrada") {
+    window.location.href = "resultado-questionario.html";
+    return;
+  } else if (!response.ok) {
+    return alert(data.message);
   }
 
   setQuestionNumberIndicator(data.numero, data.numero);
