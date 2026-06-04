@@ -1,10 +1,4 @@
-const dotenv = require("dotenv");
-const path = require("path");
-
-dotenv.config({
-    quiet: true,
-    path: path.resolve(__dirname, "..","..", ".env"),
-});
+const env = require("../config/env");
 
 const { Pool } = require("pg");
 

@@ -27,6 +27,7 @@ async function getCertificadoByHashController(req, res) {
         }
     
         return res.status(200).json(certificado);
+        console.log(certificado);
       } catch (e) {
         console.log(e.message)
         return res.status(500).json({
