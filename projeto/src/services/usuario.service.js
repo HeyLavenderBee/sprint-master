@@ -43,8 +43,14 @@ async function alterarSenha(idUsuario, senha) {
     if( !result ){
         return null;
     }
-    
     return findUsuarioById(result.id_usuario);
+}
+
+async function buscarUsuario(idUsuario, senha) {
+    const result = await findUsuarioById(idUsuario);
+    if( !result ){
+        return null;
+    }
 }
 
 module.exports = {
@@ -52,5 +58,6 @@ module.exports = {
     alterarCpf,
     alterarNome,
     alterarEmail,
-    alterarSenha
+    alterarSenha,
+    buscarUsuario,
 };

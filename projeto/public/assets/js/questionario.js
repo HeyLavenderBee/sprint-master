@@ -42,7 +42,7 @@ async function getQuestion() {
 
   const data = await response.json();
 
- if (!response.ok && data.message == "Nenhuma questão pendente encontrada") {
+  if (!response.ok && data.message == "Nenhuma questão pendente encontrada") {
     window.location.href = "resultado-questionario.html";
     return;
   } else if (!response.ok) {
