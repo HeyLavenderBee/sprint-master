@@ -1,21 +1,35 @@
+const divAlerta = document.getElementById("alerta-tentativas");
 
-const endpoint = `/api/certificados/hash/data.certificadoHash`;
-const response = await fetch(endpoint, {
+function alterarAviso() {
+  divAlerta.innerHTML = `<h3 class="texto-aviso">
+          Parabens, você concluiu todos os módulos 🎉
+        </h3>`;
+  divAlerta.classList.add("aviso-concluido");
+}
+
+async function verificarModulos() {
+  var token = localStorage.getItem("token");
+
+  const endpoint = `api/usuarios/usuario`;
+  const response = await fetch(endpoint, {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  let data = await response.json();
+
+  const endpointModulo = `/api/certificados/hash/${data.certificado_hash}`;
+  const responseModulo = await fetch(endpointModulo, {
     method: "GET",
   });
 
-  const data = await response.json();
+  const dataModulo = await responseModulo.json();
 
-  if (!response.ok) {
-    alert(data.message); //fornece o erro, geralmente aparece: 'Certificado indisponível: Conclusão de todos os módulos obrigatória'
+  if (!responseModulo.ok) {
     return;
   }
 
-function alterarAviso(){
-    const divAlerta = document.getElementById("alerta-tentativas");
 
-   
-    divAlerta.textContent = "Parabéns você concluiu todos os modulos 🎉"
-    divAlerta.style.backgroundColor = "#3ab83aa1"
-    divAlerta.style.color = "#ffff"
-} 
+}alterarAviso();
+
+verificarModulos();
