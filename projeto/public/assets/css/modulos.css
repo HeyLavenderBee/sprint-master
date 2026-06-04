@@ -132,6 +132,13 @@
   margin-right: 50px;
 }
 
+.aviso-tentativas {
+  font-size: 18px;
+  padding-right: 15px;
+  color: #a09d95;
+  font-weight: bold;
+}
+
 .btn-modulos {
   border: none;
   padding: 15px 40px;
