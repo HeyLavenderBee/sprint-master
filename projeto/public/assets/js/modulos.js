@@ -2,34 +2,46 @@ const divAlerta = document.getElementById("alerta-tentativas");
 
 function alterarAviso() {
   divAlerta.innerHTML = `<h3 class="texto-aviso">
-          Parabens, você concluiu todos os módulos 🎉
+          Parabéns, você concluiu todos os módulos 🎉
         </h3>`;
   divAlerta.classList.add("aviso-concluido");
 }
 
 async function verificarModulos() {
-  var token = localStorage.getItem("token");
+  try {
+    const token = localStorage.getItem("token");
 
-  const endpoint = `api/usuarios/usuario`;
-  const response = await fetch(endpoint, {
-    method: "GET",
-    headers: { Authorization: `Bearer ${token}` },
-  });
+    const endpoint = `api/usuarios/usuario`;
+    const response = await fetch(endpoint, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
-  let data = await response.json();
+    if (!response.ok) {
+      return;
+    }
 
-  const endpointModulo = `/api/certificados/hash/${data.certificado_hash}`;
-  const responseModulo = await fetch(endpointModulo, {
-    method: "GET",
-  });
+    const data = await response.json();
 
-  const dataModulo = await responseModulo.json();
+    if (!data?.certificado_hash) {
+      return;
+    }
 
-  if (!responseModulo.ok) {
-    return;
+    const endpointModulo = `/api/certificados/hash/${encodeURIComponent(
+      data.certificado_hash
+    )}`;
+    const responseModulo = await fetch(endpointModulo, {
+      method: "GET",
+    });
+
+    if (!responseModulo.ok) {
+      return;
+    }
+
+    alterarAviso();
+  } catch (error) {
+    console.error("Erro ao verificar módulos:", error);
   }
-
-
-}alterarAviso();
+}
 
 verificarModulos();
