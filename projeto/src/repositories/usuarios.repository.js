@@ -74,12 +74,11 @@ async function createUsuario(nome, email, cpf, senha){
 
 async function findUsuarioById(idUsuario){
     const result = await pool.query(
-        `SELECT id_usuario, nome, email, cpf
+        `SELECT id_usuario, nome, email, cpf, certificado_hash
         FROM usuarios
         WHERE id_usuario = $1`,
         [idUsuario]
     );
-
     return result.rows[0] || null;
 }
 

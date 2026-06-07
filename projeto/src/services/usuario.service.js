@@ -18,6 +18,13 @@ async function alterarUsuario(idUsuario, dados) {
   return findUsuarioById(idUsuario);
 }
 
+async function buscarUsuario(idUsuario, senha) {
+    const result = await findUsuarioById(idUsuario);
+    if( !result ){
+        return null;
+    }
+}
+
 module.exports = {
     cadastrarUsuario,
     alterarUsuario

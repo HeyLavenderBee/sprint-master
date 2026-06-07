@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const authMiddleware = require("../middlewares/auth.middleware");
 const {verifyToken} = require("../utils/jwt");
-const { findIdExameByIdUsuario } = require("../repositories/usuarios.repository")
+const { findUsuarioById, findIdExameByIdUsuario } = require("../repositories/usuarios.repository")
 const { 
 createUsuarioController, 
 updateMeController, 
@@ -47,6 +47,9 @@ router.post("/id-usuario", async function (req, res) {
   }
 });
 
+// GET api/usuario (protegido) - retorna usuário a partir do token no header
+router.get("/usuario", authMiddleware, getUsuarioController);
+
 module.exports = router;
 
 /*
@@ -70,11 +73,6 @@ Atualizar dados do usuario:
 
 Pegar o idUsuario:
     curl -X POST http://localhost:3000/api/usuarios/id-exame \
-    -H "Content-Type: application/json" \
-    -d '{"idUsuario": "2"}'
-
-Pegar o idUsuario:
-    curl -X POST http://localhost:3000/api/usuarios/id-usuario \
     -H "Content-Type: application/json" \
     -d '{"idUsuario": "2"}'
 

@@ -8,9 +8,8 @@ router.post("/login", loginController);
 module.exports = router;
 
 /*
-Código para testar o login (caso não retorne erro quer dizer que foi efetuado com sucesso):
-
+Código para testar o login:
 curl -X POST http://localhost:3000/api/auth/login \
     -H "Content-Type: application/json" \
-    -d '{"cpf": "12345678919", "senha": "123456"}'
+    -d '{"cpf": "123456789", "senha": "123456"}'
 */
