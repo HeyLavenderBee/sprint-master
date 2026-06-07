@@ -5,6 +5,7 @@ const { findUsuarioById, findIdExameByIdUsuario } = require("../repositories/usu
 const { 
 createUsuarioController, 
 updateMeController, 
+getUsuarioController
 } = require("../controllers/usuario.controller");
 
 const router = Router();

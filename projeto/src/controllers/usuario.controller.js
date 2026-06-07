@@ -90,7 +90,18 @@ async function getUsuarioController(req, res) {
   }
 }
 
+async function getUsuarioController(req, res) {
+  try {
+    const usuario = req.usuario;
+    return res.status(200).json(usuario);
+  } catch (e) {
+    console.log(e.message);
+    return res.status(400).json({ message: "Erro interno no servidor" });
+  }
+}
+
 module.exports = {
   createUsuarioController,
   updateMeController,
+  getUsuarioController,
 };
