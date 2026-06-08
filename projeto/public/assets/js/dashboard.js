@@ -24,24 +24,49 @@ const checklist = document.getElementById("checklist");
 
 
 async function graphMaker(data){
-    const progress = (data.length - 1)*20;
-    if(data.length < 5){
-        console.log(progress)
+    const atualModule = data.length - 1
+    var progress = (atualModule)*20;
+    if(progress < 0){
+        progress = 0;
         progressImg.src = `/assets/img/dashboard/progresso-${progress}-dashboard.png`;
     }
-    else{
-        if(data[4].nota > 6){
-            progressImg.src = `/assets/img/dashboard/progresso-100-dashboard.png`;
-        }else{
-            progressImg.src = `/assets/img/dashboard/progresso-${progress}-dashboard.png`;
-        }
+    else if(data[atualModule].nota > 6){
+        progressImg.src = `/assets/img/dashboard/progresso-${progress + 20}-dashboard.png`;
+    }else{
+        progressImg.src = `/assets/img/dashboard/progresso-${progress}-dashboard.png`;
     }
+
 }
 
 async function checklistMaker(data){
-    const progress = data.length;
+    var progress = data.length;
     var list = ""
-    if(progress < 5){
+    if(progress == 0){
+        for (let i = 0; i < 5; i++){
+            if(i == progress){
+                list += `<li class="levels__item">
+                    <span class="levels__name">Nível ${i+1}</span>
+                    <span class="levels__icon" aria-hidden="true">
+                        <img src="/assets/img/play-dashboard.png" width="18" height="18" />
+                    </span>
+                    <span class="levels__status">Disponível</span>
+                </li>`;
+            }
+            if(i > progress){
+                list += `<li class="levels__item">
+                    <span class="levels__name">Nível ${i+1}</span>
+                    <span class="levels__icon" aria-hidden="true">
+                        <img src="/assets/img/cadeado-sm.png" width="18" height="18" />
+                    </span>
+                    <span class="levels__status">Disponível</span>
+                </li>`;
+            }
+        }
+    }
+    else {
+        if(data[progress - 1].nota > 6){
+            progress++;
+        }
         for (let i = 0; i < 5; i++){
             if(i+1 < progress){
                 list += `<li class="levels__item">
@@ -71,50 +96,8 @@ async function checklistMaker(data){
                 </li>`;
             }
         }
-    }
-    else{
-        if(data[4].nota > 6){
-            for (let i = 0; i < 5; i++){
-                list += `<li class="levels__item">
-                        <span class="levels__name">Nível ${i+1}</span>
-                        <span class="levels__icon" aria-hidden="true">
-                            <img src="/assets/img/feito-dashboard.png" width="18" height="18" />
-                        </span>
-                        <span class="levels__status">Disponível</span>
-                    </li>`;
-            }
-        }else{
-            for (let i = 0; i < 5; i++){
-                if(i+1 < progress){
-                    list += `<li class="levels__item">
-                        <span class="levels__name">Nível ${i+1}</span>
-                        <span class="levels__icon" aria-hidden="true">
-                            <img src="/assets/img/feito-dashboard.png" width="18" height="18" />
-                        </span>
-                        <span class="levels__status">Disponível</span>
-                    </li>`;
-                }
-                if(i+1 == progress){
-                    list += `<li class="levels__item">
-                        <span class="levels__name">Nível ${i+1}</span>
-                        <span class="levels__icon" aria-hidden="true">
-                            <img src="/assets/img/play-dashboard.png" width="18" height="18" />
-                        </span>
-                        <span class="levels__status">Disponível</span>
-                    </li>`;
-                }
-                if(i+1 > progress){
-                    list += `<li class="levels__item">
-                        <span class="levels__name">Nível ${i+1}</span>
-                        <span class="levels__icon" aria-hidden="true">
-                            <img src="/assets/img/cadeado-sm.png" width="18" height="18" />
-                        </span>
-                        <span class="levels__status">Disponível</span>
-                    </li>`;
-                }
-            }
-            
-        }
+        
+    
     }
     checklist.innerHTML = list;
 }
