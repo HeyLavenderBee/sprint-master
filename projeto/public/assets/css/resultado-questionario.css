@@ -72,4 +72,24 @@
   color: #1461C2;
 }
 
+.choice-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-choice-container{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.choice-text{
+  font-size: 18px;
+  margin-bottom: 2rem;
+}
+
 /*FIM DA ESTILIZAÇÃO DA TELA RESULTADO QUESTIONÁRIO*/
