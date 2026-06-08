@@ -5,12 +5,22 @@ function alterarAviso() {
           Parabéns, você concluiu todos os módulos 🎉
         </h3>`;
   divAlerta.classList.add("aviso-concluido");
+  showConfetti();
+}
+
+function showConfetti(){
+  confetti({
+    position: { x: window.innerWidth / 2, y: window.innerHeight / 2 },
+    count: 200,
+    size: 1.25,
+    velocity: 200,
+    fade: false,
+  });
 }
 
 async function verificarModulos() {
+  const token = localStorage.getItem("token");
   try {
-    const token = localStorage.getItem("token");
-
     const endpoint = `api/usuarios/usuario`;
     const response = await fetch(endpoint, {
       method: "GET",
@@ -27,7 +37,7 @@ async function verificarModulos() {
       return;
     }
 
-    const endpointModulo = `/api/certificados/hash/${encodeURIComponent(
+    const endpointModulo = `/api/certificados/${encodeURIComponent(
       data.certificado_hash,
     )}`;
     const responseModulo = await fetch(endpointModulo, {
@@ -39,13 +49,6 @@ async function verificarModulos() {
     }
 
     alterarAviso();
-    confetti({
-      position: { x: window.innerWidth / 2, y: window.innerHeight / 2 },
-      count: 200,
-      size: 1.25,
-      velocity: 200,
-      fade: false,
-    });
   } catch (error) {
     console.error("Erro ao verificar módulos:", error);
   }

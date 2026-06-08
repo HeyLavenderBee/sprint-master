@@ -155,6 +155,7 @@ async function iniciarProximoModulo(idUsuario){
 async function listarModulosRespondidos(idUsuario){
   return findModulosRespondidosByUsuario(idUsuario);
 }
+
 module.exports = {
     buscarProximaQuestao,
     responderQuestao,
