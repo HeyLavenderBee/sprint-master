@@ -125,7 +125,7 @@ async function iniciarProximoModulo(idUsuario){
       };
     }
 
-        const modulo = await findProximoModuloByUsuario(idUsuario);
+    const modulo = await findProximoModuloByUsuario(idUsuario);
     if (!modulo) {
       return {
         status: "todos-modulos-concluidos",
@@ -139,7 +139,12 @@ async function iniciarProximoModulo(idUsuario){
       };
     }
 
-    const exame = await updateProximoModulo(moduloAtual.id_exame, modulo, grupo, 1);
+    const exame = await updateProximoModulo(
+      moduloAtual.id_exame, 
+      modulo, 
+      grupo, 
+      1
+    );
     if (!exame) {
       return {
         status: "exame-nao-encontrado",
@@ -150,10 +155,11 @@ async function iniciarProximoModulo(idUsuario){
 async function listarModulosRespondidos(idUsuario){
   return findModulosRespondidosByUsuario(idUsuario);
 }
+
 module.exports = {
     buscarProximaQuestao,
     responderQuestao,
     iniciarProximaTentativa,
     iniciarProximoModulo,
-    listarModulosRespondidos
+    listarModulosRespondidos,
 }

@@ -47,6 +47,11 @@
   border: 1px solid black;
 }
 
+.aviso.aviso-concluido{
+  background-color: #21a03cc0;
+   border: 1px solid #05220bc0;
+}
+
 .texto-aviso {
   font-weight: 100;
 }
