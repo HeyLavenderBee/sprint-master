@@ -1,5 +1,5 @@
 const questionNumberIndicator = document.getElementById(
-  "question-number-indicator",
+  "question-number-indicator"
 );
 const progressIndicator = document.getElementById("progress-indicator");
 const nextButton = document.getElementById("next-button");
@@ -49,8 +49,10 @@ function setQuestionHtml(question, a, b, c, d, image) {
   alternativeB.textContent = b;
   alternativeC.textContent = c;
   alternativeD.textContent = d;
+  let imagePath = image;
   if (image != null) {
-    questionImage.src = `assets/img/questionario/${image}`;
+    imagePath = image.replace("/imagens/questoes/", "");
+    questionImage.src = `assets/img/questionario/${imagePath}`;
   } else {
     questionImage.src = "";
   }
@@ -81,7 +83,7 @@ async function getQuestion() {
     data.alternativa_b,
     data.alternativa_c,
     data.alternativa_d,
-    data.imagem,
+    data.imagem
   );
 }
 
@@ -110,20 +112,20 @@ async function nextQuestion() {
     return alert(data.message);
   }
 
- endpoint = `api/usuarios/id-usuario`;
+  endpoint = `api/usuarios/id-usuario`;
   const responseUsuario = await fetch(endpoint, {
-     method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token }),
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ token }),
   });
   const dataUsuarios = await responseUsuario.json();
   let idUsuario = dataUsuarios.id_usuario;
 
   endpoint = `api/usuarios/id-exame`;
   const responseExame = await fetch(endpoint, {
-     method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ idUsuario }),
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ idUsuario }),
   });
   const dataExame = await responseExame.json();
 
@@ -142,6 +144,10 @@ async function nextQuestion() {
   });
 
   getQuestion();
+
+  document.querySelectorAll('input[type="radio"]').forEach((input) => {
+    input.checked = false;
+  });
 }
 
 disableNextQuestionButton();
