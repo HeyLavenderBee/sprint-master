@@ -8,6 +8,18 @@ function updateImage(nota) {
     resultImage.src = `assets/img/resultado-questionario/porcento-${nota}-correto.png`;
 }
 
+function showConfetti(nota){
+  if (nota === 10) {
+    confetti({
+      position: { x: window.innerWidth / 2, y: window.innerHeight / 2 }, 
+      count: 200,
+      size: 1.25,
+      velocity: 200,
+      fade: false,
+    });
+  }
+}
+
 function showMessage(nota) {
   const fraseSucessso = [
     "Parabéns, você alcançou o resultado necessário!",
@@ -52,6 +64,7 @@ async function getScore() {
     const lastModuleData = data[data.length-1]; //pega último módulo feito
     const nota = lastModuleData.nota;
     const tentativa = lastModuleData.tentativa;
+    showConfetti(nota);
     showMessage(nota);
     updateImage(nota);
   } catch (e) {
