@@ -1,5 +1,6 @@
 const fraseConsolo = document.getElementById("frase-consolo");
 
+
 function showMessage(nota) {
   const fraseSucessso = [
     "Parabéns, você alcançou o resultado necessário.",
@@ -20,16 +21,20 @@ function showMessage(nota) {
     const indiceAleatorio = Math.floor(Math.random() * fraseSucessso.length);
     const elementoAleatorio = fraseSucessso[indiceAleatorio];
     fraseConsolo.innerText = elementoAleatorio;
-
-    console.log(elementoAleatorio);
+    if (nota === 10) {
+      confetti({
+        position: { x: window.innerWidth / 2, y: window.innerHeight / 2 }, 
+        count: 200,
+        size: 1.25,
+        velocity: 200,
+        fade: false,
+      });
+    }
   } else {
     const indiceAleatorio = Math.floor(Math.random() * fraseFracasso.length);
     const elementoAleatorio = fraseFracasso[indiceAleatorio];
     fraseConsolo.innerText = elementoAleatorio;
-
-    console.log(elementoAleatorio);
   }
-
 }
 
 showMessage(nota);
