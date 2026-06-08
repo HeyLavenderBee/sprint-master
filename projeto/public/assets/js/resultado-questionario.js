@@ -9,6 +9,18 @@ async function init() {
   getScore();
 }
 
+function showConfetti(nota){
+  if (nota === 10) {
+    confetti({
+      position: { x: window.innerWidth / 2, y: window.innerHeight / 2 }, 
+      count: 200,
+      size: 1.25,
+      velocity: 200,
+      fade: false,
+    });
+  }
+}
+
 function showMessage(nota) {
   const fraseSucessso = [
     "Parabéns, você alcançou o resultado necessário!",
@@ -49,7 +61,16 @@ function showChoiceMessage(nota, tentativa){
     chancesLeft.innerHTML = "Não restam mais tentativas.";
   }
 
-  if(nota > 6 && tentativa == 1){
+  if(nota == 10 && tentativa == 1){
+    choiceContainer.innerHTML = `
+      <p class="choice-text">Você conseguiu a nota máxima na primeira tentativa! <br> Não é mais preciso refazer o módulo atual, então vá para o próximo módulo com o botão abaixo.</p>
+      <div class="button-choice-container">
+        <a>
+          <button class="button-quiz-result" id="next-module-button">Ir para próximo módulo</button>
+        </a>
+      </div>
+    `;
+  } else if(nota > 6 && tentativa == 1){
     choiceContainer.innerHTML = `
       <p class="choice-text">Você deseja refazer a tentativa para tentar conseguir uma nota maior, ou ir para o próximo módulo? <br> (Não se preocupe: caso tenha uma nota menor que a atual, a maior nota será contada na nota final)</p>
       <div class="button-choice-container">
@@ -151,6 +172,7 @@ async function getScore(){
   setPercentImage(nota);
   showMessage(nota);
   showChoiceMessage(nota, tentativa);
+  showConfetti(nota);
 }
 
 init();

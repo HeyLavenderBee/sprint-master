@@ -2,9 +2,12 @@
 /*COMEÇO DA ESTILIZAÇÃO DA TELA RESULTADO QUESTIONÁRIO*/
 
 .main-quiz-result{
-  height: 100vh;
+  box-sizing: border-box;
+  margin-top: 2rem;
+  height: 100%;
   width: 100%; 
 } 
+
 .quiz-result-content {
   background-color: #fff8ef;
   margin: 0;

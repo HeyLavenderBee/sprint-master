@@ -101,6 +101,8 @@ async function proximaTentativaController(req, res) {
 
 async function proximoModuloController(req, res) {
   try {
+    const result = iniciarProximoModulo(req.usuario.id_usuario);
+
     if (result.status === "modulo-nao-concluido") {
       return res.status(409).json({
         message: "Você ainda não concluiu todas as questões do módulo atual",
@@ -126,7 +128,6 @@ async function proximoModuloController(req, res) {
         message: "Nenhum grupo disponível para o próximo módulo",
       });
     }
-    console.log("Grupo",grupo);
 
     if (result.status === "exame-nao-encontrado") {
       return res.status(404).json({
