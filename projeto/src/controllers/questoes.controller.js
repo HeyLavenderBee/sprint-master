@@ -102,7 +102,8 @@ async function proximaTentativaController(req, res) {
 async function proximoModuloController(req, res) {
   const result = await iniciarProximoModulo(req.usuario.id_usuario);
   try {
-    console.log(result.status)
+    const result = iniciarProximoModulo(req.usuario.id_usuario);
+
     if (result.status === "modulo-nao-concluido") {
       return res.status(409).json({
         message: "Você ainda não concluiu todas as questões do módulo atual",
