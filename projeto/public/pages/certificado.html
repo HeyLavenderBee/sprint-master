@@ -20,16 +20,16 @@
             <!--Fim da parte de cima do certificado-->
 
             <!--Parte central do certificado-->
-            <div>
+            <div class="div-texto-certificado">
                 <p class="texto-certificado">Certificamos que</p>
                 <h2 class="nomePessoaCertificada h2" id="nomePessoaCertificada">
-                    Beatriz Oliveira
+                    
                 </h2>
                 <p class="texto-certificado">
-                    Com o CPF nº <strong>000.000.000-00</strong>, email <strong>bia@gmail.com</strong>, <br />
+                    Com o CPF nº <strong><span id="user-cpf"></span></strong>, email <strong><span id="user-email"></span></strong>, <br />
                     mostrou proficiência nos fundamentos da metodologia ágil <br />
                     Scrum por meio da realização e aprovação em avaliações. <br />
-                    Concluindo com uma média final de <strong>8,5</strong>.
+                    Concluindo com uma média final de <strong><span id="user-grade"></span></strong>.
                 </p>
             </div>
             <!--Fim da parte central do certificado-->
@@ -44,7 +44,7 @@
                         <img class="logo-scrum-master" src="assets/img//scrum-master-logo-circle.png" alt="Logo Scrum Master"/>
                     </div>
                     <div>
-                        <span id="data-emissao-certificado">05/05/2026</span>
+                        <span id="data-emissao-certificado"></span>
                         <p class="texto-inferior">Data</p>
                     </div>
                 </div>
@@ -62,9 +62,9 @@
         />
       </div>
     </main>
-  </body>
-  <!-- <script src="/assets/pages/certificado.html"></script> -->
-  <script src="/assets/js/certificado.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js" integrity="sha512-+EeCylkt9WHJk5tGJxYdecHOcXFRME7qnbsfeMsdQL6NUPYm2+uGFmyleEqsmVoap/f3dN/sc3BX9t9kHXkHHg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="assets/js/tela-certificado.js"></script> -->
+    <script src="assets/js/certificado-info.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js" integrity="sha512-+EeCylkt9WHJk5tGJxYdecHOcXFRME7qnbsfeMsdQL6NUPYm2+uGFmyleEqsmVoap/f3dN/sc3BX9t9kHXkHHg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </body>
   </html>

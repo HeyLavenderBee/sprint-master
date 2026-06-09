@@ -33,7 +33,7 @@
             </p>
           </section>
           <div class="badge-div">
-            <h2>Parabéns!</h2>
+            <h2>Parabéns <span id="user-name"></span>!</h2>
             <img
               class="badge-certificado"
               src="assets/img/tela-certificado/Badge.png"
@@ -59,19 +59,22 @@
         <div class="button-aligment">
           <!--Botão abrir-->
           <div class="button-abrir">
-            <button class="button-abrir-d" id="button-abrir">Abrir</button>
+            <a href="certificado.html" id="button-abrir-link">
+              <button class="button-abrir-d" id="button-abrir">Abrir</button>
+            </a>
           </div>
 
           <!--Botão imprimir-->
           <div class="button-imprimir">
-            <button class="button-imprimir-d" id="button-imprimir">Imprimir</button>
+            <button class="button-imprimir-d" id="button-imprimir" onclick="printCertificado()">Imprimir</button>
           </div>
         </div>
       </div>
       <div class="watermark"><p>© Sprint Master 2026</p></div>
     </main>
-  </body>
-  <script src="../assets/js/certificado.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/js/tela-certificado.js"></script>
+    <!-- <script src="assets/js/certificado.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js" integrity="sha512-+EeCylkt9WHJk5tGJxYdecHOcXFRME7qnbsfeMsdQL6NUPYm2+uGFmyleEqsmVoap/f3dN/sc3BX9t9kHXkHHg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </body>
 </html>
