@@ -1,106 +1,70 @@
-// import html2canvas from 'html2canvas';
-// import { jsPDF } from 'jspdf';
-//puxando elementos do html
-// const botaoAbrir = document.getElementById("button-abrir");
-// const botaoImprimir = document.getElementById("button-imprimir");
-const bodyCertificado = document.querySelector("#body-certificado")
 const botaoBaixar = document.getElementById("button-baixar");
-//html2canvas
-// const novaJanela = window.open('/assets/pages/certificado.html');
- const elementToCapture = document.getElementById("body-certificado");
+const elementToCapture = document.getElementById("body-certificado");
+  
+async function generatePDF() {
+  try {
+    let targetElement = elementToCapture;
+    let newWindow;
 
-// botaoBaixar.addEventListener("click", function(){
-    
-//     html2canvas(certificado, {
-//         allowTaint: true,
-//      }).then((canvas) => {
-//          document.body.append(canvas);
-//      });
-// });
-
-//  function generatePDF(){
-
-// //   html2canvas(document.querySelector("#body-certificado"))
-//   const {jsPDF} = window.jspdf;
-//   const content = document.getElementById("body-certificado");
-//   const doc = new jsPDF();
-
-//  doc.save("Certificado.pdf")
-
-
-//  }
-
-    //Conteúdo do PDF
-
-    //Configuração do arquivo final do PDF
-    // const options = {
-    //     margin: [10, 10, 10, 10],
-    //     filename: "Certificado.pdf",
-    //     html2canvas: {scale: 2},
-    //     jsPDF: {unit: "mm", format: "a4", orientation: "portrait"}
-    // }
-
-    //Gerar e baixar o PDF
-
-
-
-    //Solução Lorenzo
-
-    function configurarDownloadCertificado() {
-  const botaoDownload = document.getElementById("botao-baixar");
-  const certificado = document.getElementById("body-certificado");
-
-  if (!botaoDownload || !certificado) {
-    return;
-  }
-
-  botaoDownload.addEventListener("click", async function () {
-    try {
-      botaoDownload.disabled = true;
-
-    //   const nomeUsuario =
-    //     document.getElementById("certificadoNome")?.textContent || "aluno";
-
-      const nomeArquivo = `Certificado.pdf`;
-
-      const certificadoExportacao = certificado.cloneNode(true);
-      certificadoExportacao.id = "certificadoParaDownloadExportacao";
-      certificadoExportacao.classList.add("certificado-exportando");
-      document.body.appendChild(certificadoExportacao);
-
-      const canvas = await html2canvas(certificadoExportacao, {
-        backgroundColor: null,
-        scale: 2,
-        useCORS: true,
-        width: certificadoExportacao.offsetWidth,
-        height: certificadoExportacao.offsetHeight,
-        windowWidth: certificadoExportacao.scrollWidth,
-        windowHeight: certificadoExportacao.scrollHeight,
-      });
-
-      certificadoExportacao.remove();
-
-      const jsPdf = window.jspdf?.jsPDF;
-
-      if (!jsPdf) {
-        throw new Error("Biblioteca jsPDF nao carregada.");
+    if (!targetElement) {
+      newWindow = window.open("certificado.html", "_blank");
+      if (!newWindow) {
+        throw new Error("Não foi possível abrir a nova janela. Verifique o bloqueador de pop-ups.");
       }
 
-      const pdf = new jsPdf({
-        orientation: "landscape",
-        unit: "mm",
-        format: "a4",
+      await new Promise((resolve) => {
+        newWindow.addEventListener("load", resolve);
       });
 
-      const imagem = canvas.toDataURL("image/png");
-      pdf.addImage(imagem, "PNG", 0, 0, 297, 210);
-      pdf.save(nomeArquivo);
-    } catch (error) {
-      document.getElementById("certificadoParaDownloadExportacao")?.remove();
-      console.error(error);
-      mostrarAlerta("Não foi possível baixar o certificado.", "erro");
-    } finally {
-      botaoDownload.disabled = false;
+      targetElement = newWindow.document.getElementById("body-certificado");
+      if (!targetElement) {
+        throw new Error("Elemento #body-certificado não encontrado na nova janela.");
+      }
     }
-  });
+
+    const canvas = await html2canvas(targetElement, {
+      useCORS: true,
+       backgroundColor: null,
+       scale: 2,
+     });
+
+    const imgData = canvas.toDataURL("image/png");
+    const { jsPDF } = window.jspdf || newWindow?.jspdf;
+    if (!jsPDF) {
+      throw new Error("Biblioteca jsPDF não encontrada.");
+    }
+
+    const orientation = canvas.width > canvas.height ? "landscape" : "portrait";
+    const doc = new jsPDF({ orientation, unit: "mm", format: "a4" });
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+
+    let imgWidth = pageWidth;
+    let imgHeight = (canvas.height * pageWidth) / canvas.width;
+
+    if (imgHeight > pageHeight) {
+      imgHeight = pageHeight;
+      imgWidth = (canvas.width * pageHeight) / canvas.height;
+    }
+
+    const xOffset = (pageWidth - imgWidth) / 2;
+    const yOffset = (pageHeight - imgHeight) / 2;
+
+    doc.addImage(imgData, "PNG", xOffset, yOffset, imgWidth, imgHeight);
+    doc.save("Certificado.pdf");
+
+    if (newWindow) {
+      newWindow.close();
+    }
+  } catch (error) {
+    console.error("Erro ao gerar PDF:", error);
+  }
 }
+
+  
+  
+  
+  
+  
+  
+  

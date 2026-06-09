@@ -1,4 +1,4 @@
-const { findUsuarioById } = require("../repositories/usuarios.repositories");
+const { findUsuarioById } = require("../repositories/usuarios.repository");
 const {
   cadastrarUsuario,
   alterarCpf,
