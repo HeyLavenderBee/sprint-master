@@ -1,4 +1,8 @@
-const { findUsuarioById } = require("../repositories/usuarios.repository");
+const { 
+  deleteProgressByUsuario,
+  findUsuarioById,
+  findIdExameByIdUsuario
+ } = require("../repositories/usuarios.repository");
 const {
   cadastrarUsuario,
   alterarUsuario,
@@ -100,7 +104,28 @@ async function getUsuarioController(req, res) {
   }
 }
 
+async function deleteProgressController(req, res){
+  const idUsuario = req.usuario.id_usuario;
+  try{
+    const idExame = await findIdExameByIdUsuario(idUsuario);
+    if (!idExame) {
+      return res.status(404).json({
+        message: "Exame não encontrado",
+      });
+    }
+
+    const deletado = deleteProgressByUsuario(idExame);
+    return res.status(200).json(deletado);
+  } catch(e){
+    console.log(e.message)
+    return res.status(400).json({
+      message: "Erro interno do servidor",
+    });
+  }
+}
+
 module.exports = {
+  deleteProgressController,
   createUsuarioController,
   updateMeController,
   getUsuarioController,

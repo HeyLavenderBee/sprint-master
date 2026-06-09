@@ -3,6 +3,7 @@ const authMiddleware = require("../middlewares/auth.middleware");
 const {verifyToken} = require("../utils/jwt");
 const { findUsuarioById, findIdExameByIdUsuario } = require("../repositories/usuarios.repository")
 const { 
+deleteProgressController,
 createUsuarioController, 
 updateMeController, 
 getUsuarioController
@@ -16,7 +17,7 @@ router.post("/", createUsuarioController);
 // PATCH api/usuarios/me
 router.patch("/me", authMiddleware, updateMeController);
 
-// POST api/id-exame
+// POST api/usuarios/id-exame
 router.post("/id-exame", async function (req, res) {
   const { idUsuario } = req.body;
 
@@ -32,7 +33,7 @@ router.post("/id-exame", async function (req, res) {
   }
 });
 
-// POST api/id-usuario
+// POST api/usuarios/id-usuario
 router.post("/id-usuario", async function (req, res) {
   const { token } = req.body;
 
@@ -48,8 +49,11 @@ router.post("/id-usuario", async function (req, res) {
   }
 });
 
-// GET api/usuario (protegido) - retorna usuário a partir do token no header
+// GET api/usuarios/usuario (protegido) - retorna usuário a partir do token no header
 router.get("/usuario", authMiddleware, getUsuarioController);
+
+// DELETE api/usuarios/resetar-progresso
+router.delete("/resetar-progresso", authMiddleware, deleteProgressController)
 
 module.exports = router;
 
@@ -62,7 +66,7 @@ curl -X POST http://localhost:3000/api/usuarios \
     -d '{"nome": "Ana", "email": "ana19@email.com", "cpf": "12345678919", "senha": "123456", "grupo": 1}'
 
 Atualizar dados do usuario:    
-    /*curl -X PATCH http://localhost:3000/api/usuarios/me \
+curl -X PATCH http://localhost:3000/api/usuarios/me \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer SEU_TOKEN" \
   -d '{
@@ -77,5 +81,7 @@ Pegar o idUsuario:
     -H "Content-Type: application/json" \
     -d '{"idUsuario": "2"}'
 
+Resetar progresso:
+curl -X DELETE http://localhost:3000/api/usuarios/resetar-progresso -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozNSwiaWF0IjoxNzgwOTY3NjcyLCJleHAiOjE3ODA5NzM2NzJ9.ezNZ7yf3qUtzJhrStxuiwh8ECD_xYAewoJk8JvqPp24"
 */
 
