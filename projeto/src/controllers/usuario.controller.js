@@ -100,6 +100,7 @@ async function getUsuarioController(req, res) {
   }
 }
 
+
 module.exports = {
   createUsuarioController,
   updateMeController,
