@@ -5,6 +5,12 @@
     align-items: center;
 }
 
+.box-soon{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
 .w-100 {
     width: 100%;  
 }
@@ -22,10 +28,21 @@
     margin-bottom: 20px;
 }
 
+.text-SM {
+    font-size: 0.9rem;
+    padding: 5px;
+    font-weight: 700;
+}
+
 .icon-alert {
     display: inline-flex;
-    width: 70px;
-    margin-bottom: 15px;
+    width: 50px;
+    margin-bottom: 25px;
+}
+
+.icon-sm {
+    width: 25px;
+    object-fit: contain;
 }
 
 .btn-ok {

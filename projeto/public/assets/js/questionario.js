@@ -74,7 +74,7 @@ async function nextQuestion() {
     window.location.href = "resultado-questionario.html";
     return;
   } else if (!response.ok) {
-    return Alerts.set(data.message);
+      return Alerts.set("Token inválido ou expirado, faça login novamente.");
   }
 
   endpoint = `api/usuarios/id-usuario`;
