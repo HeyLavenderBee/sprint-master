@@ -161,6 +161,50 @@
   transform: scale(0.994);
 }
 
+.btn-modulos.blocked {
+  border: none;
+  padding: 15px 40px;
+  border-radius: 30px;
+  cursor: not-allowed;
+  font-weight: bold;
+  box-shadow: none;
+  margin-top: 10px;
+  font-size: 18px;
+  color: #ffffff;
+  background-color: #cac7c3;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-modulos.blocked:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.btn-modulos.done {
+  border: none;
+  padding: 15px 40px;
+  border-radius: 30px;
+  cursor: default;
+  font-weight: bold;
+  box-shadow: none;
+  margin-top: 10px;
+  font-size: 18px;
+  color: #ffffff;
+  background-color: rgb(47, 201, 0);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-modulos.done:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: none;
+}
+
+.btn-link {
+  pointer-events: none;
+}
+
 .item-direita {
   position: absolute;
   width: 50px;
