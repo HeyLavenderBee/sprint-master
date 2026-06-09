@@ -23,18 +23,20 @@ class Alerts {
         `;
   }
 
+ // Exibe o alerta na tela, verificando se a mensagem e o elemento já existem
   static set(message) {
-    if (!message) return;
-    if (document.querySelector("#alerts")) return;
-    document.body.insertAdjacentHTML("beforeend", this.layout(message));
+    if (!message) return;  // Valida se há mensagem a exibir
+    if (document.querySelector("#alerts")) return; // Previne múltiplos alertas simultâneos
+    document.body.insertAdjacentHTML("beforeend", this.layout(message)); // Insere o alerta no final do body
   }
 
   static remove() {
-    const isAlerts = document.querySelector("#alerts");
-    if (isAlerts) isAlerts.remove();
+    const isAlerts = document.querySelector("#alerts");  // A variável alertExists busca se já existe um elemento com o ID 'alerts'.
+    if (isAlerts) isAlerts.remove(); // Se ele já existir, a função remove o alerta, funcionando como uma trava de segurança.
   }
 }
 
+// A função Verificacao serve para gerenciar a exibição dos alertas na tela.
 class Verificacao {
   static layout(message) {
     return `
@@ -70,4 +72,6 @@ class Verificacao {
     const isAlerts = document.querySelector("#alerts");
     if (isAlerts) isAlerts.remove();
   }
+
+  // Essas duas últimas statics fazem as mesmas ações que as de cima, antes da classe de Verificação.
 }

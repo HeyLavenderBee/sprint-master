@@ -1,5 +1,5 @@
 const questionNumberIndicator = document.getElementById(
-  "question-number-indicator"
+  "question-number-indicator",
 );
 const progressIndicator = document.getElementById("progress-indicator");
 const nextButton = document.getElementById("next-button");
@@ -42,7 +42,10 @@ async function getQuestion() {
 
   const data = await response.json();
 
-  if (!response.ok) {
+  if (!response.ok && data.message == "Nenhuma questão pendente encontrada") {
+    window.location.href = "resultado-questionario.html";
+    return;
+  } else if (!response.ok) {
     return Alerts.set("Token inválido ou expirado, faça login novamente.");
   }
 
@@ -53,7 +56,7 @@ async function getQuestion() {
     data.alternativa_b,
     data.alternativa_c,
     data.alternativa_d,
-    data.imagem
+    data.imagem,
   );
 }
 
@@ -74,7 +77,7 @@ async function nextQuestion() {
     window.location.href = "resultado-questionario.html";
     return;
   } else if (!response.ok) {
-      return Alerts.set("Token inválido ou expirado, faça login novamente.");
+    return Alerts.set("Token inválido ou expirado, faça login novamente.");
   }
 
   endpoint = `api/usuarios/id-usuario`;

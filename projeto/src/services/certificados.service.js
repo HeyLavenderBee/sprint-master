@@ -102,6 +102,7 @@ async function findCertificadoByHash(certificadoHash) {
   return {
     aluno: {
       nome: usuario.nome,
+      email: usuario.email,
       cpf: usuario.cpf,
     },
 
