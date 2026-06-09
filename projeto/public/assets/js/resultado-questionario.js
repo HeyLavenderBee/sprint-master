@@ -135,6 +135,7 @@ async function tryAgain(){
 }
 
 async function nextModule() {
+  var token = localStorage.getItem("token");
   const endpoint = `/api/questoes/proximo-modulo`;
   try{
     const result = await fetch(endpoint, {
