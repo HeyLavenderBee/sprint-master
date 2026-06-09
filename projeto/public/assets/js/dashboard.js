@@ -32,7 +32,7 @@ async function graphMaker(data){
     var progress = (atualModule)*20;
     // verifica se o usuario tem algum registro de questionario
     if(progress != 0){
-        if(data[data.length - 1 ].nota < 6){
+        if(data[data.length - 1 ].nota < 7){
             progress -= 20;
         }
     }

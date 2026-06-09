@@ -25,7 +25,7 @@ router.get("/modulos-respondidos", authMiddleware, getModulosRespondidosControll
 
 Ver qual a questão atual/próxima do usuário:
 curl -X GET http://localhost:3000/api/questoes/proxima-questao \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozNCwiaWF0IjoxNzgwNTI3MTI1LCJleHAiOjE3ODA1MzMxMjV9.jCjRMvvmNBRaGQm1OwdvAUKMGf8JRMkXOAcH3LtRrZY"
+  -H "Authorization: Bearer SEU_TOKEN"
 
 Responder questão atual do usuário:
 curl -X POST http://localhost:3000/api/questoes/responder \
