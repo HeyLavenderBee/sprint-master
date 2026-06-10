@@ -38,8 +38,8 @@ class Alerts {
 
 // A função Verificacao serve para gerenciar a exibição dos alertas na tela.
 class Verificacao {
-    static layout(message) {
-      return `
+  static layout(message) {
+    return `
               <div id="alerts" class="box">
                   <div class="window box">
                       <div class="w-100 box">
@@ -60,7 +60,7 @@ class Verificacao {
                   </div>
               </div>
           `;
-    }
+  }
 
   static set(message) {
     if (!message) return;
@@ -80,7 +80,26 @@ class Redirecionar {
   static path = "";
   static layout(message, caminho) {
     this.path = caminho;
-    return `<div id="alerts" class="box">                 <div class="window box">                     <div class="w-100 box">                         <div class="w-100 box-soon">                             <img src="/assets/img/scrum-master-logo-circle.png" alt="SM" class="icon-sm">                             <span class="text-SM">Scrum Master</span>                         </div>                     </div>                     <div class="w-100 box">                         <div class="w-100 box">                               <img src="/assets/img/alerta.png" alt="Alerta" class="icon-alert">                         </div>                         <span class="text">${message}</span>                     </div>                     <div class="w-100 box align-end">                         <button class="btn-ok margin" onclick="Redirecionar.redirect();">Ok</button>                     </div>                 </div>             </div>        ; `;
+    return `
+    <div id="alerts" class="box">
+      <div class="window box">
+      <div class="w-100 box">
+        <div class="w-100 box-soon">
+          <img src="/assets/img/scrum-master-logo-circle.png" alt="SM" class="icon-sm">
+          <span class="text-SM">Scrum Master</span>
+          </div>
+          </div>
+            <div class="w-100 box">
+            <div class="w-100 box">
+            <img src="/assets/img/alerta.png" alt="Alerta" class="icon-alert">
+          </div>
+          <span class="text">${message}</span>
+          </div>
+          <div class="w-100 box align-end">
+          <button class="btn-ok margin" onclick="Redirecionar.redirect();">Ok</button>
+        </div>
+      </div>
+    </div>`;
   }
 
   // Exibe o alerta na tela, verificando se a mensagem e o elemento já existem

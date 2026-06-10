@@ -25,6 +25,7 @@ describe("cadastro", () => {
     });
 });
 
+
 // === ATENÇÃO: para que não apareça testes falhos, apenas descomente o que for o seu teste ===
 
 describe("login", () => {

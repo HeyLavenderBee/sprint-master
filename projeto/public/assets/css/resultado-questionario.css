@@ -55,7 +55,7 @@
   margin-bottom: 2rem;
 }
 
-.button-quiz-result {
+.btn-quiz-result {
   background-color: #2081f9;
   padding: 15px;
   border: none;
@@ -66,7 +66,7 @@
   font-weight: bold;
 }
 
-.button-quiz-result:hover {
+.btn-quiz-result:hover {
   background-color: #2d7ddf;
   transform: translateY(-1px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -82,7 +82,7 @@
   justify-content: center;
 }
 
-.button-choice-container{
+.btn-choice-container{
   margin: auto;
   display: flex;
   justify-content: center;

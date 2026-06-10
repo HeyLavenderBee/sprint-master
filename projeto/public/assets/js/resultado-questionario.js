@@ -4,6 +4,21 @@ const percentText = document.getElementById("porcentagem-acerto");
 const choiceContainer = document.getElementById("choice-container");
 const chancesLeft = document.getElementById("tentativa-restante");
 
+async function resetUser(){
+  var token = localStorage.getItem("token");
+  const endpoint = `api/usuarios/resetar-progresso`;
+  try{
+    const result = await fetch(endpoint, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+  } catch(e){
+    alert("Erro interno no Servidor.");
+  }
+}
+
 async function init() {
   await goToQuestionnaire();
   getScore();
@@ -64,21 +79,21 @@ function showChoiceMessage(nota, tentativa){
   if(nota == 10 && tentativa == 1){
     choiceContainer.innerHTML = `
       <p class="choice-text">Você conseguiu a nota máxima na primeira tentativa! <br> Não é mais preciso refazer o módulo atual, então vá para o próximo módulo com o botão abaixo.</p>
-      <div class="button-choice-container">
+      <div class="btn-choice-container">
         <a>
-          <button class="button-quiz-result" id="next-module-button">Ir para próximo módulo</button>
+          <button class="btn-quiz-result" id="next-module-button">Ir para próximo módulo</button>
         </a>
       </div>
     `;
   } else if(nota > 6 && tentativa == 1){
     choiceContainer.innerHTML = `
       <p class="choice-text">Você deseja refazer a tentativa para tentar conseguir uma nota maior, ou ir para o próximo módulo? <br> (Não se preocupe: caso tenha uma nota menor que a atual, a maior nota será contada na nota final)</p>
-      <div class="button-choice-container">
+      <div class="btn-choice-container">
         <a href="questionario.html" alt="Tentar Novamente">
-          <button class="button-quiz-result" id="try-again-button">Tentar Novamente</button>
+          <button class="btn-quiz-result" id="try-again-button">Tentar Novamente</button>
         </a>
         <a>
-          <button class="button-quiz-result" id="next-module-button">Ir para próximo módulo</button>
+          <button class="btn-quiz-result" id="next-module-button">Ir para próximo módulo</button>
         </a>
       </div>
     `;
@@ -89,12 +104,13 @@ function showChoiceMessage(nota, tentativa){
   } else if(nota < 7 && tentativa == 1){
     choiceContainer.innerHTML = `
       <p class="choice-text">Você não passou com a nota mínima. <br> Cloque no botão abaixo para tentar novamente para atingir ao menos 70%.</p>
-      <button class="button-quiz-result" id="try-again-button" alt="Tentar novamente">Tentar Novamente</button>
+      <button class="btn-quiz-result" id="try-again-button" alt="Tentar novamente">Tentar Novamente</button>
     `;
   } else{
+    resetUser();
     choiceContainer.innerHTML = `
       <p class="choice-text">Infelizmente você não atingiu a nota mínima em nenhuma das tentativas... <br> Para ter a oportunidade de obter o certificado, aceita resetar todo o progresso e começar do zero?</p>
-      <button class="button-quiz-result" id="reset-progress-button" alt="Resetar progresso">Resetar progresso</button>
+      <button class="btn-quiz-result" id="reset-progress-button" alt="Resetar progresso">Resetar progresso</button>
     `;
   }
 }
