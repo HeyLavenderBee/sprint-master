@@ -34,7 +34,7 @@ async function createUsuarioController(req, res) {
         message: "Já existe usuário com os dados informados",
       });
     }
-    return res.status(400).json({
+    return res.status(500).json({
       message: "Erro interno no servidor",
     });
   }
@@ -64,7 +64,7 @@ async function updateCpfController(req, res) {
         message: "Já existe usuário com o CPF informado",
       });
     }
-    return res.status(404).json({
+    return res.status(500).json({
       message: "Erro interno do servidor",
     });
   }
@@ -88,7 +88,7 @@ async function updateNomeController(req, res) {
     }
     return res.status(200).json(usuario);
   } catch (e) {
-    return res.status(404).json({
+    return res.status(500).json({
       message: "Erro interno do servidor",
     });
   }
@@ -117,7 +117,7 @@ async function updateEmailController(req, res) {
         message: "Já existe usuário com o email informado",
       });
     }
-    return res.status(404).json({
+    return res.status(500).json({
       message: "Erro interno do servidor",
     });
   }
@@ -148,7 +148,7 @@ async function updateSenhaController(req, res) {
     }
     return res.status(200).json(usuario);
   } catch (e) {
-    return res.status(404).json({
+    return res.status(500).json({
       message: "Erro interno do servidor",
     });
   }
