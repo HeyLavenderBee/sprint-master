@@ -181,30 +181,6 @@
   margin: 1.5rem;
 }
 
-
-.form-extras {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 90%;
-  font-size: 0.9rem;
-}
-
-.form-extras.bottom {
-  justify-content: center ;
-}
-
-.form-extras .form-extra-check {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.form-extras input {
-  display: flex;
-  justify-content: flex-start;
-}
-
 .style-paragrafo{
   display: flex;
   justify-content: center;
@@ -216,25 +192,6 @@
 .style-paragrafo span{
   width: auto;
   text-align: initial;
-}
-
-.style-paragrafo .form-extra-link{
-  width: auto;
-}
-
-.form-extras a {
-  color: #F9B420;
-  display: flex;
-}
-
-.form-extras input {
-  display: flex;
-  justify-content: flex-start;
-
-}
-
-.form-extras div {
-  display: inline-flex;
 }
 
 .copy {
