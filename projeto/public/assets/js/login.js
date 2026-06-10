@@ -13,13 +13,13 @@ async function loginUsuario() {
     var senha = document.getElementById("log-password").value.trim();
 
     if (cpf == "") {
-        return alert("O CPF é obrigatório.");
+        return Alerts.set("O CPF é obrigatório.");
     }
     if (cpf.length !== 11) {
-        return alert("CPF inválido. Informe os 11 dígitos.");
+        return Alerts.set("CPF inválido. Informe os 11 dígitos.");
     }
     if (senha == "") {
-        return alert("A senha é obrigatória.");
+        return Alerts.set("A senha é obrigatória.");
     }
 
     const endpoint = `api/auth/login`;
@@ -36,14 +36,14 @@ async function loginUsuario() {
         token = data.token;
 
         if(!response.ok) {
-            return alert(data.message ? data.message : "Ocorreu um erro");
+            return Alerts.set(data.message ? data.message : "Ocorreu um erro");
         }
 
         localStorage.setItem("token", token);
-        alert("Usuário logado com sucesso!");
+        Verificacao.set("Usuário logado com sucesso!");
         window.location.href = "home.html";
     } catch (e) {
-        alert("Erro interno do servidor");
+        Alerts.set("Erro interno do servidor");
     }
 }
 
