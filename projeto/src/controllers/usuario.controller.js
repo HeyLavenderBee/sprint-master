@@ -23,7 +23,7 @@ async function createUsuarioController(req, res) {
 
   try {
     const result = await cadastrarUsuario(nome, email, cpf, senha);
-    res.send(result);
+    res.status(201).json(result);
   } catch (e) {
     console.log(e.message); //<- quando houver um erro interno, esse print ajuda a decifrar qual
     if (e && e.code == "23505") {
@@ -74,7 +74,6 @@ async function updateMeController(req, res) {
         message: "Já existe usuário com os dados informados",
       });
     }
-
     return res.status(500).json({
       message: "Erro interno do servidor",
     });
@@ -85,8 +84,9 @@ async function getUsuarioController(req, res) {
     const usuario = req.usuario;
     return res.status(200).json(usuario);
   } catch (e) {
-    console.log(e.message);
-    return res.status(400).json({ message: "Erro interno no servidor" });
+    return res.status(500).json({
+      message: "Erro interno do servidor",
+    });
   }
 }
 
@@ -95,8 +95,45 @@ async function getUsuarioController(req, res) {
     const usuario = req.usuario;
     return res.status(200).json(usuario);
   } catch (e) {
-    console.log(e.message);
-    return res.status(400).json({ message: "Erro interno no servidor" });
+    if (e && e.code == "23505") {
+      return res.status(404).json({
+        message: "Já existe usuário com o email informado",
+      });
+    }
+    return res.status(500).json({
+      message: "Erro interno do servidor",
+    });
+  }
+}
+
+async function updateSenhaController(req, res) {
+  const idUsuario = req.usuario.id_usuario;
+
+  if (!idUsuario) {
+    return res.status(400).json({ message: "id_usuario inválido" });
+  }
+
+  const { senha } = req.body;
+  if (!senha) {
+    return res.status(400).json({ message: "Senha obrigatória" });
+  }
+
+  if (senha.trim().length < 6) {
+    return res
+      .status(400)
+      .json({ message: "A senha deve ter pelo menos 6 caracteres" });
+  }
+
+  try {
+    const usuario = await alterarSenha(idUsuario, senha);
+    if (!usuario) {
+      return res.status(404).json({ message: "Usuário não encontrado" });
+    }
+    return res.status(200).json(usuario);
+  } catch (e) {
+    return res.status(500).json({
+      message: "Erro interno do servidor",
+    });
   }
 }
 

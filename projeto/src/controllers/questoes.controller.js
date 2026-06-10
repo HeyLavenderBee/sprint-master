@@ -100,6 +100,7 @@ async function proximaTentativaController(req, res) {
 };
 
 async function proximoModuloController(req, res) {
+  const result = await iniciarProximoModulo(req.usuario.id_usuario);
   try {
     const result = iniciarProximoModulo(req.usuario.id_usuario);
 
@@ -115,13 +116,11 @@ async function proximoModuloController(req, res) {
       });
     }
 
-
     if (result.status === "todos-modulos-concluidos") {
       return res.status(404).json({
         message: "Você concluiu todos os módulos",
       });
     }
-
 
     if(result.status === "grupo-proximo-modulo-nao-encontrado"){
       return res.status(404).json({

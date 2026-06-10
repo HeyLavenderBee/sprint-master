@@ -137,6 +137,13 @@
   margin-right: 50px;
 }
 
+.aviso-tentativas {
+  font-size: 18px;
+  padding-right: 35px;
+  color: #a09d95;
+  font-weight: bold;
+}
+
 .btn-modulos {
   border: none;
   padding: 15px 40px;
@@ -332,10 +339,15 @@
   }
 
   .posicao-btn-modulos {
+    display: flex;
+    flex-direction: column;
     align-self: center;
     margin-right: 0;
     width: 100%;
     max-width: 150px;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
   }
 
   .btn-modulos {
@@ -359,6 +371,59 @@
     width: 15px;
     height: auto;
     pointer-events: none;
+  }
+
+  .aviso-tentativas{
+    text-align: center;
+    padding-right: 0;
+  }
+
+  .btn-modulos, .btn-modulos.blocked {
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 890px){
+  .posicao-btn-modulos{
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    margin-right: 0;
+    width: 100%;
+    max-width: 150px;
+    gap: 0.7rem;
+    justify-content: center;
+  }
+
+  .aviso-tentativas{
+    padding-right: 0;
+  }
+
+  .btn-modulos.done, .btn-modulos.blocked, .btn-modulos{
+    padding: auto;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1235px) {
+  .posicao-btn-modulos{
+    display: flex;
+    align-self: center;
+    margin-right: 0;
+    width: 100%;
+    max-width: 150px;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .aviso-tentativas{
+    text-align: center;
+  }
+
+  .img-modulos{
+    height: auto;
+    padding: 30px;
+    border-radius: 1rem;
   }
 }
 
