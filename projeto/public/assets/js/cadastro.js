@@ -52,7 +52,6 @@ async function cadastrarUsuario() {
       );
     }
 
-    Verificacao.set("Usuário cadastrado com sucesso!");
     window.location.href = "index.html";
   } catch (e) {
     //qualquer erro de conexão a internet ou coisas que não foi o erro do usuário

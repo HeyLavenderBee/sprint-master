@@ -452,10 +452,25 @@
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(37, 125, 244, 0.35);
   transition: background 0.15s ease, transform 0.1s ease;
+  text-decoration: none;
 }
 
 .btn-primary:hover {
   background: var(--blue-deep);
+}
+
+.btn-primary.blocked {
+  color: var(--white);
+  background: rgb(111, 111, 111);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(102, 102, 102, 0.35);
+  cursor: not-allowed;
+}
+
+.btn-primary.blocked:active {
+  transform: none;
 }
 
 .btn-primary:active {
