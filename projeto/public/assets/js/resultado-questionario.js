@@ -160,7 +160,7 @@ async function nextModule() {
         Authorization: `Bearer ${token}`,
       },
     })
-    window.location.href = "modulos.html";
+    window.location.href = "questionario.html";
   } catch(e){
     alert("Erro interno. Tente novamente mais tarde.");
   }

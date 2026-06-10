@@ -9,7 +9,8 @@ const {
     updateProximaTentativa,
     findProximoModuloByUsuario,
     updateProximoModulo,
-    findModulosRespondidosByUsuario
+    findModulosRespondidosByUsuario,
+    findNotaModuloAtualByUsuario,
 } = require("../repositories/questoes.repository");
 
 async function buscarProximaQuestao(idUsuario){
@@ -123,6 +124,11 @@ async function iniciarProximoModulo(idUsuario){
       return {
         status: "modulo-atual-nao-encontrado",
       };
+    }
+
+    const notaModulo = await findNotaModuloAtualByUsuario(idUsuario, moduloAtual);
+    if(notaModulo < 7){
+      return { status: "nota-menor-minima" };
     }
 
     const modulo = await findProximoModuloByUsuario(idUsuario);

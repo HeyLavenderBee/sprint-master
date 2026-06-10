@@ -4,7 +4,7 @@ const btnAltName = document.getElementById("alt-name");
 const btnAltCpf = document.getElementById("alt-cpf");
 const btnAltemail = document.getElementById("alt-email");
 const btnAltPassword = document.getElementById("alt-password");
-const btnAltPfp = document.getElementById("btn-pfp");
+const btnChangePfp = document.getElementById("btn-pfp");
 const btnOpenEdit = document.getElementById("btn-open-edit");
 const btnEdit = document.getElementById("btn-save-edit");
 const btnCertificado = document.getElementById("btn-certificado");
@@ -21,6 +21,7 @@ const confHolder = document.getElementById("conf-password");
 const imagens = ["null.png", "image1.png", "image2.png", "image3.png"];
 const nameDisplay = document.getElementById("name-display");
 const emailDisplay = document.getElementById("email-display");
+const photoDisplay = document.getElementById("profile-img");
 const progressImg = document.getElementById("progress-img");
 const checklist = document.getElementById("checklist");
 
@@ -38,6 +39,48 @@ async function graphMaker(data) {
     }
   }
   progressImg.src = `/assets/img/dashboard/progresso-${progress}-dashboard.png`;
+}
+
+async function getCurrentProfilePhoto() {
+  const token = localStorage.getItem("token");
+  const endpoint = "api/usuarios/foto-perfil";
+  const result = await fetch(endpoint, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await result.json();
+  return data.foto;
+}
+
+async function changeCurrentProfilePhoto() {
+  const currentPhoto = await getCurrentProfilePhoto();
+  var nextPhoto = currentPhoto;
+
+  var imagensLength = 2; //MUDE ISSO DE ACORDO COM QUANTAS FOTOS TEM NA PASTA
+
+  if (currentPhoto > imagensLength - 1) {
+    nextPhoto = 0;
+  } else {
+    nextPhoto++;
+  }
+
+  const imagem = nextPhoto;
+
+  const token = localStorage.getItem("token");
+  const endpoint = "api/usuarios/mudar-foto-perfil";
+  const result = await fetch(endpoint, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ imagem }),
+  });
+
+  getDisplayData();
 }
 
 async function checklistMaker(data) {
@@ -149,9 +192,11 @@ async function getDisplayData() {
     });
 
     const data = await response.json();
-    console.log("aa")
-    if (!response.ok) return Redirecionar.set(data.message ? data.message : "Ocorreu um erro", "index.html");
 
+    if (!response.ok) return Redirecionar.set(data.message ? data.message : "Ocorreu um erro", "index.html");
+    
+    var profilePhoto = await getCurrentProfilePhoto();
+    photoDisplay.src = `assets/img/fotos-perfil/${profilePhoto}.png`;
     nameDisplay.innerHTML = data.nome;
     emailDisplay.innerHTML = data.email;
     getUserProgress();
@@ -257,9 +302,7 @@ async function updateUserData() {
       });
 
       const data = await response.json();
-      if (!response.ok) {
-        return Redirecionar.set(data.message ? data.message : "Ocorreu um erro", "index.html");
-      }
+      if (!response.ok) return Redirecionar.set(data.message ? data.message : "Ocorreu um erro", "index.html");
     } catch (e) {
       Alerts.set("Erro interno do servidor. Tente novamente mais tarde.");
     }
@@ -308,7 +351,7 @@ function resetEverything() {
   passwordInput.value = "";
   confPasswordInput.value = "";
   btnOpenEdit.className = "btn-edit btn-open-edit-show";
-  btnAltPfp.className = "btn-pfp-hide";
+  btnChangePfp.className = "btn-pfp-hide";
   confHolder.className = "field-hide";
   inputsHolder.className = "alts-holder-hide";
 }
@@ -332,15 +375,17 @@ btnAltPassword.addEventListener("click", function () {
   btnAltPassword.disabled = true;
 });
 btnOpenEdit.addEventListener("click", function () {
-  btnAltPfp.className = "btn-pfp";
+  btnChangePfp.className = "btn-pfp";
   inputsHolder.className = "sidebar alts-holder-show";
   btnOpenEdit.className = "btn-open-edit-hide";
   getUserData();
 });
+btnChangePfp.addEventListener("click", function () {
+  changeCurrentProfilePhoto();
+});
 btnEdit.addEventListener("click", function () {
   updateUserData();
 });
-
 // Função para deslogar o perfil do usuário.
 btnLogOut.addEventListener("click", function () {
   localStorage.removeItem("token");

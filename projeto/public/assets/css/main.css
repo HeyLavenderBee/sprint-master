@@ -105,6 +105,7 @@ header {
 
 .foto-de-perfil {
   height: 3.125rem;
+  border-radius: 100%;
 }
 
 .user-texto {

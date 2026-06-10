@@ -4,7 +4,7 @@ async function loginController(req, res) {
   const { cpf, senha } = req.body;
 
   if (!cpf || !senha) {
-    return res.status(400).json({ message: "CPF e senha são obrigatórios" });
+    return res.status(400).json({ message: "CPF e senha são obrigatórios." });
   }
 
   try {
