@@ -2,121 +2,138 @@ const pool = require("../database/db");
 const { randomBytes, hash } = require("crypto");
 const { hashPassword, verifyPassword } = require("../utils/password");
 
-async function insertUsuario(client, nome, email, cpf, senha){
-    const certificadoHash = randomBytes(24).toString("hex");
-    const senhaCodificada = hashPassword(senha);
+async function insertUsuario(client, nome, email, cpf, senha) {
+  const certificadoHash = randomBytes(24).toString("hex");
+  const senhaCodificada = hashPassword(senha);
 
-    const result = await client.query(
-        `INSERT INTO usuarios (nome, email, cpf, senha, certificado_hash)
+  const result = await client.query(
+    `INSERT INTO usuarios (nome, email, cpf, senha, certificado_hash)
             VALUES ($1, $2, $3, $4, $5)
             RETURNING id_usuario, nome, email, cpf, certificado_hash`,
-            [nome, email, cpf, senhaCodificada, certificadoHash]
-    );
-    if(result && result.rowCount == 1){
-        return result.rows[0];
-    }
-    return result.rows[0] || null;
+    [nome, email, cpf, senhaCodificada, certificadoHash],
+  );
+  if (result && result.rowCount == 1) {
+    return result.rows[0];
+  }
+  return result.rows[0] || null;
 }
 
-async function findPrimeiroModuloId(client){
-    const result = await client.query(`SELECT id_modulo FROM modulos ORDER BY id_modulo LIMIT 1`);
-    return result.rows[0] || null;
+async function findPrimeiroModuloId(client) {
+  const result = await client.query(
+    `SELECT id_modulo FROM modulos ORDER BY id_modulo LIMIT 1`,
+  );
+  return result.rows[0] || null;
 }
 
-async function findGrupoAleatorio(client, idModulo){
-    const result = await client.query(
-        `SELECT grupo FROM questoes WHERE id_modulo=$1 AND grupo IS NOT NULL GROUP BY grupo ORDER BY RANDOM() LIMIT 1`,
-        [idModulo]
-    );  
-    return result.rows[0] || null;
+async function findGrupoAleatorio(client, idModulo) {
+  const result = await client.query(
+    `SELECT grupo FROM questoes WHERE id_modulo=$1 AND grupo IS NOT NULL GROUP BY grupo ORDER BY RANDOM() LIMIT 1`,
+    [idModulo],
+  );
+  return result.rows[0] || null;
 }
 
-async function insertExame(client, idModulo, idUsuario, grupo, tentativa){
-    const result = await client.query(
-        `INSERT INTO exames (id_modulo, id_usuario, grupo, tentativa)
+async function insertExame(client, idModulo, idUsuario, grupo, tentativa) {
+  const result = await client.query(
+    `INSERT INTO exames (id_modulo, id_usuario, grupo, tentativa)
             VALUES ($1, $2, $3, $4)
             RETURNING id_exame`,
-        [idModulo, idUsuario, grupo, tentativa]
-    );
+    [idModulo, idUsuario, grupo, tentativa],
+  );
 }
 
-async function createUsuario(nome, email, cpf, senha){
-    const client = await pool.connect();
-    try{
-        await client.query("BEGIN");
-        
-        const usuario = await insertUsuario(client, nome, email, cpf, senha);
+async function createUsuario(nome, email, cpf, senha) {
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
 
-        const modulo = await findPrimeiroModuloId(client);
-        if(!modulo){
-            throw new Error("Nenhum módulo cadastrado para inicializar exame do usuário");
-        }
+    const usuario = await insertUsuario(client, nome, email, cpf, senha);
 
-        const grupo = await findGrupoAleatorio(client, modulo.id_modulo);
-        if(!grupo){
-            throw new Error("Nenhum grupo cadastrado para inicializar exame do usuário");
-        }
-
-        await insertExame(client, modulo.id_modulo, usuario.id_usuario, grupo.grupo, 1);
-
-        await client.query("COMMIT");
-        return {id_usuario: usuario.id, nome: usuario.nome, email: usuario.email, cpf: usuario.cpf};
-    } catch(e){
-        await client.query("ROLLBACK");
-        throw e;
-        return {error: "Problemas ao criar o usuário"};
-    } finally {
-        client.release();
+    const modulo = await findPrimeiroModuloId(client);
+    if (!modulo) {
+      throw new Error(
+        "Nenhum módulo cadastrado para inicializar exame do usuário",
+      );
     }
+
+    const grupo = await findGrupoAleatorio(client, modulo.id_modulo);
+    if (!grupo) {
+      throw new Error(
+        "Nenhum grupo cadastrado para inicializar exame do usuário",
+      );
+    }
+
+    await insertExame(
+      client,
+      modulo.id_modulo,
+      usuario.id_usuario,
+      grupo.grupo,
+      1,
+    );
+
+    await client.query("COMMIT");
+    return {
+      id_usuario: usuario.id,
+      nome: usuario.nome,
+      email: usuario.email,
+      cpf: usuario.cpf,
+    };
+  } catch (e) {
+    await client.query("ROLLBACK");
+    throw e;
+    return { error: "Problemas ao criar o usuário" };
+  } finally {
+    client.release();
+  }
 }
 
-
-
-async function findUsuarioById(idUsuario){
-    const result = await pool.query(
-        `SELECT id_usuario, nome, email, cpf, certificado_hash
+async function findUsuarioById(idUsuario) {
+  const result = await pool.query(
+    `SELECT id_usuario, nome, email, cpf, certificado_hash
         FROM usuarios
         WHERE id_usuario = $1`,
-        [idUsuario]
-    );
-    return result.rows[0] || null;
+    [idUsuario],
+  );
+  return result.rows[0] || null;
 }
 
- async function findIdExameByIdUsuario(idUsuario){
-     const result = await pool.query(`
+async function findIdExameByIdUsuario(idUsuario) {
+  const result = await pool.query(
+    `
             SELECT id_exame
             FROM exames
             WHERE id_usuario = $1`,
-         [idUsuario]
-     );
-     return result.rows[0] || null;
- }
+    [idUsuario],
+  );
+  return result.rows[0] || null;
+}
 
-async function findUsuarioByCpfAndSenha(cpf, senha){
-    const result = await pool.query(`
+async function findUsuarioByCpfAndSenha(cpf, senha) {
+  const result = await pool.query(
+    `
         SELECT id_usuario, nome, email, cpf, senha
         FROM usuarios
         WHERE cpf = $1`,
-        [cpf]
-    );
+    [cpf],
+  );
 
-    const usuario = result.rows[0];
+  const usuario = result.rows[0];
 
-    if(!usuario){
-        throw new Error("Usuário inexistente");
-    }
+  if (!usuario) {
+    throw new Error("Usuário inexistente");
+  }
 
-    const senhaValida = verifyPassword(senha, usuario.senha);
-    if(!senhaValida){
-        throw new Error("Senha incorreta");
-    }
+  const senhaValida = verifyPassword(senha, usuario.senha);
+  if (!senhaValida) {
+    throw new Error("Senha incorreta");
+  }
 
-    return {
-        id_usuario: usuario.id_usuario,
-        nome: usuario.nome,
-        email: usuario.email,
-        cpf: usuario.cpf
-    }
+  return {
+    id_usuario: usuario.id_usuario,
+    nome: usuario.nome,
+    email: usuario.email,
+    cpf: usuario.cpf,
+  };
 }
 
 async function updateUsuario(idUsuario, dados) {
@@ -173,12 +190,37 @@ async function updateUsuario(idUsuario, dados) {
   return result.rows[0] || null;
 }
 
+async function pegarFotoPerfil(idUsuario) {
+  const result = await pool.query(
+    `
+    SELECT foto
+    FROM usuarios
+    WHERE id_usuario = $1
+    `, [idUsuario]
+  );
 
+  return result.rows[0] || null;
+}
+
+async function mudarFotoPerfil(idUsuario, imagem) {
+  const result = await pool.query(
+    `
+    UPDATE usuarios
+    SET foto = ${imagem}
+    WHERE id_usuario = $1
+    RETURNING foto
+    `, [idUsuario]
+  );
+
+  return result.rows[0] || null;
+}
 
 module.exports = {
-    createUsuario,
-    findUsuarioByCpfAndSenha,
-    findUsuarioById,
-    findIdExameByIdUsuario,
-    updateUsuario
+  createUsuario,
+  findUsuarioByCpfAndSenha,
+  findUsuarioById,
+  findIdExameByIdUsuario,
+  updateUsuario,
+  pegarFotoPerfil,
+  mudarFotoPerfil,
 };
