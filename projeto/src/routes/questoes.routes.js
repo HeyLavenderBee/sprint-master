@@ -38,8 +38,7 @@ curl -X PATCH http://localhost:3000/api/questoes/proxima-tentativa \
 -H "Authorization: Bearer SEU_TOKEN"
 
 Comando para ir para próximo módulo:
-curl -X PATCH http://localhost:3000/api/questoes/proximo-modulo \
-  -H "Authorization: Bearer SEU_TOKEN"
+curl -X PATCH http://localhost:3000/api/questoes/proximo-modulo -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjoyNywiaWF0IjoxNzgwOTYwNzUyLCJleHAiOjE3ODA5NjE5NTJ9.D0lCLB-85-lGijBxcrKQa03nHQzPdJxTkTs0mSDL7mE"
 
 Comando para ver módulos respondidos:
 curl -X GET http://localhost:3000/api/questoes/modulos-respondidos \
