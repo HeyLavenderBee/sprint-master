@@ -4,6 +4,21 @@ const percentText = document.getElementById("porcentagem-acerto");
 const choiceContainer = document.getElementById("choice-container");
 const chancesLeft = document.getElementById("tentativa-restante");
 
+async function resetUser(){
+  var token = localStorage.getItem("token");
+  const endpoint = `api/usuarios/resetar-progresso`;
+  try{
+    const result = await fetch(endpoint, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+  } catch(e){
+    alert("Erro interno no Servidor.");
+  }
+}
+
 async function init() {
   await goToQuestionnaire();
   getScore();
@@ -92,6 +107,7 @@ function showChoiceMessage(nota, tentativa){
       <button class="btn-quiz-result" id="try-again-button" alt="Tentar novamente">Tentar Novamente</button>
     `;
   } else{
+    resetUser();
     choiceContainer.innerHTML = `
       <p class="choice-text">Infelizmente você não atingiu a nota mínima em nenhuma das tentativas... <br> Para ter a oportunidade de obter o certificado, aceita resetar todo o progresso e começar do zero?</p>
       <button class="btn-quiz-result" id="reset-progress-button" alt="Resetar progresso">Resetar progresso</button>
