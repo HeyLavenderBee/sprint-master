@@ -8,7 +8,6 @@ createUsuarioController,
 updateMeController, 
 getUsuarioController
 } = require("../controllers/usuario.controller");
-
 const router = Router();
 
 // POST api/usuarios
@@ -82,6 +81,6 @@ Pegar o idUsuario:
     -d '{"idUsuario": "2"}'
 
 Resetar progresso:
-curl -X DELETE http://localhost:3000/api/usuarios/resetar-progresso -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozNSwiaWF0IjoxNzgwOTY3NjcyLCJleHAiOjE3ODA5NzM2NzJ9.ezNZ7yf3qUtzJhrStxuiwh8ECD_xYAewoJk8JvqPp24"
+curl -X DELETE http://localhost:3000/api/usuarios/resetar-progresso -H "Authorization: Bearer SEU_TOKEN"
 */
 
