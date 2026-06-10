@@ -136,7 +136,6 @@ async function proximoModuloController(req, res) {
 
     return res.status(200).json(result.exame);
   } catch (e) {
-    console.log(e.message);
     return res.status(500).json({
       message: "Erro interno do servidor",
     });

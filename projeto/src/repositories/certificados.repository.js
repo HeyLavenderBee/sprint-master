@@ -37,4 +37,4 @@ async function findModulos() {
 module.exports = {
   findUsuarioByCertificadoHash,
   findModulos
-  };
+};

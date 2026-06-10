@@ -52,7 +52,7 @@ async function getCertificado() {
     return;
   }
 
-  const endpoint = `/api/certificados/hash/${encodeURIComponent(certificadoHash)}`; //encodeUriComponent garante 'segurança' no url, espaços viram %20 e etc.
+  const endpoint = `/api/certificados/${encodeURIComponent(certificadoHash)}`; //encodeUriComponent garante 'segurança' no url, espaços viram %20 e etc.
   const response = await fetch(endpoint, {
     method: "GET",
   });

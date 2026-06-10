@@ -76,6 +76,7 @@ async function getQuestion() {
     return Alerts.set("Token inválido ou expirado, faça login novamente.");
   }
 
+  console.log(data.id_questao)
   setQuestionNumberIndicator(data.numero, data.numero);
   setQuestionHtml(
     data.enunciado,

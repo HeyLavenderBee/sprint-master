@@ -17,6 +17,10 @@ router.post("/", createUsuarioController);
 router.patch("/me", authMiddleware, updateMeController);
 
 // POST api/usuarios/id-exame
+
+// TODO: juntar /id-exame e /id-usuario em uma única rota, para facilitar requisição
+
+// POST api/id-exame
 router.post("/id-exame", async function (req, res) {
   const { idUsuario } = req.body;
 
@@ -24,7 +28,7 @@ router.post("/id-exame", async function (req, res) {
     const result = await findIdExameByIdUsuario(idUsuario);
     res.send(result);
   } catch(e){
-    console.log(e.message); //<- quando houver um erro interno, esse print ajuda a decifrar qual
+    console.log(e.message);
 
     return res.status(500).json({
       message: "Erro interno no servidor"
@@ -40,7 +44,7 @@ router.post("/id-usuario", async function (req, res) {
     const result = await verifyToken(token);
     res.send(result);
   } catch(e){
-    console.log(e.message); //<- quando houver um erro interno, esse print ajuda a decifrar qual
+    console.log(e.message);
 
     return res.status(500).json({
       message: "Erro interno no servidor"
@@ -75,12 +79,35 @@ curl -X PATCH http://localhost:3000/api/usuarios/me \
     "senha": "123456"
   }'
 
-Pegar o idUsuario:
+Atualizar nome:
+curl -X PATCH http://localhost:3000/api/usuarios/4/nome \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer SEU_TOKEN" \
+    -d '{"nome": "maria eduarda"}'
+
+Atualizar email:
+curl -X PATCH http://localhost:3000/api/usuarios/4/email \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer SEU_TOKEN" \
+    -d '{"email": "fernanda@gmail.com"}'
+
+Atualizar senha:
+curl -X PATCH http://localhost:3000/api/usuarios/4/senha \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer SEU_TOKEN" \
+    -d '{"senha": "teste1"}'
+
+Pegar o idExame
     curl -X POST http://localhost:3000/api/usuarios/id-exame \
     -H "Content-Type: application/json" \
     -d '{"idUsuario": "2"}'
 
 Resetar progresso:
 curl -X DELETE http://localhost:3000/api/usuarios/resetar-progresso -H "Authorization: Bearer SEU_TOKEN"
+
+Pegar o idUsuario
+    curl -X POST http://localhost:3000/api/usuarios/id-usuario \
+    -H "Content-Type: application/json" \
+    -d '{"token": "SEU_TOKEN"}'
 */
 
