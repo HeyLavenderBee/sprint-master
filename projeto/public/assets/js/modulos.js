@@ -27,7 +27,6 @@ async function obterDados() {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
-    console.log(data);
     const tentativasRestantes1 = document.getElementById("tentativas-restantes-1");
     const maiorPontuacao1 = document.getElementById("maior-pontuacao-1");
     let maiorNota1 = 0;
@@ -55,7 +54,6 @@ async function obterDados() {
     for(let i = 0; i < data.length; i++){
         if(data[i].id_modulo === 3){
             tentativasRestantes3.textContent = `Tentativas restantes: ${2 - data[i].tentativa}`;
-            console.log(data[i].nota);
             if(data[i].nota > maiorNota3){
                 maiorNota3 = data[i].nota;
             }
@@ -83,7 +81,9 @@ async function obterDados() {
             maiorPontuacao5.textContent = `Maior pontuação: ${maiorNota5}/10`;
         }
     }
-   } catch (error) {}
+   } catch (error) {
+      Alert.set("Erro ao pegar notas e tentativas dos módulos. <br> Tente novamente mais tarde ou faça login novamente.");
+   }
 }
 
 obterDados();
