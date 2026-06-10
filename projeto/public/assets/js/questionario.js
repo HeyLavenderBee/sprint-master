@@ -22,22 +22,21 @@ function setQuestionNumberIndicator(idQuestao, numero) {
   progressIndicator.style.width = `${percentage}%`;
 }
 
-function disableNextQuestionButton(){
-  if(resposta.length == 0){
+function disableNextQuestionButton() {
+  if (resposta.length == 0) {
     selectA.checked = false;
     selectB.checked = false;
     selectC.checked = false;
     selectD.checked = false;
     nextButton.disabled = true;
     nextButton.className = "button disabled";
-  }
-  else{
+  } else {
     nextButton.disabled = false;
     nextButton.className = "button";
   }
 }
 
-function setMarkedAlternative(selected){
+function setMarkedAlternative(selected) {
   nextButton.disabled = false;
   nextButton.className = "button";
   resposta = selected;
@@ -76,7 +75,7 @@ async function getQuestion() {
     return Alerts.set("Token inválido ou expirado, faça login novamente.");
   }
 
-  console.log(data.id_questao)
+  console.log(data.id_questao);
   setQuestionNumberIndicator(data.numero, data.numero);
   setQuestionHtml(
     data.enunciado,
@@ -88,11 +87,13 @@ async function getQuestion() {
   );
 }
 
+resposta = "";
+disableNextQuestionButton();
 async function nextQuestion() {
   var token = localStorage.getItem("token");
 
   console.log(resposta);
-  if(resposta.length != 1 || resposta.length == 0){
+  if (resposta.length != 1 || resposta.length == 0) {
     return alert("Marque uma alternativa antes de ir para próxima questão");
   }
 
@@ -145,7 +146,8 @@ async function nextQuestion() {
   });
 
   getQuestion();
-
+  resposta = "";
+  disableNextQuestionButton();
   document.querySelectorAll('input[type="radio"]').forEach((input) => {
     input.checked = false;
   });
@@ -156,7 +158,15 @@ getQuestion();
 
 nextButton.addEventListener("click", nextQuestion);
 
-selectA.addEventListener("click", function(){setMarkedAlternative("a")});
-selectB.addEventListener("click", function(){setMarkedAlternative("b")});
-selectC.addEventListener("click", function(){setMarkedAlternative("c")});
-selectD.addEventListener("click", function(){setMarkedAlternative("d")});
+selectA.addEventListener("click", function () {
+  setMarkedAlternative("a");
+});
+selectB.addEventListener("click", function () {
+  setMarkedAlternative("b");
+});
+selectC.addEventListener("click", function () {
+  setMarkedAlternative("c");
+});
+selectD.addEventListener("click", function () {
+  setMarkedAlternative("d");
+});

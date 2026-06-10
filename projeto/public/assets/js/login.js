@@ -40,7 +40,6 @@ async function loginUsuario() {
         }
 
         localStorage.setItem("token", token);
-        Verificacao.set("Usuário logado com sucesso!");
         window.location.href = "home.html";
     } catch (e) {
         Alerts.set("Erro interno do servidor");

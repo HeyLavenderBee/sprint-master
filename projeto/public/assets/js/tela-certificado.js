@@ -13,14 +13,39 @@ async function getUsuario() {
 
   const data = await response.json();
 
-  if (!response.ok) {
-    console.error("Erro ao buscar usuário:", data);
-    return;
+  if (!response.ok && data.message?.includes("token")) {
+    Redirecionar.set(data.message, "index.html");
+  } else if (!response.ok) {
+    return Redirecionar.set(
+      data.message
+        ? data.message
+        : "Você precisa concluir todos os módulos antes.",
+      "dashboard.html",
+    );
   }
 
   userName.innerText = data.nome;
 
-  buttonLink.setAttribute("href", `certificado.html?certificado=${data.certificado_hash}`)
+  const endpointCertificado = `/api/certificados/${data.certificado_hash}`;
+  const responseCertificado = await fetch(endpointCertificado, {
+    method: "GET",
+  });
+
+  const dataCertificado = await responseCertificado.json();
+
+  if (!responseCertificado.ok) {
+    return Redirecionar.set(
+      dataCertificado.message
+        ? dataCertificado.message
+        : "Você precisa concluir todos os módulos antes.",
+      "dashboard.html",
+    );
+  }
+
+  buttonLink.setAttribute(
+    "href",
+    `certificado.html?certificado=${data.certificado_hash}`,
+  );
 }
 
 
