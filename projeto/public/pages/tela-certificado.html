@@ -48,7 +48,7 @@
 
         <!--Botão baixar-->
         <div class="button-baixar">
-          <button class="button-baixar-d">Baixar</button>
+          <button class="button-baixar-d" id="button-baixar" onclick="generatePDF()">Baixar</button>
         </div>
       </div>
 
@@ -62,13 +62,13 @@
           <!--Botão abrir-->
           <div class="button-abrir">
             <a href="certificado.html" id="button-abrir-link">
-              <button class="button-abrir-d">Abrir</button>
+              <button class="button-abrir-d" id="button-abrir">Abrir</button>
             </a>
           </div>
 
           <!--Botão imprimir-->
           <div class="button-imprimir">
-            <button class="button-imprimir-d">Imprimir</button>
+            <button class="button-imprimir-d" id="button-imprimir" onclick="generatePDF()">Imprimir</button>
           </div>
         </div>
       </div>
@@ -79,5 +79,8 @@
     </footer>
 
     <script src="assets/js/tela-certificado.js"></script>
+    <!-- <script src="assets/js/certificado.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js" integrity="sha512-+EeCylkt9WHJk5tGJxYdecHOcXFRME7qnbsfeMsdQL6NUPYm2+uGFmyleEqsmVoap/f3dN/sc3BX9t9kHXkHHg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </body>
 </html>
