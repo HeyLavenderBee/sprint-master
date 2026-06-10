@@ -2,9 +2,12 @@
 /*COMEÇO DA ESTILIZAÇÃO DA TELA RESULTADO QUESTIONÁRIO*/
 
 .main-quiz-result{
-  height: 100vh;
+  box-sizing: border-box;
+  margin-top: 2rem;
+  height: 100%;
   width: 100%; 
 } 
+
 .quiz-result-content {
   background-color: #fff8ef;
   margin: 0;
@@ -70,6 +73,26 @@
 }
 .quiz-result-text.a {
   color: #1461C2;
+}
+
+.choice-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-choice-container{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.choice-text{
+  font-size: 18px;
+  margin-bottom: 2rem;
 }
 
 /*FIM DA ESTILIZAÇÃO DA TELA RESULTADO QUESTIONÁRIO*/
