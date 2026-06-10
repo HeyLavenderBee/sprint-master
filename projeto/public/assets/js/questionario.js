@@ -107,9 +107,10 @@ async function getQuestion() {
     window.location.href = "resultado-questionario.html";
     return;
   } else if (!response.ok) {
-    return alert(data.message);
+    return Alerts.set("Token inválido ou expirado, faça login novamente.");
   }
 
+  console.log(data.id_questao);
   setQuestionNumberIndicator(data.numero, data.numero);
   setQuestionHtml(
     data.enunciado,
@@ -122,6 +123,8 @@ async function getQuestion() {
   setModuleTitle();
 }
 
+resposta = "";
+disableNextQuestionButton();
 async function nextQuestion() {
   var token = localStorage.getItem("token");
 
@@ -144,7 +147,7 @@ async function nextQuestion() {
     window.location.href = "resultado-questionario.html";
     return;
   } else if (!response.ok) {
-    return alert(data.message);
+    return Alerts.set("Token inválido ou expirado, faça login novamente.");
   }
 
   endpoint = `api/usuarios/id-usuario`;
@@ -179,7 +182,8 @@ async function nextQuestion() {
   });
 
   getQuestion();
-
+  resposta = "";
+  disableNextQuestionButton();
   document.querySelectorAll('input[type="radio"]').forEach((input) => {
     input.checked = false;
   });

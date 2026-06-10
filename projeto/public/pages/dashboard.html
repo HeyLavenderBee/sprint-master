@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/assets/css/alertas.css">
   </head>
   <body class="dashboard">
     <div class="app">
@@ -109,7 +110,7 @@
             </label>
           <button type="button" class="btn-edit" id="btn-save-edit">Salvar alteraçôes</button>
         </div>
-        <a href="./index.html" class="link-logout"><button type="button" class="btn-logout" >Sair da conta</button></a>
+        <a class="link-logout" id="btn-logout"><button type="button" class="btn-logout" >Sair da conta</button></a>
       </aside>
 
       <main class="main" id="conteudo-principal">
@@ -170,7 +171,7 @@
           <div class="diploma-art" aria-hidden="true">
             <img class="diploma" src="/assets/img/diploma-dashboard.png" />
           </div>
-          <a href="tela-certificado.html"><button type="button" class="btn-primary">Ver certificado</button></a>
+          <a class="btn-primary blocked" id="btn-certificado">Ver certificado</a>
         </section>
       </main>
     </div>
@@ -188,6 +189,7 @@
         mql.addEventListener("change", syncCpf);
       })();
     </script>
-    <script src="assets/js/dashboard.js"></script>
+    <script src="/assets/js/alertas.js" defer></script>
+    <script src="/assets/js/dashboard.js" defer></script>
   </body>
 </html>

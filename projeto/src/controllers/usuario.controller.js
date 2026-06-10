@@ -1,4 +1,8 @@
-const { findUsuarioById } = require("../repositories/usuarios.repository");
+const {
+  deleteProgressByUsuario,
+  findUsuarioById,
+  findIdExameByIdUsuario,
+} = require("../repositories/usuarios.repository");
 const {
   cadastrarUsuario,
   alterarUsuario,
@@ -11,7 +15,7 @@ async function createUsuarioController(req, res) {
 
   //caso não seja enviado um desses campos, mostra uma mensagem com status de erro
   //isso evita que o backend receba mensagens erradas
-  if (!cpf || !nome || !senha || !email ) {
+  if (!cpf || !nome || !senha || !email) {
     return res
       .status(400)
       .json({ message: "Nome, CPF, e-mail e senha são obrigatórios." });
@@ -25,7 +29,7 @@ async function createUsuarioController(req, res) {
 
   try {
     const result = await cadastrarUsuario(nome, email, cpf, senha);
-    res.send(result);
+    res.status(201).json(result);
   } catch (e) {
     console.log(e.message); //<- quando houver um erro interno, esse print ajuda a decifrar qual
     if (e && e.code == "23505") {
@@ -76,19 +80,20 @@ async function updateMeController(req, res) {
         message: "Já existe usuário com os dados informados.",
       });
     }
-
     return res.status(500).json({
       message: "Erro interno do servidor. Tente novamente mais tarde.",
     });
   }
 }
+
 async function getUsuarioController(req, res) {
   try {
     const usuario = req.usuario;
     return res.status(200).json(usuario);
   } catch (e) {
-    console.log(e.message);
-    return res.status(500).json({ message: "Erro interno no servidor. Tente novamente mais tarde." });
+    return res.status(500).json({
+      message: "Erro interno do servidor. Tente novamente mais tarde.",
+    });
   }
 }
 
@@ -97,8 +102,14 @@ async function getUsuarioController(req, res) {
     const usuario = req.usuario;
     return res.status(200).json(usuario);
   } catch (e) {
-    console.log(e.message);
-    return res.status(500).json({ message: "Erro interno no servidor. Tente novamente mais tarde." });
+      if (e && e.code == "23505") {
+      return res.status(404).json({
+        message: "Já existe usuário com o email informado",
+      });
+    }
+    return res.status(500).json({
+      message: "Erro interno do servidor. Tente novamente mais tarde.",
+    });
   }
 }
 
@@ -122,12 +133,32 @@ async function changePhotoController(req, res){
     const result = await mudarFoto(idUsuario, imagem);
     return res.status(200).json(result);
   } catch(e){
-    console.log(e.message);
     return res.status(500).json({ message: "Erro interno no servidor. Tente novamente mais tarde." });
   }
 }
 
+async function deleteProgressController(req, res) {
+  const idUsuario = req.usuario.id_usuario;
+  try {
+    const idExame = await findIdExameByIdUsuario(idUsuario);
+    if (!idExame) {
+      return res.status(404).json({
+        message: "Exame não encontrado",
+      });
+    }
+
+    const deletado = deleteProgressByUsuario(idExame);
+    return res.status(200).json(deletado);
+  } catch (e) {
+    console.log(e.message);
+    return res.status(400).json({
+      message: "Erro interno do servidor",
+    });
+  }
+}
+
 module.exports = {
+  deleteProgressController,
   createUsuarioController,
   updateMeController,
   getUsuarioController,

@@ -41,6 +41,7 @@ function calculateAverageGrade(modulosConcluidos) {
   const soma = notas.reduce((total, nota) => total + nota, 0);
   return (soma / notas.length).toFixed(2).replace(".", ",");
 }
+console.log("a")
 
 // Função para pegar o certificado
 async function getCertificado() {
@@ -48,20 +49,30 @@ async function getCertificado() {
   const certificadoHash = urlParams.get("certificado"); // pega o certificado_hash no url '?certificado=certificado_hash'
 
   if (!certificadoHash) {
-    console.error("Hash do certificado não foi informado na URL");
-    return;
+    return Redirecionar.set(
+      "O url do certificado não foi informado.",
+      "dashboard.html",
+    );
   }
 
-  const endpoint = `/api/certificados/hash/${encodeURIComponent(certificadoHash)}`; //encodeUriComponent garante 'segurança' no url, espaços viram %20 e etc.
+  const endpoint = `/api/certificados/${encodeURIComponent(certificadoHash)}`; //encodeUriComponent garante 'segurança' no url, espaços viram %20 e etc.
   const response = await fetch(endpoint, {
     method: "GET",
   });
 
   const data = await response.json();
-
-  if (!response.ok) {
-    alert(data.message); //fornece o erro, geralmente aparece: 'Certificado indisponível: Conclusão de todos os módulos obrigatória'
-    return;
+  
+  // Adicionei essa verficação pois o data.message pode ser sobre o token
+  //  ou sobre o certificado, e dessa forma, é possível redirecionar para página certa.
+  if (!response.ok && data.message?.includes("token")) {
+    Redirecionar.set(data.message, "index.html");
+  } else if (!response.ok) {
+    return Redirecionar.set(
+      data.message
+        ? data.message
+        : "Você precisa concluir todos os módulos antes.",
+      "dashboard.html",
+    );
   }
 
   userCPF.innerText = formatCpf(data.aluno?.cpf) || "";

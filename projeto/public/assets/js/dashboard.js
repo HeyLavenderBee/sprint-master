@@ -7,6 +7,8 @@ const btnAltPassword = document.getElementById("alt-password");
 const btnChangePfp = document.getElementById("btn-pfp");
 const btnOpenEdit = document.getElementById("btn-open-edit");
 const btnEdit = document.getElementById("btn-save-edit");
+const btnCertificado = document.getElementById("btn-certificado");
+const btnLogOut = document.getElementById("btn-logout");
 //inputs
 const nameInput = document.getElementById("name-input");
 const emailInput = document.getElementById("email-input");
@@ -57,8 +59,9 @@ async function changeCurrentProfilePhoto() {
   const currentPhoto = await getCurrentProfilePhoto();
   var nextPhoto = currentPhoto;
 
-  // TROCAR O NÚMERO ABAIXO PELO NOME DA PENÚLTIMA FOTO DA LISTA DE FOTOS
-  if (currentPhoto > 0) {
+  var imagensLength = 2; //MUDE ISSO DE ACORDO COM QUANTAS FOTOS TEM NA PASTA
+
+  if (currentPhoto > imagensLength - 1) {
     nextPhoto = 0;
   } else {
     nextPhoto++;
@@ -78,83 +81,6 @@ async function changeCurrentProfilePhoto() {
   });
 
   getDisplayData();
-}
-
-async function getUserProgress() {
-  const token = localStorage.getItem("token");
-
-  try {
-    const endpoint = `/api/questoes/modulos-respondidos`;
-    const response = await fetch(endpoint, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return alert(data.message ? data.message : "Ocorreu um erro");
-    }
-    graphMaker(data);
-    checklistMaker(data);
-  } catch (e) {
-    alert("Erro interno do servidor");
-  }
-}
-
-async function getDisplayData() {
-  const token = localStorage.getItem("token");
-
-  try {
-    const endpoint = `/api/usuarios/usuario`;
-    const response = await fetch(endpoint, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return alert(data.message ? data.message : "Ocorreu um erro");
-    }
-    var profilePhoto = await getCurrentProfilePhoto();
-    photoDisplay.src = `assets/img/fotos-perfil/${profilePhoto}.png`;
-    nameDisplay.innerHTML = data.nome;
-    emailDisplay.innerHTML = data.email;
-    getUserProgress();
-  } catch (e) {
-    alert("Erro interno do servidor");
-  }
-}
-
-function normalizarCPF(cpf) {
-  const txtSemEspaco = cpf.replace(/\s/g, "");
-  const txtSemPontuacao = txtSemEspaco.replace(/[^0-9]/g, "");
-  return txtSemPontuacao;
-}
-
-async function getUserData() {
-  const token = localStorage.getItem("token");
-
-  try {
-    const endpoint = `/api/usuarios/usuario`;
-    const response = await fetch(endpoint, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return alert(data.message ? data.message : "Ocorreu um erro");
-    }
-
-    nameInput.value = data.nome;
-    emailInput.value = data.email;
-    cpfInput.value = data.cpf;
-  } catch (e) {
-    alert("Erro interno do servidor");
-  }
 }
 
 async function checklistMaker(data) {
@@ -230,6 +156,83 @@ async function checklistMaker(data) {
   checklist.innerHTML = list;
 }
 
+async function getUserProgress() {
+  const token = localStorage.getItem("token");
+
+  try {
+    const endpoint = `/api/questoes/modulos-respondidos`;
+    const response = await fetch(endpoint, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) return Redirecionar.set(data.message ? data.message : "Ocorreu um erro", "index.html");
+    graphMaker(data);
+    checklistMaker(data);
+
+    if (data.length == 6) {
+      btnCertificado.classList.remove("blocked");
+      btnCertificado.setAttribute("href", "tela-certificado.html");
+    }
+  } catch (e) {
+    Alerts.set("Erro interno do servidor. Tente novamente mais tarde.");
+  }
+}
+
+async function getDisplayData() {
+  const token = localStorage.getItem("token");
+
+  try {
+    const endpoint = `/api/usuarios/usuario`;
+    const response = await fetch(endpoint, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) return Redirecionar.set(data.message ? data.message : "Ocorreu um erro", "index.html");
+    
+    var profilePhoto = await getCurrentProfilePhoto();
+    photoDisplay.src = `assets/img/fotos-perfil/${profilePhoto}.png`;
+    nameDisplay.innerHTML = data.nome;
+    emailDisplay.innerHTML = data.email;
+    getUserProgress();
+  } catch (e) {
+    Alerts.set("Erro interno do servidor. Tente novamente mais tarde.");
+  }
+}
+
+function normalizarCPF(cpf) {
+  const txtSemEspaco = cpf.replace(/\s/g, "");
+  const txtSemPontuacao = txtSemEspaco.replace(/[^0-9]/g, "");
+  return txtSemPontuacao;
+}
+
+async function getUserData() {
+  const token = localStorage.getItem("token");
+
+  try {
+    const endpoint = `/api/usuarios/usuario`;
+    const response = await fetch(endpoint, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) return Redirecionar.set(data.message ? data.message : "Ocorreu um erro", "index.html");
+
+    nameInput.value = data.nome;
+    emailInput.value = data.email;
+    cpfInput.value = data.cpf;
+  } catch (e) {
+    Alerts.set("Erro interno do servidor. Tente novamente mais tarde.");
+  }
+}
+
 async function updateUserData() {
   var nome = nameInput.value.trim();
   var email = emailInput.value.trim();
@@ -239,9 +242,7 @@ async function updateUserData() {
   const token = localStorage.getItem("token");
 
   if (nameInput.disabled == false) {
-    if (nome == "") {
-      return alert("Campo nome está vazio.");
-    }
+    if (nome == "") return Alerts.set("Campo nome está vazio.");
     try {
       const endpoint = `/api/usuarios/me`;
       const response = await fetch(endpoint, {
@@ -254,16 +255,14 @@ async function updateUserData() {
       });
 
       const data = await response.json();
-      if (!response.ok) {
-        return alert(data.message ? data.message : "Ocorreu um erro");
-      }
+      if (!response.ok) return Redirecionar.set(data.message ? data.message : "Ocorreu um erro", "index.html");
     } catch (e) {
-      alert("Erro interno do servidor");
+      Alerts.set("Erro interno do servidor. Tente novamente mais tarde.");
     }
   }
   if (emailInput.disabled == false) {
     if (email == "") {
-      return alert("Campo email está vazio.");
+      return Alerts.set("Campo email está vazio.");
     }
     try {
       const endpoint = `/api/usuarios/me`;
@@ -278,19 +277,19 @@ async function updateUserData() {
 
       const data = await response.json();
       if (!response.ok) {
-        return alert(data.message ? data.message : "Ocorreu um erro");
+        return Redirecionar.set(data.message ? data.message : "Ocorreu um erro", "index.html");
       }
     } catch (e) {
-      alert("Erro interno do servidor");
+      Alerts.set("Erro interno do servidor. Tente novamente mais tarde.");
     }
   }
   if (cpfInput.disabled == false) {
-    if (cpf == "") {
-      return alert("Campo CPF está vazio.");
-    }
-    if (cpf.length !== 11) {
-      return alert("CPF inválido. Informe os 11 dígitos.");
-    }
+    if (cpf == "")
+      return Alerts.set("Campo CPF está vazio.");
+    
+    if (cpf.length !== 11)
+      return Alerts.set("CPF inválido. Informe os 11 dígitos.");
+    
     try {
       const endpoint = `/api/usuarios/me`;
       const response = await fetch(endpoint, {
@@ -303,23 +302,21 @@ async function updateUserData() {
       });
 
       const data = await response.json();
-      if (!response.ok) {
-        return alert(data.message ? data.message : "Ocorreu um erro");
-      }
+      if (!response.ok) return Redirecionar.set(data.message ? data.message : "Ocorreu um erro", "index.html");
     } catch (e) {
-      alert("Erro interno do servidor");
+      Alerts.set("Erro interno do servidor. Tente novamente mais tarde.");
     }
   }
   if (passwordInput.disabled == false) {
-    if (senha == "") {
-      return alert("Campo senha está vazio.");
-    }
-    if (senha.length < 6) {
-      return alert("A senha deve ter pelo menos 6 caracteres.");
-    }
-    if (senha != confsenha) {
-      return alert("Senhas diferentes.");
-    }
+    if (senha == "")
+      return Alerts.set("Campo senha está vazio.");
+    
+    if (senha.length < 6)
+      return Alerts.set("A senha deve ter pelo menos 6 caracteres.");
+    
+    if (senha != confsenha)
+      return Alerts.set("As duas senhas precisam ser iguais para alterá-la.");
+    
     try {
       const endpoint = `/api/usuarios/me`;
       const response = await fetch(endpoint, {
@@ -332,16 +329,14 @@ async function updateUserData() {
       });
 
       const data = await response.json();
-      if (!response.ok) {
-        return alert(data.message ? data.message : "Ocorreu um erro");
-      }
+      if (!response.ok) return Redirecionar.set(data.message ? data.message : "Ocorreu um erro", "index.html");
     } catch (e) {
-      alert("Erro interno do servidor");
+      Alerts.set("Erro interno do servidor. Tente novamente mais tarde.");
     }
   }
   getDisplayData();
   resetEverything();
-  return alert("Usuário atualizado com sucesso!");
+  return Verificacao.set("Usuário atualizado com sucesso!");
 }
 
 function resetEverything() {
@@ -390,6 +385,11 @@ btnChangePfp.addEventListener("click", function () {
 });
 btnEdit.addEventListener("click", function () {
   updateUserData();
+});
+// Função para deslogar o perfil do usuário.
+btnLogOut.addEventListener("click", function () {
+  localStorage.removeItem("token");
+  window.location.href = "index.html";
 });
 
 resetEverything();

@@ -7,6 +7,10 @@
     <link rel="icon" href="assets/img/scrum-master-logo-circle.ico" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/modulos.css" />
+      <link rel="stylesheet" href="/assets/css/alertas.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body class="body-modulos">
     <header id="header"></header>
@@ -40,7 +44,7 @@
         </h3>
       </div>
 
-      <div class="modulos">
+      <div class="modulos" id="modulo-1">
         <img
           class="item-direita"
           src="assets/img/item-direita-modulos.png"
@@ -66,14 +70,14 @@
             entregas aos clientes.
           </p>
           <div class="posicao-btn-modulos">
-            <a href="questionario.html"
-              ><button class="btn-modulos">Acessar</button></a
-            >
+            <span class="aviso-tentativas" id="tentativas-restantes-1">Tentativas restantes: 2</span>
+            <span class="aviso-tentativas" id="maior-pontuacao-1">Sua maior pontuação: 0/10</span>
+            <a class="btn-modulos blocked" id="btn-modulo-1">Bloqueado</a>
           </div>
         </div>
       </div>
 
-      <div class="modulos">
+      <div class="modulos"id="modulo-2">
         <img
           class="item-esquerda"
           src="assets/img/item-esquerda-modulos.png"
@@ -99,14 +103,14 @@
             essenciais, como o Product Backlog e o Sprint Backlog.
           </p>
           <div class="posicao-btn-modulos">
-            <a href="questionario.html"
-              ><button class="btn-modulos">Acessar</button></a
-            >
+            <span class="aviso-tentativas" id="tentativas-restantes-2">Tentativas restantes: 2</span>
+            <span class="aviso-tentativas" id="maior-pontuacao-2">Sua maior pontuação: 0/10</span>
+            <a class="btn-modulos blocked" id="btn-modulo-2">Bloqueado</a>
           </div>
         </div>
       </div>
 
-      <div class="modulos">
+      <div class="modulos" id="modulo-3">
         <img
           class="item-direita"
           src="assets/img/item-direita-modulos.png"
@@ -132,14 +136,14 @@
             diárias, revisão e retrospectiva.
           </p>
           <div class="posicao-btn-modulos">
-            <a href="questionario.html"
-              ><button class="btn-modulos">Acessar</button></a
-            >
+            <span class="aviso-tentativas" id="tentativas-restantes-3">Tentativas restantes: 2</span>
+            <span class="aviso-tentativas" id="maior-pontuacao-3">Sua maior pontuação: 0/10</span>
+            <a class="btn-modulos blocked" id="btn-modulo-3">Bloqueado</a>
           </div>
         </div>
       </div>
 
-      <div class="modulos">
+      <div class="modulos" id="modulo-4">
         <img
           class="item-esquerda"
           src="assets/img/item-esquerda-modulos.png"
@@ -165,14 +169,14 @@
             envolvendo a qualidade da entrega.
           </p>
           <div class="posicao-btn-modulos">
-            <a href="questionario.html"
-              ><button class="btn-modulos">Acessar</button></a
-            >
+            <span class="aviso-tentativas" id="tentativas-restantes-4">Tentativas restantes: 2</span>
+            <span class="aviso-tentativas" id="maior-pontuacao-4">Sua maior pontuação: 0/10</span>
+            <a class="btn-modulos blocked" id="btn-modulo-4">Bloqueado</a>
           </div>
         </div>
       </div>
 
-      <div class="modulo5">
+      <div class="modulos" id="modulo-5">
         <div class="img-modulos">
           <img class="img" src="assets/img/modulo5.png" alt="Erro" />
         </div>
@@ -187,16 +191,17 @@
             problemas até a análise crítica para a tomada de decisão.
           </p>
           <div class="posicao-btn-modulos">
-            <a href="questionario.html"
-              ><button class="btn-modulos">Acessar</button></a
-            >
+            <span class="aviso-tentativas" id="tentativas-restantes-5">Tentativas restantes: 2</span>
+            <span class="aviso-tentativas" id="maior-pontuacao-5">Sua maior pontuação: 0/10</span>
+            <a class="btn-modulos blocked" id="btn-modulo-5">Bloqueado</a>
           </div>
         </div>
       </div>
 
       <p class="copyright">&copy; Sprint Masters 2026</p>
     </main>
-    <script src="../assets/js/modulos.js"></script>
+    <script src="/assets/js/alertas.js" defer></script>
+    <script src="/assets/js/modulos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@hiseb/confetti@2.1.0/dist/confetti.min.js"></script>
 
   </body>

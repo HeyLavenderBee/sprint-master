@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/tela-certificado.css" />
     <link rel="icon" href="assets/img/scrum-master-logo-circle.ico" />
+      <link rel="stylesheet" href="/assets/css/alertas.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Scrum Master</title>
   </head>
   <body class="body-certificado">
@@ -53,30 +57,37 @@
 
         <!--Botão baixar-->
         <div class="button-baixar">
-          <button class="button-baixar-d">Baixar</button>
+          <button class="button-baixar-d" id="button-baixar" onclick="generatePDF()">Baixar</button>
         </div>
       </div>
 
       <div class="container-blue">
         <!--area do certificado-->
-        <div class="blue-container"><img src="assets/img/tela-certificado/certificado-placeholder.jpg"></div>
+        <div class="blue-container">
+          <img src="assets/img/tela-certificado/certificado-placeholder.jpg" />
+        </div>
 
         <div class="button-aligment">
           <!--Botão abrir-->
           <div class="button-abrir">
             <a href="certificado.html" id="button-abrir-link">
-              <button class="button-abrir-d">Abrir</button>
+              <button class="button-abrir-d" id="button-abrir">Abrir</button>
             </a>
           </div>
 
           <!--Botão imprimir-->
           <div class="button-imprimir">
-            <button class="button-imprimir-d">Imprimir</button>
+            <button class="button-imprimir-d" id="button-imprimir" onclick="generatePDF()">Imprimir</button>
           </div>
         </div>
       </div>
-      <div class="watermark"><p>© Sprint Master 2026</p></div>
     </main>
-    <script src="assets/js/tela-certificado.js"></script>
+    <footer class="watermark">
+      <p>© Sprint Master 2026</p>
+    </footer>
+    <script src="/assets/js/alertas.js" defer></script>
+    <script src="assets/js/tela-certificado.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js" integrity="sha512-+EeCylkt9WHJk5tGJxYdecHOcXFRME7qnbsfeMsdQL6NUPYm2+uGFmyleEqsmVoap/f3dN/sc3BX9t9kHXkHHg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </body>
 </html>

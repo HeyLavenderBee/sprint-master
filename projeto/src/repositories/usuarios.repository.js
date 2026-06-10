@@ -215,12 +215,39 @@ async function mudarFotoPerfil(idUsuario, imagem) {
   return result.rows[0] || null;
 }
 
+async function deleteProgressByUsuario(idExame){
+    const result = await pool.query(`
+        DELETE 
+        FROM respostas 
+        WHERE id_exame = $1`,
+        [idExame.id_exame]
+    );
+
+    const exameAtualizou = updateExameModulo(idExame)
+
+    return true;
+}
+
+async function updateExameModulo(idExame){
+    const result = await pool.query(`
+    UPDATE exames
+    SET id_modulo = 1
+    WHERE id_exame = $1;
+    `,
+    [idExame.id_exame]
+  );
+
+  return true;
+}
+
 module.exports = {
-  createUsuario,
-  findUsuarioByCpfAndSenha,
-  findUsuarioById,
-  findIdExameByIdUsuario,
-  updateUsuario,
-  pegarFotoPerfil,
-  mudarFotoPerfil,
+    deleteProgressByUsuario,
+    createUsuario,
+    updateExameModulo,
+    findUsuarioByCpfAndSenha,
+    findUsuarioById,
+    findIdExameByIdUsuario,
+    updateUsuario,
+    pegarFotoPerfil,
+    mudarFotoPerfil,
 };

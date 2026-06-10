@@ -111,7 +111,7 @@ header {
 .user-texto {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .texto-menu {
