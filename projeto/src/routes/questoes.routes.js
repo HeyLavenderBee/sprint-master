@@ -43,7 +43,7 @@ curl -X PATCH http://localhost:3000/api/questoes/proximo-modulo \
 
 Comando para ver módulos respondidos:
 curl -X GET http://localhost:3000/api/questoes/modulos-respondidos \
-  -H "Authorization: Bearer SEU_TOKEN"
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjo2NSwiaWF0IjoxNzgwNDA5MjMyLCJleHAiOjE3ODA0MTA0MzJ9.IUrIKAkQ8bQ9bGDsVLyR0U5RAb_3l6pZIVzK3O4sQx8"
 
 */
 
