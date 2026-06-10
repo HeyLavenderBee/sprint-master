@@ -69,7 +69,7 @@ async function getModulos() {
 
   const data = await response.json();
 
-  var currentModule = 1;
+  var currentModule = 0;
   for (let i = 0; i < data.length; i++) {
     if (i == data.length - 1) {
       currentModule = data[i].id_modulo;
