@@ -26,7 +26,6 @@ async function getProximaQuestaoController(req, res) {
 
 async function responderQuestaoController(req, res) {
   try {
-    console.log("body", req.body);
     const { id_exame, id_questao, resposta } = req.body;
 
     const result = await responderQuestao(
@@ -113,8 +112,9 @@ async function proximoModuloController(req, res) {
         message: "Módulo atual não encontrado.",
       });
     }
-
+    
     if (result.status === "nota-menor-minima") {
+      console.log("nota minima")
       return res.status(400).json({
         message: "Você não atingiu a nota mínima para o módulo atual. Realize outra tentativa para tentar novamente."
       })
@@ -138,9 +138,9 @@ async function proximoModuloController(req, res) {
       });
     }
 
-
     return res.status(200).json(result.exame);
   } catch (e) {
+    console.log(e.message)
     return res.status(500).json({
       message: "Erro interno do servidor. Tente novamente mais tarde.",
     });
