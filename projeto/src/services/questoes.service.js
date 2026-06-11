@@ -127,6 +127,7 @@ async function iniciarProximoModulo(idUsuario){
     }
 
     const notaModulo = await findNotaModuloAtualByUsuario(idUsuario, moduloAtual);
+    console.log
     if(notaModulo < 7){
       return { status: "nota-menor-minima" };
     }
@@ -155,6 +156,11 @@ async function iniciarProximoModulo(idUsuario){
       return {
         status: "exame-nao-encontrado",
       };
+    }
+
+    return {
+        status: "atualizada",
+        exame
     }
 }
 

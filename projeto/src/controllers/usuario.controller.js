@@ -91,17 +91,6 @@ async function getUsuarioController(req, res) {
     const usuario = req.usuario;
     return res.status(200).json(usuario);
   } catch (e) {
-    return res.status(500).json({
-      message: "Erro interno do servidor. Tente novamente mais tarde.",
-    });
-  }
-}
-
-async function getUsuarioController(req, res) {
-  try {
-    const usuario = req.usuario;
-    return res.status(200).json(usuario);
-  } catch (e) {
       if (e && e.code == "23505") {
       return res.status(404).json({
         message: "Já existe usuário com o email informado",
