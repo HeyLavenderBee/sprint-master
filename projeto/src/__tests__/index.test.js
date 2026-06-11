@@ -6,6 +6,14 @@ const authMiddleware = require("../middlewares/auth.middleware");
 const { deleteUsuarioByCpf } = require("../repositories/test.repository"); 
 
 let token = "";
+const alternativasCorretas = [
+  "b", "b", "c", "d", "b", "b", "c", "c", "b", "c", // questões 1-10
+  "c", "a", "c", "b", "b", "b", "b", "c", "c", "c", // questões 11-20
+  "c", "b", "b", "c", "b", "c", "b", "b", "c", "c", // questões 21-30
+  "b", "b", "b", "c", "c", "c", "c", "c", "c", "b", // questões 31-40
+  "b", "a", "c", "b", "c", "b", "b", "b", "b", "b", // questões 41-50
+  "c", "c", "b", "b", "b", "b", "c", "c", "c", "b", // questões 51-60
+];
 
 afterAll(async () => {
     await pool.end();
@@ -112,15 +120,49 @@ describe("responder questão", () => {
     let idUsuario;
     let idExame;
     let idQuestao;
+    let alternativa;
     //pega variáveis importantes antes de realizar o teste
-    for(let i = 0; i < 10; i++) {
-        beforeEach(async () => {
+    beforeEach(async () => {
+        const responseQuestao = await request(app).get("/api/questoes/proxima-questao")
+        .set('Authorization', `Bearer ${token}`)
+        .send({token});
+
+        idQuestao = await responseQuestao.body.id_questao;
+
+        const response = await request(app).post("/api/usuarios/id-usuario")
+        .set('Content-Type',  'application/json')
+        .send({token});
+
+        idUsuario = await response.body.id_usuario;
+
+        const responseExame = await request(app).post("/api/usuarios/id-exame")
+        .set('Content-Type',  'application/json')
+        .send({idUsuario});
+
+        idExame = await responseExame.body.id_exame;
+
+        alternativa = alternativasCorretas[idQuestao-1]
+    });
+    it("retornar status 201 caso usuário responda a questão", async () => {
+        const response = await request(app).post("/api/questoes/responder")
+        .set('Authorization', `Bearer ${token}`)
+        .set('Content-Type',  'application/json')
+        .send({
+            id_exame: idExame, id_questao: idQuestao, resposta: alternativa
+        });
+        expect(response.statusCode).toEqual(201);
+    }); 
+});
+
+//TODO: concluir aqui a função de testes
+describe("próximo módulo", () => {
+    beforeEach(async () => {
+        for(let i = 0; i < 9; i++){
             const responseQuestao = await request(app).get("/api/questoes/proxima-questao")
             .set('Authorization', `Bearer ${token}`)
             .send({token});
 
             idQuestao = await responseQuestao.body.id_questao;
-            console.log("id questão: ", idQuestao)
 
             const response = await request(app).post("/api/usuarios/id-usuario")
             .set('Content-Type',  'application/json')
@@ -133,21 +175,17 @@ describe("responder questão", () => {
             .send({idUsuario});
 
             idExame = await responseExame.body.id_exame;
-        });
-        it("retornar status 201 caso usuário responda a questão", async () => {
-            const response = await request(app).post("/api/questoes/responder")
+
+            var alternativa = alternativasCorretas[idQuestao-1]
+
+            const responseFinal = await request(app).post("/api/questoes/responder")
             .set('Authorization', `Bearer ${token}`)
             .set('Content-Type',  'application/json')
             .send({
-                id_exame: idExame, id_questao: idQuestao, resposta: "c"
+                id_exame: idExame, id_questao: idQuestao, resposta: alternativa
             });
-            expect(response.statusCode).toEqual(201);
-        });
-    }
-});
-
-//TODO: concluir aqui a função de testes
-describe("próximo módulo", () => {
+        }
+    })
     it("retornar status 200 caso usuário acesse o próximo módulo", async () => {
         const response = await request(app).patch("/api/questoes/proximo-modulo")
         .set('Authorization', `Bearer ${token}`)
@@ -157,8 +195,38 @@ describe("próximo módulo", () => {
 
 //TODO: concluir aqui a função de testes
 describe("próxima tentativa", () => {
+    beforeEach(async () => {
+        for(let i = 0; i < 10; i++){
+            const responseQuestao = await request(app).get("/api/questoes/proxima-questao")
+            .set('Authorization', `Bearer ${token}`)
+            .send({token});
+
+            idQuestao = await responseQuestao.body.id_questao;
+
+            const response = await request(app).post("/api/usuarios/id-usuario")
+            .set('Content-Type',  'application/json')
+            .send({token});
+
+            idUsuario = await response.body.id_usuario;
+
+            const responseExame = await request(app).post("/api/usuarios/id-exame")
+            .set('Content-Type',  'application/json')
+            .send({idUsuario});
+
+            idExame = await responseExame.body.id_exame;
+
+            var alternativa = alternativasCorretas[idQuestao-1]
+
+            const responseFinal = await request(app).post("/api/questoes/responder")
+            .set('Authorization', `Bearer ${token}`)
+            .set('Content-Type',  'application/json')
+            .send({
+                id_exame: idExame, id_questao: idQuestao, resposta: alternativa
+            });
+        }
+    });
     it("retornar status 200 caso usuário acesse a próxima tentativa", async () => {
-        const response = await request(app).post("/api/questoes/proxima-tentativa")
+        const response = await request(app).patch("/api/questoes/proxima-tentativa")
         .set('Authorization', `Bearer ${token}`)
         expect(response.statusCode).toEqual(200);
     });

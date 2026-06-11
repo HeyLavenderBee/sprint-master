@@ -41,7 +41,6 @@ function calculateAverageGrade(modulosConcluidos) {
   const soma = notas.reduce((total, nota) => total + nota, 0);
   return (soma / notas.length).toFixed(2).replace(".", ",");
 }
-console.log("a")
 
 // Função para pegar o certificado
 async function getCertificado() {
@@ -86,8 +85,6 @@ async function getCertificado() {
     dataEmissao.innerText =
       formatDate(data.certificado?.emitidoEm) || dataEmissao.innerText; //chama a função de formatar data
   }
-
-  console.log(data);
 }
 
 getCertificado();

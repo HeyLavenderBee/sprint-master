@@ -19,6 +19,11 @@
         .then((response) => response.text())
         .then((data) => {
           document.getElementById("header").innerHTML = data;
+
+          //importa o script do header e coloca nessa página
+          const script = document.createElement("script");
+          script.src = "assets/js/header.js";
+          document.body.appendChild(script);
         });
     </script>
     <main>

@@ -13,20 +13,19 @@ async function getProximaQuestaoController(req, res) {
     if (!result) {
       return res
         .status(404)
-        .json({ message: "Nenhuma questão pendente encontrada" });
+        .json({ message: "Nenhuma questão pendente encontrada." });
     }
 
     return res.status(200).json(result);
   } catch (e) {
     return res.status(500).json({
-      message: "Erro interno do servidor",
+      message: "Erro interno do servidor. Tente novamente mais tarde",
     });
   }
 };
 
 async function responderQuestaoController(req, res) {
   try {
-    console.log("body", req.body);
     const { id_exame, id_questao, resposta } = req.body;
 
     const result = await responderQuestao(
@@ -38,20 +37,20 @@ async function responderQuestaoController(req, res) {
 
    if (result.status === "questao-nao-encontrada"){
     return res.status(404).json({
-        message: "questão não encontrada para este exame",
+        message: "Questão não encontrada para este exame.",
     });
    }
 
     if (result.status === "questao-ja-respondida") {
       return res.status(409).json({
-        message: "Questão já respondida",
+        message: "Questão já respondida.",
       });
     }
 
     return res.status(201).json(result.resposta);
   } catch (e) {
     return res.status(500).json({
-      message: "Erro interno do servidor",
+      message: "Erro interno do servidor. Tente novamente mais tarde.",
     });
   }
 };
@@ -62,31 +61,31 @@ async function proximaTentativaController(req, res) {
 
     if (result.status === "modulo-nao-concluido") {
       return res.status(409).json({
-        message: "Você ainda não concluiu todas as questões do módulo atual",
+        message: "Você ainda não concluiu todas as questões do módulo atual.",
       });
     }; 
 
     
     if (result.status === "modulo-atual-nao-encontrado") {
       return res.status(404).json({
-        message: "Módulo atual não encontrado",
+        message: "Módulo atual não encontrado.",
       });
     }
     if (result.status === "limite-tentativas") {
       return res.status(409).json({
-        message: "Limite de 2 tentativas atingido",
+        message: "Limite de 2 tentativas atingido.",
       });
     }
 
     if (result.status === "grupo-alternativo-nao-encontrado") {
       return res.status(404).json({
-        message: "Nenhum grupo alternativo disponível para este módulo",
+        message: "Nenhum grupo alternativo disponível para este módulo.",
       });
     }
 
     if (result.status === "exame-nao-encontrado") {
       return res.status(404).json({
-        message: "Exame não encontrado para atualização",
+        message: "Exame não encontrado para atualização.",
       });
     }
 
@@ -102,34 +101,40 @@ async function proximaTentativaController(req, res) {
 async function proximoModuloController(req, res) {
   const result = await iniciarProximoModulo(req.usuario.id_usuario);
   try {
-
     if (result.status === "modulo-nao-concluido") {
       return res.status(409).json({
-        message: "Você ainda não concluiu todas as questões do módulo atual",
+        message: "Você ainda não concluiu todas as questões do módulo atual.",
       });
     }
 
     if (result.status === "modulo-atual-nao-encontrado") {
       return res.status(404).json({
-        message: "Módulo atual não encontrado",
+        message: "Módulo atual não encontrado.",
       });
+    }
+    
+    if (result.status === "nota-menor-minima") {
+      console.log("nota minima")
+      return res.status(400).json({
+        message: "Você não atingiu a nota mínima para o módulo atual. Realize outra tentativa para tentar novamente."
+      })
     }
 
     if (result.status === "todos-modulos-concluidos") {
       return res.status(404).json({
-        message: "Você concluiu todos os módulos",
+        message: "Você concluiu todos os módulos.",
       });
     }
 
     if(result.status === "grupo-proximo-modulo-nao-encontrado"){
       return res.status(404).json({
-        message: "Nenhum grupo disponível para o próximo módulo",
+        message: "Nenhum grupo disponível para o próximo módulo.",
       });
     }
 
     if (result.status === "exame-nao-encontrado") {
       return res.status(404).json({
-        message: "Exame não encontrado para atualização",
+        message: "Exame não encontrado para atualização.",
       });
     }
 
@@ -137,7 +142,7 @@ async function proximoModuloController(req, res) {
   } catch (e) {
     console.log(e.message)
     return res.status(500).json({
-      message: "Erro interno do servidor",
+      message: "Erro interno do servidor. Tente novamente mais tarde.",
     });
   }
 };
@@ -149,7 +154,7 @@ async function getModulosRespondidosController(req, res) {
     return res.status(200).json(modulos);
   } catch (e) {
     return res.status(500).json({
-      message: "Erro interno do servidor",
+      message: "Erro interno do servidor. Tente novamente mais tarde.",
     });
   }
 };

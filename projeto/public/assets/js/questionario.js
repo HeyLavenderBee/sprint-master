@@ -1,6 +1,7 @@
 const questionNumberIndicator = document.getElementById(
   "question-number-indicator",
 );
+const moduleTitle = document.getElementById("module-theme");
 const progressIndicator = document.getElementById("progress-indicator");
 const nextButton = document.getElementById("next-button");
 const questionTextElement = document.getElementById("enunciado");
@@ -42,6 +43,40 @@ function setMarkedAlternative(selected) {
   resposta = selected;
 }
 
+async function getCurrentModule() {
+  const token = localStorage.getItem("token");
+
+  try {
+    const endpoint = `/api/questoes/modulos-respondidos`;
+    const response = await fetch(endpoint, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return alert(data.message ? data.message : "Ocorreu um erro");
+    }
+
+    return data[data.length-1].id_modulo;
+  } catch (e) {
+    alert("Erro interno do servidor");
+  }
+}
+
+async function setModuleTitle() {
+  const themes = [
+    "Fundamentos das Metodologias Ágeis",
+    "Scrum: Estrutura, Papéis e Artefatos",
+    "Eventos do Scrum e Fluxo de Trabalho",
+    "Práticas Ágeis, Métricas e Qualidade",
+    "Aplicação Prática, Cenários e Análise Crítica",
+  ];
+  const currentModule = await getCurrentModule();
+  moduleTitle.innerHTML = themes[currentModule-1];
+}
+
 function setQuestionHtml(question, a, b, c, d, image) {
   questionTextElement.textContent = question;
   alternativeA.textContent = a;
@@ -68,7 +103,7 @@ async function getQuestion() {
 
   const data = await response.json();
 
-  if (!response.ok && data.message == "Nenhuma questão pendente encontrada") {
+  if (!response.ok && data.message == "Nenhuma questão pendente encontrada.") {
     window.location.href = "resultado-questionario.html";
     return;
   } else if (!response.ok) {
@@ -85,6 +120,7 @@ async function getQuestion() {
     data.alternativa_d,
     data.imagem,
   );
+  setModuleTitle();
 }
 
 resposta = "";
@@ -107,7 +143,7 @@ async function nextQuestion() {
   const data = await response.json();
 
   //checa se o 'numero' é maior que 10, se sim, ir para tela de resultado questionário
-  if (!response.ok && data.message == "Nenhuma questão pendente encontrada") {
+  if (!response.ok && data.message == "Nenhuma questão pendente encontrada.") {
     window.location.href = "resultado-questionario.html";
     return;
   } else if (!response.ok) {
