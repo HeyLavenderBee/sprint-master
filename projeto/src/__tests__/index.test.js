@@ -17,7 +17,7 @@ describe("cadastro", () => {
     });
     it("retorna status 201 caso cadastro seja feito", async () => {
         const response = await request(app).post("/api/usuarios").send({
-            nome: "Jest Test", email: "jesttest@email.com", cpf: "00100100111", senha: "123456"
+            nome: "Jest Test", email: "jesttest@test.com", cpf: "00100100111", senha: "123456"
         });
         //para o teste dar certo, é preciso que a resposta tenha status 201
         //caso contrário, o teste falha
@@ -43,65 +43,67 @@ describe("login", () => {
 
 // === TESTES DE ATUALIZAR DADOS DO USUÁRIO ===
 
-/*
-//TODO: concluir aqui a função de testes
 describe("atualizar cpf", () => {
     it("retorna status 200 caso cpf seja atualizado", async () => {
-        const response = await request(app).patch("/api/usuarios/me").send({
-            //campos de envio de acordo com a rota
+        const response = await request(app).patch("/api/usuarios/me")
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+            cpf: "00100100112"
         });
-        expect(response.statusCode).toEqual(status);
+        const response2 = await request(app).patch("/api/usuarios/me")
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+            cpf: "00100100111"
+        });
+        expect(response2.statusCode).toEqual(200);
     });
 });
-*/
 
-/*
-//TODO: concluir aqui a função de testes
 describe("atualizar nome", () => {
-    it("retorna status 200 caso cpf seja atualizado", async () => {
-        const response = await request(app).patch("/api/usuarios/me").send({
-            //campos de envio de acordo com a rota
+    it("retorna status 200 caso nome seja atualizado", async () => {
+        const response = await request(app).patch("/api/usuarios/me")
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+            nome: "Super Test"
         });
-        expect(response.statusCode).toEqual(status);
+        expect(response.statusCode).toEqual(200);
     });
 });
-*/
 
-/*
-//TODO: concluir aqui a função de testes
 describe("atualizar email", () => {
-    it("retorna status 200 caso cpf seja atualizado", async () => {
-        const response = await request(app).patch("/api/usuarios/me").send({
-            //campos de envio de acordo com a rota
+    it("retorna status 200 caso email seja atualizado", async () => {
+        const response = await request(app).patch("/api/usuarios/me")
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+            email: "supertest@test.com"
         });
-        expect(response.statusCode).toEqual(status);
+        expect(response.statusCode).toEqual(200);
     });
 });
-*/
 
-/*
-//TODO: concluir aqui a função de testes
 describe("atualizar senha", () => {
-    it("retorna status 200 caso cpf seja atualizado", async () => {
-        const response = await request(app).patch("/api/usuarios/me").send({
-            //campos de envio de acordo com a rota
+    it("retorna status 200 caso senha seja atualizado", async () => {
+        const response = await request(app).patch("/api/usuarios/me")
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+            senha: "234567"
         });
-        expect(response.statusCode).toEqual(status);
+        expect(response.statusCode).toEqual(200);
     });
 });
-*/
 
-/*
-//TODO: concluir aqui a função de testes para abranger duas atualizações simultaneamente
 describe("atualizar email e senha", () => {
     it("retorna status 200 caso email e senha sejam atualizados", async () => {
-        const response = await request(app).patch("/api/usuarios/me").send({
-            //campos de envio de acordo com a rota
+        const response = await request(app).patch("/api/usuarios/me")
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+            email: "test@test.com",
+            senha: "345678"
         });
-        expect(response.statusCode).toEqual(status);
+        expect(response.statusCode).toEqual(200);
     });
 });
-*/
+
 
 
 // === TESTES RELACIONADOS A QUESTIONÁRIO ===
