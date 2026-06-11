@@ -209,7 +209,6 @@ async function setModulos() {
 
   const data = await response.json();
 
-  console.log(data)
   for (let i = 0; i < currentModule; i++) {  
     if(data[i] != undefined){
       const moduloLiberado = document.getElementById(
@@ -251,7 +250,6 @@ async function setCompletedModules() {
 
   const data = await response.json();
 
-  console.log("current",currentModule);
   if (currentModule > 1) {
     for (let i = 0; i < currentModule; i++) {
       const moduloConcluido = document.getElementById(

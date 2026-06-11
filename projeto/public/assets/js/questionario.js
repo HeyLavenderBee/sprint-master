@@ -64,7 +64,6 @@ async function getCurrentModule() {
     }
     return data[data.length-1].id_modulo;
   } catch (e) {
-    console.log(e.message)
     Alerts.set("Erro interno do servidor. Tente novamente mais tarde.");
   }
 }

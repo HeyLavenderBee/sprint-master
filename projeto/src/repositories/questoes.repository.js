@@ -291,7 +291,6 @@ async function findNotaModuloAtualByUsuario(idUsuario, moduloAtual){
   const modulos = await findModulosRespondidosByUsuario(idUsuario);
   const tentativaAtual = modulos[modulos.length-1].tentativa;
   for(let i = 0; i < modulos.length; i++){
-    console.log(modulos[i].id_modulo, moduloAtual.id_modulo, tentativaAtual)
     if(modulos[i].id_modulo == moduloAtual.id_modulo && modulos[i].tentativa == tentativaAtual){
       return modulos[i].nota;
     }
