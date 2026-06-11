@@ -174,7 +174,7 @@ async function getUserProgress() {
     graphMaker(data);
     checklistMaker(data);
 
-    if (data.length == 6) {
+    if (data.length >= 5 && data[data.length - 1].id_modulo == 5 && data[data.length - 1].nota > 6) {
       btnCertificado.classList.remove("blocked");
       btnCertificado.setAttribute("href", "tela-certificado.html");
     }
