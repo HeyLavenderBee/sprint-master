@@ -5,13 +5,13 @@ class Alerts {
                 <div class="window box">
                     <div class="w-100 box">
                         <div class="w-100 box-soon">
-                            <img src="/assets/img/scrum-master-logo-circle.png" alt="SM" class="icon-sm">
+                            <img src="/assets/img/global/scrum-master-logo-circle.png" alt="SM" class="icon-sm">
                             <span class="text-SM">Scrum Master</span>
                         </div>
                     </div>
                     <div class="w-100 box">
                         <div class="w-100 box">  
-                            <img src="/assets/img/alerta.png" alt="Alerta" class="icon-alert">
+                            <img src="/assets/img/global/alerta.png" alt="Alerta" class="icon-alert">
                         </div>
                         <span class="text">${message}</span>
                     </div>
@@ -44,13 +44,13 @@ class Verificacao {
                   <div class="window box">
                       <div class="w-100 box">
                           <div class="w-100 box-soon">
-                              <img src="/assets/img/scrum-master-logo-circle.png" alt="SM" class="icon-sm">
+                              <img src="/assets/img/global/scrum-master-logo-circle.png" alt="SM" class="icon-sm">
                               <span class="text-SM">Scrum Master</span>
                           </div>
                       </div>
                       <div class="w-100 box">
                           <div class="w-100 box">
-                              <img src="/assets/img/verificacao.png" alt="Verificação" class="icon-alert">
+                              <img src="/assets/img/global/verificacao.png" alt="Verificação" class="icon-alert">
                           </div>
                           <span class="text">${message}</span>
                       </div>
@@ -85,13 +85,13 @@ class Redirecionar {
       <div class="window box">
       <div class="w-100 box">
         <div class="w-100 box-soon">
-          <img src="/assets/img/scrum-master-logo-circle.png" alt="SM" class="icon-sm">
+          <img src="/assets/img/global/scrum-master-logo-circle.png" alt="SM" class="icon-sm">
           <span class="text-SM">Scrum Master</span>
           </div>
           </div>
             <div class="w-100 box">
             <div class="w-100 box">
-            <img src="/assets/img/alerta.png" alt="Alerta" class="icon-alert">
+            <img src="/assets/img/global/alerta.png" alt="Alerta" class="icon-alert">
           </div>
           <span class="text">${message}</span>
           </div>

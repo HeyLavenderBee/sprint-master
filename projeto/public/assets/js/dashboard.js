@@ -59,9 +59,11 @@ async function changeCurrentProfilePhoto() {
   const currentPhoto = await getCurrentProfilePhoto();
   var nextPhoto = currentPhoto;
 
-  var imagensLength = 2; //MUDE ISSO DE ACORDO COM QUANTAS FOTOS TEM NA PASTA
+  const resTotal = await fetch('api/usuarios/total-fotos');
+  const { total } = await resTotal.json();
+  var imagensLength = total;
 
-  if (currentPhoto > imagensLength - 1) {
+  if (currentPhoto > imagensLength - 2) {
     nextPhoto = 0;
   } else {
     nextPhoto++;
@@ -99,7 +101,7 @@ async function checklistMaker(data) {
         list += `<li class="levels__item">
                     <span class="levels__name">Nível ${i + 1}</span>
                     <span class="levels__icon" aria-hidden="true">
-                        <img src="/assets/img/play-dashboard.png" width="18" height="18" />
+                        <img src="/assets/img/dashboard/play-dashboard.png" width="18" height="18" />
                     </span>
                     <span class="levels__status">Disponível</span>
                 </li>`;
@@ -108,7 +110,7 @@ async function checklistMaker(data) {
         list += `<li class="levels__item">
                     <span class="levels__name">Nível ${i + 1}</span>
                     <span class="levels__icon" aria-hidden="true">
-                        <img src="/assets/img/cadeado-sm.png" width="18" height="18" />
+                        <img src="/assets/img/dashboard/cadeado-sm.png" width="18" height="18" />
                     </span>
                     <span class="levels__status">Disponível</span>
                 </li>`;
@@ -126,7 +128,7 @@ async function checklistMaker(data) {
         list += `<li class="levels__item">
                     <span class="levels__name">Nível ${i + 1}</span>
                     <span class="levels__icon" aria-hidden="true">
-                        <img src="/assets/img/feito-dashboard.png" width="18" height="18" />
+                        <img src="/assets/img/dashboard/feito-dashboard.png" width="18" height="18" />
                     </span>
                     <span class="levels__status">Disponível</span>
                 </li>`;
@@ -136,7 +138,7 @@ async function checklistMaker(data) {
         list += `<li class="levels__item">
                     <span class="levels__name">Nível ${i + 1}</span>
                     <span class="levels__icon" aria-hidden="true">
-                        <img src="/assets/img/play-dashboard.png" width="18" height="18" />
+                        <img src="/assets/img/dashboard/play-dashboard.png" width="18" height="18" />
                     </span>
                     <span class="levels__status">Disponível</span>
                 </li>`;
@@ -146,7 +148,7 @@ async function checklistMaker(data) {
         list += `<li class="levels__item">
                     <span class="levels__name">Nível ${i + 1}</span>
                     <span class="levels__icon" aria-hidden="true">
-                        <img src="/assets/img/cadeado-sm.png" width="18" height="18" />
+                        <img src="/assets/img/dashboard/cadeado-sm.png" width="18" height="18" />
                     </span>
                     <span class="levels__status">Disponível</span>
                 </li>`;

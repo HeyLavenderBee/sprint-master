@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const fs = require('fs');
 const authMiddleware = require("../middlewares/auth.middleware");
 const { verifyToken } = require("../utils/jwt");
 const { findUsuarioById, findIdExameByIdUsuario } = require("../repositories/usuarios.repository")
@@ -59,6 +60,12 @@ router.patch("/mudar-foto-perfil", authMiddleware, changePhotoController);
 
 // DELETE api/usuarios/resetar-progresso
 router.delete("/resetar-progresso", authMiddleware, deleteProgressController)
+
+// GET api/usuarios/total-fotos
+router.get('/total-fotos', (req, res) => {
+    const arquivos = fs.readdirSync('../projeto/public/assets/img/fotos-perfil');
+    res.json({ total: arquivos.length });
+});
 
 module.exports = router;
 

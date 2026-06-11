@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="stylesheet" href="/assets/css/questionario.css">
-    <link rel="stylesheet" href="/assets/css/alertas.css">
-    <link rel="icon" href="/assets/img/scrum-master-logo-circle.ico" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/questionario.css" />
+    <link rel="stylesheet" href="/assets/css/alertas.css" />
+    <link rel="icon" href="/assets/img/global/scrum-master-logo-circle.ico" />
     <title>Sprint Masters | Questionário</title>
   </head>
   <body>
@@ -17,7 +17,6 @@
           .then((response) => response.text())
           .then((data) => {
             document.getElementById("header").innerHTML = data;
-
             //importa o script do header e coloca nessa página
             const script = document.createElement("script");
             script.src = "assets/js/header.js";
@@ -28,7 +27,7 @@
         <a href="modulos.html"
           ><img
             class="back-button"
-            src="/assets/img/botao-voltar.png"
+            src="/assets/img/questionario/botao-voltar.png"
             width="30px"
         /></a>
         <h1>Scrum Guide</h1>
@@ -91,5 +90,5 @@
     </main>
     <script src="/assets/js/alertas.js" defer></script>
     <script src="/assets/js/questionario.js"></script>
-</body>
+  </body>
 </html>
