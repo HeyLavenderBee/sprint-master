@@ -7,7 +7,7 @@ async function getCertificadoByHashController(req, res) {
     
       if (!certificadoHash) {
         return res.status(400).json({
-          message: "Hash do certificado obrigatório",
+          message: "Hash do certificado obrigatório.",
         });
       }
     
@@ -16,7 +16,7 @@ async function getCertificadoByHashController(req, res) {
     
         if (!certificado) {
           return res.status(404).json({
-            message: "Certificado inexistente para o hash informado",
+            message: "Certificado inexistente para o hash informado.",
           });
         }
     
@@ -31,7 +31,7 @@ async function getCertificadoByHashController(req, res) {
       } catch (e) {
         console.log(e.message)
         return res.status(500).json({
-          message: "Erro interno do servidor",
+          message: "Erro interno do servidor. Tente novamente mais tarde.",
         });
       }   
 }

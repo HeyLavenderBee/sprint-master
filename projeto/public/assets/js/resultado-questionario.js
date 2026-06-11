@@ -15,7 +15,7 @@ async function resetUser(){
       },
     })
   } catch(e){
-    alert("Erro interno no Servidor.");
+    Alerts.set("Erro interno no Servidor.");
   }
 }
 
@@ -50,7 +50,7 @@ function showMessage(nota) {
 
   // Calcula um índice aleatório baseado no tamanho do array
   if (typeof nota !== "number" || isNaN(nota)) {
-    alert("A nota é inválida");
+    Alerts.set("A nota é inválida");
     return;
   } else if (nota >= 7) {
     const indiceAleatorio = Math.floor(Math.random() * fraseSucessso.length);
@@ -77,13 +77,9 @@ function showChoiceMessage(nota, tentativa){
   }
 
   if(nota == 10 && tentativa == 1){
+    nextModule(false);
     choiceContainer.innerHTML = `
       <p class="choice-text">Você conseguiu a nota máxima na primeira tentativa! <br> Não é mais preciso refazer o módulo atual, então vá para o próximo módulo com o botão abaixo.</p>
-      <div class="btn-choice-container">
-        <a>
-          <button class="btn-quiz-result" id="next-module-button">Ir para próximo módulo</button>
-        </a>
-      </div>
     `;
   } else if(nota > 6 && tentativa == 1){
     choiceContainer.innerHTML = `
@@ -98,6 +94,7 @@ function showChoiceMessage(nota, tentativa){
       </div>
     `;
   } else if(nota > 6 && tentativa == 2){
+    nextModule(false);
     choiceContainer.innerHTML = `
       <p class="choice-text">Não há mais tentativas restantes e você já obteve a nota mínima para o exame. <br>Continue para o próximo módulo.</p>
     `;
@@ -109,8 +106,7 @@ function showChoiceMessage(nota, tentativa){
   } else{
     resetUser();
     choiceContainer.innerHTML = `
-      <p class="choice-text">Infelizmente você não atingiu a nota mínima em nenhuma das tentativas... <br> Para ter a oportunidade de obter o certificado, aceita resetar todo o progresso e começar do zero?</p>
-      <button class="btn-quiz-result" id="reset-progress-button" alt="Resetar progresso">Resetar progresso</button>
+      <p class="choice-text">Infelizmente você não atingiu a nota mínima em nenhuma das tentativas... <br> Para ter a oportunidade de obter o certificado, todo o processo foi resetado e você precisará concluir todos os módulos novamente.</p>
     `;
   }
 }
@@ -130,7 +126,7 @@ async function goToQuestionnaire(){
       window.location.href = "questionario.html";
     }
   } catch(e){
-    alert("Erro interno no servidor. Tente novamente mais tarde");
+    Alerts.set("Erro interno no servidor. Tente novamente mais tarde");
   }
 }
 
@@ -146,11 +142,11 @@ async function tryAgain(){
     })
     window.location.href = "questionario.html";
   } catch(e){
-    alert("Erro interno. Tente novamente mais tarde.");
+    Alerts.set("Erro interno. Tente novamente mais tarde.");
   }
 }
 
-async function nextModule() {
+async function nextModule(goToQuestionnaire) {
   var token = localStorage.getItem("token");
   const endpoint = `/api/questoes/proximo-modulo`;
   try{
@@ -160,9 +156,10 @@ async function nextModule() {
         Authorization: `Bearer ${token}`,
       },
     })
-    window.location.href = "modulos.html";
+    if(goToQuestionnaire)
+      window.location.href = "questionario.html";
   } catch(e){
-    alert("Erro interno. Tente novamente mais tarde.");
+    Alerts.set("Erro interno. Tente novamente mais tarde.");
   }
 }
 
@@ -206,6 +203,6 @@ document.addEventListener("click", function(e){
   }
   if(e.target.id === "next-module-button"){
     e.preventDefault();
-    nextModule();
+    nextModule(true);
   }
 })

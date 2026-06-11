@@ -1,12 +1,15 @@
 const { Router } = require("express");
+const fs = require('fs');
 const authMiddleware = require("../middlewares/auth.middleware");
-const {verifyToken} = require("../utils/jwt");
+const { verifyToken } = require("../utils/jwt");
 const { findUsuarioById, findIdExameByIdUsuario } = require("../repositories/usuarios.repository")
 const { 
-deleteProgressController,
-createUsuarioController, 
-updateMeController, 
-getUsuarioController
+  createUsuarioController, 
+  updateMeController, 
+  getUsuarioController,
+  getPhotoController,
+  changePhotoController,
+  deleteProgressController,
 } = require("../controllers/usuario.controller");
 const router = Router();
 
@@ -17,10 +20,6 @@ router.post("/", createUsuarioController);
 router.patch("/me", authMiddleware, updateMeController);
 
 // POST api/usuarios/id-exame
-
-// TODO: juntar /id-exame e /id-usuario em uma única rota, para facilitar requisição
-
-// POST api/id-exame
 router.post("/id-exame", async function (req, res) {
   const { idUsuario } = req.body;
 
@@ -31,7 +30,7 @@ router.post("/id-exame", async function (req, res) {
     console.log(e.message);
 
     return res.status(500).json({
-      message: "Erro interno no servidor"
+      message: "Erro interno no servidor. Tente novamente mais tarde."
     });
   }
 });
@@ -47,7 +46,7 @@ router.post("/id-usuario", async function (req, res) {
     console.log(e.message);
 
     return res.status(500).json({
-      message: "Erro interno no servidor"
+      message: "Erro interno no servidor. Tente novamente mais tarde."
     });
   }
 });
@@ -55,8 +54,20 @@ router.post("/id-usuario", async function (req, res) {
 // GET api/usuarios/usuario (protegido) - retorna usuário a partir do token no header
 router.get("/usuario", authMiddleware, getUsuarioController);
 
+// GET api/usuarios/foto-perfil
+router.get("/foto-perfil", authMiddleware, getPhotoController);
+
+// GET api/usuarios/mudar-foto-perfil
+router.patch("/mudar-foto-perfil", authMiddleware, changePhotoController);
+
 // DELETE api/usuarios/resetar-progresso
 router.delete("/resetar-progresso", authMiddleware, deleteProgressController)
+
+// GET api/usuarios/total-fotos
+router.get('/total-fotos', (req, res) => {
+    const arquivos = fs.readdirSync('../projeto/public/assets/img/fotos-perfil');
+    res.json({ total: arquivos.length });
+});
 
 module.exports = router;
 
@@ -65,8 +76,8 @@ module.exports = router;
 
 Cadastro:
 curl -X POST http://localhost:3000/api/usuarios \
-    -H "Content-Type: application/json" \
-    -d '{"nome": "Ana", "email": "ana19@email.com", "cpf": "12345678919", "senha": "123456", "grupo": 1}'
+  -H "Content-Type: application/json" \
+  -d '{"nome": "Ana", "email": "ana19@email.com", "cpf": "12345678919", "senha": "123456", "grupo": 1}'
 
 Atualizar dados do usuario:    
 curl -X PATCH http://localhost:3000/api/usuarios/me \
@@ -81,30 +92,39 @@ curl -X PATCH http://localhost:3000/api/usuarios/me \
 
 Atualizar nome:
 curl -X PATCH http://localhost:3000/api/usuarios/4/nome \
-    -H "Content-Type: application/json" \
-    -H "Authorization: Bearer SEU_TOKEN" \
-    -d '{"nome": "maria eduarda"}'
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer SEU_TOKEN" \
+  -d '{"nome": "maria eduarda"}'
 
 Atualizar email:
 curl -X PATCH http://localhost:3000/api/usuarios/4/email \
-    -H "Content-Type: application/json" \
-    -H "Authorization: Bearer SEU_TOKEN" \
-    -d '{"email": "fernanda@gmail.com"}'
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer SEU_TOKEN" \
+  -d '{"email": "fernanda@gmail.com"}'
 
 Atualizar senha:
 curl -X PATCH http://localhost:3000/api/usuarios/4/senha \
-    -H "Content-Type: application/json" \
-    -H "Authorization: Bearer SEU_TOKEN" \
-    -d '{"senha": "teste1"}'
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer SEU_TOKEN" \
+  -d '{"senha": "teste1"}'
 
 Pegar o idExame
-    curl -X POST http://localhost:3000/api/usuarios/id-exame \
-    -H "Content-Type: application/json" \
-    -d '{"idUsuario": "2"}'
+  curl -X POST http://localhost:3000/api/usuarios/id-exame \
+  -H "Content-Type: application/json" \
+  -d '{"idUsuario": "2"}'
 
 Resetar progresso:
 curl -X DELETE http://localhost:3000/api/usuarios/resetar-progresso -H "Authorization: Bearer SEU_TOKEN"
 
+Mostrar foto de perfil atual:
+curl -X GET http://localhost:3000/api/usuarios/foto-perfil \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjoxLCJpYXQiOjE3ODEwNTAyNTAsImV4cCI6MTc4MTA1MTQ1MH0.Er3HtZC2yy_ZqA509NX6rLYxcLeeM07rOCpJ67RMGXU"
+
+Mudar foto de perfil:
+curl -X PATCH http://localhost:3000/api/usuarios/mudar-foto-perfil \
+  -H "Authorization: Bearer SEU_TOKEN" \
+  -d '{"imagem": "1"}'
+  
 Pegar o idUsuario
     curl -X POST http://localhost:3000/api/usuarios/id-usuario \
     -H "Content-Type: application/json" \
