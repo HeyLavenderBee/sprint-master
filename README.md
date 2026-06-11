@@ -5,7 +5,7 @@
 <br>
 
 <img src="https://badgen.net/github/issues/TechFellasAbp/sprint-master" />
-<img src="https://img.shields.io/badge/status-em_andamento-yellow" />
+<img src="https://img.shields.io/badge/status-concluído-yellow" />
 <img src="https://badgen.net/github/commits/TechFellasAbp/sprint-master" />
 
 <br><br>
@@ -78,7 +78,7 @@ O <b>DoD</b> pode ser encontrado <a href="https://github.com/TechFellasAbp/sprin
 
 ## 📈 Cronograma de Evolução do projeto
 
-<img  width="100%" alt="cronograma-evolucao-projeto" src="https://github.com/user-attachments/assets/0b5c5091-f0fc-4e3f-8a57-59be41cdfda4" />
+<img width="100%" alt="cronograma-evolucao-projeto" src="https://github.com/user-attachments/assets/65f871e0-4a3d-4b1b-8729-5d3024d7b5f1" />
 
 <br>
   
@@ -88,7 +88,7 @@ O <b>DoD</b> pode ser encontrado <a href="https://github.com/TechFellasAbp/sprin
 | ------- | ---------- | ------ | -------------------------------------------------------------------------------------------------------------- | ------------- |
 | 1       | 13/04/2026 | ✅     | [Ver relatório](https://github.com/TechFellasAbp/sprint-master/blob/main/docs/relatorios/relatorio-sprint1.md) | [Ver vídeo](https://youtu.be/piYhwFAskJ4) |
 | 2       | 04/05/2026 |   ✅   | [Ver relatório](https://github.com/TechFellasAbp/sprint-master/blob/main/docs/relatorios/relatorio-sprint2.md) | [Ver vídeo](https://youtu.be/C_JkQOm4SpY) |
-| 3       | 25/05/2026 | ⌛     | Ver relatório  | Ver vídeo     |
+| 3       | 25/05/2026 | ✅     | [Ver relatório](https://github.com/TechFellasAbp/sprint-master/blob/main/docs/relatorios/relatorio-sprint3.md)  | [Ver vídeo](https://youtu.be/Mo78US0aqyA)     |
 
 ### Legenda:
 
@@ -120,13 +120,27 @@ O <b>Sprint Backlog</b> pode ser encontrado <a href="https://github.com/TechFell
 
 ## 🎯 Sprint 03:
 
---
+<p style="text-align: justify;">
+Nesta sprint, a equipe decidiu focar na finalização do backend do sistema, reorganizando a divisão de tarefas e aprimorando a integração entre o frontend e o backend.
+Além disso, foram corrigidos os bugs identificados durante a Sprint Review e implementadas novas funcionalidades consideradas essenciais para o aprimoramento e a evolução do sistema.
+<br>
+O <b>Sprint Backlog</b> pode ser encontrado <a href="https://github.com/TechFellasAbp/sprint-master/blob/main/docs/backlog/sprint-backlog3.md">aqui</a>.
+</p>
 
 <br>
 
 ## 🛠️ Tecnologias
 
-[![My Skills](https://skillicons.dev/icons?i=js,nodejs,postgres,html,css,figma,git,github)](https://skillicons.dev)
+| Tecnologia | Versão |
+|------------|---------|
+| ![My Skills](https://skillicons.dev/icons?i=js) | ES2023 |
+| ![My Skills](https://skillicons.dev/icons?i=nodejs)| v22.16.0 |
+|![My Skills](https://skillicons.dev/icons?i=postgres) | v18.3 |
+| ![My Skills](https://skillicons.dev/icons?i=html)| HTML5 |
+| ![My Skills](https://skillicons.dev/icons?i=css) | CSS3 |
+| ![My Skills](https://skillicons.dev/icons?i=figma) | Web|
+| ![My Skills](https://skillicons.dev/icons?i=git) | v2.53 |
+| ![My Skills](https://skillicons.dev/icons?i=github) | Web |
 
 <br>
 
@@ -165,9 +179,9 @@ Eles podem ser encontrados <a href="https://github.com/TechFellasAbp/sprint-mast
 
 ### 🛠 Pré-requisitos
 
-- Git ([Download](https://git-scm.com/downloads))
+- Git ([Download](https://git-scm.com/downloads)) - v. 2.53.0
 
-- Node.js ([Download](https://nodejs.org/en/download))
+- Node.js ([Download](https://nodejs.org/en/download)) - v. 24.13.1
 
 - PgAdmin ([Download](https://www.pgadmin.org/download/))
 
