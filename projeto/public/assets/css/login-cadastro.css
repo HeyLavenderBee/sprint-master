@@ -146,6 +146,11 @@
   border: #cccccc solid 2px;
 }
 
+.form-extra-link{
+  color: var(--yellow-ring);
+  text-decoration: none;
+}
+
 .icon-input {
   width: 90%;
   padding: 5px;
