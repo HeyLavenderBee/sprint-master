@@ -85,6 +85,7 @@ async function getCertificado() {
     dataEmissao.innerText =
       formatDate(data.certificado?.emitidoEm) || dataEmissao.innerText; //chama a função de formatar data
   }
+  setTimeout(5000);
 }
 
 getCertificado();
