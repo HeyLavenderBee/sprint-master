@@ -11,7 +11,6 @@ async function loginController(req, res) {
     const result = await loginService(cpf,senha);
     return res.status(200).json(result);
   } catch (e) {
-    console.log(e.message);
     return res.status(500).json({
       message: e.message,
     });

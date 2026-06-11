@@ -26,7 +26,6 @@ router.post("/id-exame", async function (req, res) {
     const result = await findIdExameByIdUsuario(idUsuario);
     res.send(result);
   } catch(e){
-    console.log(e.message);
 
     return res.status(500).json({
       message: "Erro interno no servidor. Tente novamente mais tarde."
@@ -42,7 +41,6 @@ router.post("/id-usuario", async function (req, res) {
     const result = await verifyToken(token);
     res.send(result);
   } catch(e){
-    console.log(e.message);
 
     return res.status(500).json({
       message: "Erro interno no servidor. Tente novamente mais tarde."

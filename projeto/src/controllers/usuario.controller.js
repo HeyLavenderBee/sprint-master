@@ -31,7 +31,6 @@ async function createUsuarioController(req, res) {
     const result = await cadastrarUsuario(nome, email, cpf, senha);
     res.status(201).json(result);
   } catch (e) {
-    console.log(e.message); //<- quando houver um erro interno, esse print ajuda a decifrar qual
     if (e && e.code == "23505") {
       return res.status(409).json({
         message: "Já existe usuário com os dados informados.",
@@ -108,16 +107,13 @@ async function getPhotoController(req, res){
     const result = await pegarFoto(idUsuario);
     return res.status(200).json(result);
   } catch(e){
-    console.log(e.message);
     return res.status(500).json({ message: "Erro interno no servidor. Tente novamente mais tarde." });
   }
 }
 
 async function changePhotoController(req, res){
   const idUsuario = req.usuario.id_usuario;
-  console.log(req.body)
   const { imagem } = req.body;
-  console.log(imagem)
   try{
     const result = await mudarFoto(idUsuario, imagem);
     return res.status(200).json(result);
@@ -139,7 +135,6 @@ async function deleteProgressController(req, res) {
     const deletado = deleteProgressByUsuario(idExame);
     return res.status(200).json(deletado);
   } catch (e) {
-    console.log(e.message);
     return res.status(400).json({
       message: "Erro interno do servidor",
     });

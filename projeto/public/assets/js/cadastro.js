@@ -15,7 +15,6 @@ async function cadastrarUsuario() {
   var email = document.getElementById("email").value.trim();
   var cpf = normalizarCPF(document.getElementById("cpf").value.trim());
   var senha = document.getElementById("password").value.trim();
-  console.log(cpf, "-",email)
 
   if (nome == "") {
     return Alerts.set("O nome é obrigatório.");
