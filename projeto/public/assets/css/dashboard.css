@@ -1,5 +1,3 @@
-
-
 .dashboard {
   margin: 0;
   min-height: 100vh;
@@ -19,13 +17,26 @@
 
 /* ——— Sidebar (desktop) ——— */
 .sidebar {
-  
   background: var(--bg-sidebar);
   padding: 28px 24px 32px;
   display: flex;
   flex-direction: column;
   gap: 24px;
   border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.alts-holder-show{
+  margin: 0;
+  border-right: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.alts-holder-hide{
+  display: none;
 }
 
 .sidebar__brand {
@@ -63,6 +74,12 @@
 }
 
 .profile {
+  width: min-content;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
   margin-top: 8px;
 }
@@ -71,16 +88,20 @@
   display: flex;
   justify-content: center;
   margin-bottom: 14px;
+  width: 120px;
+  height: 120px;
+  position: relative;
 }
 
 .profile__avatar {
-  width: 96px;
-  height: 96px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .profile__name {
+  width: 15rem;
   margin: 0 0 6px;
   font-size: 1.1rem;
   font-weight: 700;
@@ -103,16 +124,37 @@
   margin-top: 4px;
 }
 
+.alt-button{
+  padding: 12px 14px;
+  font-family: var(--font);
+  font-size: 0.88rem;
+  color: var(--cream);
+  background: var(--alts-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 0 var(--radius-input) var(--radius-input) 0;
+  outline: none;
+}
+
+.alt-button:hover{
+  background: var(--blue-deep);
+}
+
 .field {
   display: flex;
   flex-direction: column;
   gap: 8px;
   text-align: left;
+  width: 100%;
+}
+
+.field-hide{
+  display: none;
 }
 
 .field__label {
   font-size: 0.8rem;
   font-weight: 700;
+  text-align: center;
   color: var(--white);
   letter-spacing: 0.01em;
 }
@@ -122,11 +164,23 @@
   padding: 12px 14px;
   font-family: var(--font);
   font-size: 0.88rem;
-  color: var(--muted-light);
+  color: var(--cream);
   background: var(--input-bg);
   border: 1px solid var(--input-border);
-  border-radius: var(--radius-input);
+  border-radius: var(--radius-input) 0 0 var(--radius-input);
   outline: none;
+}
+
+.field__input:disabled{
+  color: var(--muted-light);
+}
+
+#conf-password-input{
+  border-radius: var(--radius-input);
+}
+
+.field-fuser{
+  display: inline-flex;
 }
 
 .field__input:focus {
@@ -157,11 +211,58 @@
   color: var(--white);
   background: var(--logout-bg);
   border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  width: 100%;
+  
+}
+
+.btn-edit {
+  padding: 13px 16px;
+  font-family: var(--font);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--blue-accent);
+  border: none;
   border-radius: var(--radius-input);
   cursor: pointer;
   transition: background 0.15s ease;
   width: 100%;
   
+}
+
+.btn-pfp{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cream);
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: 5px;
+  margin-left: 70px;
+  border-radius: 50%;
+  color: black;
+  font-family: var(--font);
+  border: 2px solid var(--blue-accent);
+}
+
+.btn-pfp-hide{
+  display: none;
+}
+
+.btn-open-edit-show{
+  width: 100%;
+  border-radius: 30px;
+  margin-top: 1rem;
+}
+
+.btn-open-edit-hide{
+  display: none;
 }
 
 .link-logout{
@@ -171,7 +272,6 @@
     font-size: 0.88rem;
     font-weight: 600;
     color: var(--white);
-    background: var(--logout-bg);
     border: none;
     border-radius: var(--radius-input);
     cursor: pointer;
@@ -184,6 +284,24 @@
   .btn-logout:active {
   transform: scale(0.98);
 }  
+
+.btn-edit:hover {
+  background: var(--blue-deep);
+}  
+  .btn-edit:active {
+  transform: scale(0.98);
+}  
+
+
+
+.btn-pfp:hover {
+  background: var(--ring-muted);
+}  
+  .btn-pfp:active {
+  transform: scale(0.98);
+}  
+
+
 
 /* ——— Main ——— */
 .main {
@@ -225,7 +343,7 @@
 }
 
 .card__subtitle {
-  margin: 0 0 16px;
+  margin: 0 ;
   font-size: 0.92rem;
   font-weight: 500;
   color: var(--navy-text);
@@ -333,10 +451,25 @@
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(37, 125, 244, 0.35);
   transition: background 0.15s ease, transform 0.1s ease;
+  text-decoration: none;
 }
 
 .btn-primary:hover {
   background: var(--blue-deep);
+}
+
+.btn-primary.blocked {
+  color: var(--white);
+  background: rgb(111, 111, 111);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(102, 102, 102, 0.35);
+  cursor: not-allowed;
+}
+
+.btn-primary.blocked:active {
+  transform: none;
 }
 
 .btn-primary:active {
@@ -352,7 +485,7 @@
 .diploma-art {
   display: flex;
   justify-content: center;
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .diploma {

@@ -1,20 +1,23 @@
 
 /*COMEÇO DA ESTILIZAÇÃO DA TELA RESULTADO QUESTIONÁRIO*/
 
-/* .main-quiz-result{
-  height: 80%;
-  width: 100%;
-} */
+.main-quiz-result{
+  box-sizing: border-box;
+  margin-top: 2rem;
+  height: 100%;
+  width: 100%; 
+} 
 
 .quiz-result-content {
   background-color: #fff8ef;
   margin: 0;
+  padding-top: 5rem;
   padding: 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 85vh;
+  height: 100%;
   flex-wrap: nowrap;
 }
 
@@ -52,7 +55,7 @@
   margin-bottom: 2rem;
 }
 
-.button-quiz-result {
+.btn-quiz-result {
   background-color: #2081f9;
   padding: 15px;
   border: none;
@@ -63,13 +66,33 @@
   font-weight: bold;
 }
 
-.button-quiz-result:hover {
+.btn-quiz-result:hover {
   background-color: #2d7ddf;
   transform: translateY(-1px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 .quiz-result-text.a {
   color: #1461C2;
+}
+
+.choice-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-choice-container{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.choice-text{
+  font-size: 18px;
+  margin-bottom: 2rem;
 }
 
 /*FIM DA ESTILIZAÇÃO DA TELA RESULTADO QUESTIONÁRIO*/

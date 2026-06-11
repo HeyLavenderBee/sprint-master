@@ -1,15 +1,20 @@
 /* ==== COMEÇO DA ESTILIZAÇÃO DA TELA DO CERTIFICADO ==== */
 
+body {
+  height: fit-content;
+}
+
 .certificate-page {
   display: flex;
   gap: 2rem;
-  padding: 50px;
   position: relative;
-  align-items: center;
-  height: 100%;
+  margin-top: 5rem;
+  height: fit-content;
 }
 
 .container-certified {
+  margin-top: 5rem;
+  padding-bottom: 0;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -33,6 +38,7 @@
 
 .frase-certificado {
   color: #646464;
+  width: 90%;
 }
 
 .div-bar {
@@ -47,13 +53,13 @@
 }
 
 .div-escrita-certificado h1 {
-  color: #09203E;
-  font-size: 3.5rem;
+  color: #09203e;
+  font-size: 4.5rem;
   text-shadow: 0px 4px 4px hsla(0, 0%, 0%, 0.2);
 }
 
 .div-escrita-certificado h2 {
-  color: #09203E;
+  color: #09203e;
   font-weight: 400;
   margin: 15px 0;
 }
@@ -79,6 +85,7 @@
 }
 
 .container-blue {
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,10 +93,16 @@
 }
 
 .blue-container {
-  background-color: #09264A;
+  background-color: #09264a;
   height: 22.5rem;
   width: 33.75rem;
-  border-radius: 1em;
+  border-radius: 1rem;
+}
+
+.blue-container img {
+  width: 33.75rem;
+  border: 5px solid #bdbdbd;
+  border-radius: 10px;
 }
 
 .button-baixar-d {
@@ -151,9 +164,11 @@
 
 .watermark {
   color: #5a5a5a;
-  position: absolute;
-  bottom: 0;
-  right: 40px;
+  width: 100%;
+  text-align: right;
+  padding-right: 40px;
+  padding-top: 9rem;
+  padding-bottom: 1rem;
 }
 
 @media (max-width: 768px) {
@@ -161,23 +176,27 @@
     height: 100%;
     flex-direction: column;
     padding: 10px;
+    margin-top: 0px;
   }
 
   .div-escrita-certificado {
     font-size: large;
     width: 100%;
     padding: 20px;
-    margin-top: 25px;
   }
 
   .blue-container {
     height: 12.25rem;
-    width: 100%;
+    width: 22rem;
+  }
+
+  .blue-container img {
+    width: 22rem;
   }
 
   .button-aligment {
     padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-bottom: 1rem;
     gap: 4rem;
   }
 
@@ -208,10 +227,8 @@
   }
 
   .watermark {
-    width: 100%;
     text-align: center;
-    right: 0;
-    bottom: 0;
+    padding-right: 0;
   }
 }
 
@@ -219,12 +236,21 @@
   .blue-container {
     height: 10.25rem;
     width: 100%;
-    max-width: 21.5rem;
+    max-width: 19.5rem;
+  }
+
+  .blue-container img {
+    max-width: 19.5rem;
   }
 
   .button-aligment {
     padding-bottom: 10rem;
     gap: 2rem;
+  }
+
+  .watermark {
+    text-align: center;
+    padding-right: 0;
   }
 }
 

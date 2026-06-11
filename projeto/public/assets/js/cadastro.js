@@ -15,31 +15,24 @@ async function cadastrarUsuario() {
   var email = document.getElementById("email").value.trim();
   var cpf = normalizarCPF(document.getElementById("cpf").value.trim());
   var senha = document.getElementById("password").value.trim();
-  console.log(cpf, "-",email)
 
   if (nome == "") {
-    alert("O nome é obrigatório.");
-    return;
+    return Alerts.set("O nome é obrigatório.");
   }
   if (email == "") {
-    alert("O e-mail é obrigatório.");
-    return;
+    return Alerts.set("O e-mail é obrigatório.");
   }
   if (cpf == "") {
-    alert("O CPF é obrigatório.");
-    return;
+    return Alerts.set("O CPF é obrigatório.");
   }
   if (cpf.length !== 11) {
-    alert("CPF inválido. Informe os 11 dígitos.");
-    return;
+    return Alerts.set("CPF inválido. Informe os 11 dígitos.");
   }
   if (senha == "") {
-    alert("A senha é obrigatória.");
-    return;
+    return Alerts.set("A senha é obrigatória.");
   }
   if (senha.length < 6) {
-    alert("A senha deve ter pelo menos 6 caracteres.");
-    return;
+    return Alerts.set("A senha deve ter pelo menos 6 caracteres.");
   }
 
   const endpoint = `api/usuarios`;
@@ -53,16 +46,15 @@ async function cadastrarUsuario() {
 
     if (!response.ok) {
       const errorData = await response.json();
-      return alert(
+      return Alerts.set(
         errorData.message ? errorData.message : "Ocorreu um erro",
       );
     }
 
-    alert("Usuário cadastrado com sucesso!");
     window.location.href = "index.html";
   } catch (e) {
     //qualquer erro de conexão a internet ou coisas que não foi o erro do usuário
-    alert(e.message ? e.message : "Ocorreu um erro interno.");
+    Alerts.set(e.message ? e.message : "Ocorreu um erro interno.");
   }
 }
 
