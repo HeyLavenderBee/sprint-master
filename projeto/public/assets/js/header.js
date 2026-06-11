@@ -29,14 +29,14 @@ async function getDisplayData() {
     const data = await response.json();
 
     if (!response.ok) {
-      return alert(data.message ? data.message : "Ocorreu um erro");
+      return Redirecionar.set(data.message ? data.message : "Ocorreu um erro", "index.html");
     }
     var profilePhoto = await getCurrentProfilePhoto();
     userPhoto.src = `assets/img/fotos-perfil/${profilePhoto}.png`;
     nameLabel.innerHTML = data.nome;
     emailLabel.innerHTML = data.email;
   } catch (e) {
-    alert("Erro interno do servidor");
+    Alerts.set("Erro interno do servidor. Tente novamente mais tarde.");
   }
 }
 

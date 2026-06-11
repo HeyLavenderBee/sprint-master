@@ -153,6 +153,7 @@ async function getModulosRespondidosController(req, res) {
 
     return res.status(200).json(modulos);
   } catch (e) {
+    console.log(e.message)
     return res.status(500).json({
       message: "Erro interno do servidor. Tente novamente mais tarde.",
     });
