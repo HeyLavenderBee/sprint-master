@@ -121,7 +121,7 @@ Em paralelo, foi iniciado o desenvolvimento do front-end, juntamente com a defin
 
 <summary>
 
-### 🗓️ Dailys
+### 🗓️ Dailies
 
 </summary>
 
