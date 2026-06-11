@@ -56,12 +56,16 @@ async function getCurrentModule() {
     const data = await response.json();
 
     if (!response.ok) {
-      return alert(data.message ? data.message : "Ocorreu um erro");
+      return Redirecionar.set(data.message ? data.message : "Ocorreu um erro", "index.html");
     }
 
+    if(data.length == 0){
+      return 1;
+    }
     return data[data.length-1].id_modulo;
   } catch (e) {
-    alert("Erro interno do servidor");
+    console.log(e.message)
+    Alerts.set("Erro interno do servidor. Tente novamente mais tarde.");
   }
 }
 
@@ -107,10 +111,9 @@ async function getQuestion() {
     window.location.href = "resultado-questionario.html";
     return;
   } else if (!response.ok) {
-    return Alerts.set("Token inválido ou expirado, faça login novamente.");
+    return Redirecionar.set("Token inválido ou expirado, faça login novamente.", "index.html");
   }
 
-  console.log(data.id_questao);
   setQuestionNumberIndicator(data.numero, data.numero);
   setQuestionHtml(
     data.enunciado,
@@ -123,14 +126,11 @@ async function getQuestion() {
   setModuleTitle();
 }
 
-resposta = "";
-disableNextQuestionButton();
 async function nextQuestion() {
   var token = localStorage.getItem("token");
 
-  console.log(resposta);
   if (resposta.length != 1 || resposta.length == 0) {
-    return alert("Marque uma alternativa antes de ir para próxima questão");
+    return Alert.set("Marque uma alternativa antes de ir para próxima questão");
   }
 
   let endpoint = `api/questoes/proxima-questao`;
@@ -147,7 +147,7 @@ async function nextQuestion() {
     window.location.href = "resultado-questionario.html";
     return;
   } else if (!response.ok) {
-    return Alerts.set("Token inválido ou expirado, faça login novamente.");
+    return Redirecionar.set("Token inválido ou expirado, faça login novamente.", "index.html");
   }
 
   endpoint = `api/usuarios/id-usuario`;

@@ -28,10 +28,10 @@ async function obterDados() {
 
     const data = await response.json();
 
-    if (!response.ok && data.message?.includes("token")) {
+    if (!response.ok && (data.message?.includes("token") || data.message?.includes("Token"))) {
       Redirecionar.set(data.message, "index.html");
     } else if (!response.ok) {
-      return Alerts.set(data.message);
+      return Redirecionar.set(data.message, "index.html");
     }
     
     const tentativasRestantes1 = document.getElementById(
@@ -159,9 +159,7 @@ async function getModulos() {
     headers: { Authorization: `Bearer ${token}` },
   });
 
-  if (!response.ok) {
-    return;
-  }
+  if (!response.ok) return;
 
   const data = await response.json();
 
@@ -172,21 +170,67 @@ async function getModulos() {
     }
   }
   return currentModule + 1;
-  
 }
 
-getModulos();
+async function getNota(){
+  const token = localStorage.getItem("token");
 
+  const endpoint = `api/questoes/modulos-respondidos`;
+  const response = await fetch(endpoint, {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!response.ok) return;
+
+  const data = await response.json();
+
+  var currentNota = 0;
+  for (let i = 0; i < data.length; i++) {
+    if (i == data.length - 1) {
+      currentNota = data[i].nota;
+    }
+  }
+  return currentNota;
+}
 
 async function setModulos() {
   const currentModule = await getModulos();
-  for (let i = 1; i <= currentModule; i++) {
-    const moduloLiberado = document.getElementById(
-      `btn-modulo-${i}`,
-    );
-    moduloLiberado.classList.remove("blocked");
-    moduloLiberado.innerText = "Acessar";
-    moduloLiberado.setAttribute("href", "questionario.html");
+
+  const token = localStorage.getItem("token");
+
+  const endpoint = `api/questoes/modulos-respondidos`;
+  const response = await fetch(endpoint, {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!response.ok) return;
+
+  const data = await response.json();
+
+  console.log(data)
+  for (let i = 0; i < currentModule; i++) {  
+    if(data[i] != undefined){
+      const moduloLiberado = document.getElementById(
+        `btn-modulo-${data[i].id_modulo+1}`,
+      );
+      // vê se o módulo anterior está completo e válido na nota
+      if(data[i].questoes_respondidas == 10 && data[i].nota > 6){
+        moduloLiberado.classList.remove("blocked");
+        moduloLiberado.innerText = "Acessar";
+        moduloLiberado.setAttribute("href", "questionario.html");
+      }
+    } else{
+      const moduloLiberado = document.getElementById(
+        `btn-modulo-${1}`,
+      );
+      if(data.length == 0){
+        moduloLiberado.classList.remove("blocked");
+        moduloLiberado.innerText = "Acessar";
+        moduloLiberado.setAttribute("href", "questionario.html");
+      }
+    }
   }
 }
 
@@ -194,15 +238,31 @@ setModulos();
 
 async function setCompletedModules() {
   const currentModule = await getModulos();
-  if (currentModule > 1) {
-    for (let i = 1; i < currentModule; i++) {
-      const moduloConcluido = document.getElementById(
-        `btn-modulo-${i}`,
-      );
-      moduloConcluido.classList.add("done");
-      moduloConcluido.innerText = "Feito!";
-    moduloConcluido.removeAttribute("href");
 
+  const token = localStorage.getItem("token");
+
+  const endpoint = `api/questoes/modulos-respondidos`;
+  const response = await fetch(endpoint, {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!response.ok) return;
+
+  const data = await response.json();
+
+  console.log("current",currentModule);
+  if (currentModule > 1) {
+    for (let i = 0; i < currentModule; i++) {
+      const moduloConcluido = document.getElementById(
+        `btn-modulo-${data[i].id_modulo}`,
+      );
+      //se refere ao módulo atual
+      if(data[i].questoes_respondidas == 10 && data[i].nota > 6){
+        moduloConcluido.classList.add("done");
+        moduloConcluido.innerText = "Feito!";
+        moduloConcluido.removeAttribute("href");
+      }
     }
   }
 }
