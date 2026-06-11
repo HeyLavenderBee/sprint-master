@@ -6,7 +6,7 @@
 .banner-container {
   display: flex;
   height: 100%;
-  background-image: url(../img/banner-top-sem-texto.jpg);
+  background-image: url(../img/home/banner-top-sem-texto.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -136,7 +136,7 @@
 
 .banner-container-2 {
   display: flex;
-  background-image: url(../img/banner-bottom-fundo.jpg);
+  background-image: url(../img/home/banner-bottom-fundo.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
