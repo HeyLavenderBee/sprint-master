@@ -113,55 +113,53 @@ describe("responder questão", () => {
     let idExame;
     let idQuestao;
     //pega variáveis importantes antes de realizar o teste
-    beforeEach(async () => {
-        const responseQuestao = await request(app).get("/api/questoes/proxima-questao")
-        .set('Authorization', `Bearer ${token}`)
-        .send({token});
+    for(let i = 0; i < 10; i++) {
+        beforeEach(async () => {
+            const responseQuestao = await request(app).get("/api/questoes/proxima-questao")
+            .set('Authorization', `Bearer ${token}`)
+            .send({token});
 
-        idQuestao = await responseQuestao.body.id_questao;
-        console.log("id questão: ", idQuestao)
+            idQuestao = await responseQuestao.body.id_questao;
+            console.log("id questão: ", idQuestao)
 
-        const response = await request(app).post("/api/usuarios/id-usuario")
-        .set('Content-Type',  'application/json')
-        .send({token});
+            const response = await request(app).post("/api/usuarios/id-usuario")
+            .set('Content-Type',  'application/json')
+            .send({token});
 
-        idUsuario = await response.body.id_usuario;
+            idUsuario = await response.body.id_usuario;
 
-        const responseExame = await request(app).post("/api/usuarios/id-exame")
-        .set('Content-Type',  'application/json')
-        .send({idUsuario});
+            const responseExame = await request(app).post("/api/usuarios/id-exame")
+            .set('Content-Type',  'application/json')
+            .send({idUsuario});
 
-        idExame = await responseExame.body.id_exame;
-    });
-    it("retornar status 201 caso usuário responda a questão", async () => {
-        const response = await request(app).post("/api/questoes/responder")
-        .set('Authorization', `Bearer ${token}`)
-        .set('Content-Type',  'application/json')
-        .send({
-            id_exame: idExame, id_questao: idQuestao, resposta: "c"
+            idExame = await responseExame.body.id_exame;
         });
-        expect(response.statusCode).toEqual(201);
-    });
+        it("retornar status 201 caso usuário responda a questão", async () => {
+            const response = await request(app).post("/api/questoes/responder")
+            .set('Authorization', `Bearer ${token}`)
+            .set('Content-Type',  'application/json')
+            .send({
+                id_exame: idExame, id_questao: idQuestao, resposta: "c"
+            });
+            expect(response.statusCode).toEqual(201);
+        });
+    }
 });
 
-/*
 //TODO: concluir aqui a função de testes
 describe("próximo módulo", () => {
-    it("o que precisa retornar", async () => {
-        const response = await request(app).post("").send({
-            //campos de envio para uma questão ser respondida
-        });
+    it("retornar status 200 caso usuário acesse o próximo módulo", async () => {
+        const response = await request(app).patch("/api/questoes/proximo-modulo")
+        .set('Authorization', `Bearer ${token}`)
+        expect(response.statusCode).toEqual(200);
     });
 });
-*/
 
-/*
 //TODO: concluir aqui a função de testes
 describe("próxima tentativa", () => {
-    it("o que precisa retornar", async () => {
-        const response = await request(app).post("").send({
-            //campos de envio para uma questão ser respondida
-        });
+    it("retornar status 200 caso usuário acesse a próxima tentativa", async () => {
+        const response = await request(app).post("/api/questoes/proxima-tentativa")
+        .set('Authorization', `Bearer ${token}`)
+        expect(response.statusCode).toEqual(200);
     });
 });
-*/
